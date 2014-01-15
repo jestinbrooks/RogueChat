@@ -7,7 +7,7 @@ If you are killed you must start over with a new name
 
 Setup
 
-1. Check your version of python, I tested with 2.7.3 but it should work with any version of 2.6 or 2.7
+1. Check your version of python, I tested with 2.7.3 and 2.7.5 but it should work with any version of 2.6 or 2.7
 
 2. Open terminal and enter python roguechatclient.py
 
