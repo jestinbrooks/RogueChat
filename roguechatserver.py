@@ -71,6 +71,17 @@ def isroom(s):
         return False
 
 
+# Send a list of room occupants
+def listoccupants(client, sock):
+    occupants = ""
+
+    for c in clients.itervalues():
+        if c.room == client.room: #and not c.name == client.name:
+            occupants += "\n" + c.name
+
+    send("Server", sock, "room contains: %s\n" % occupants)
+
+
 # Main function
 if __name__ == "__main__":
     # List of all sockets
@@ -148,13 +159,7 @@ if __name__ == "__main__":
                                 rooms[client.room].append(sock)
                                 broadcast(sock, "Server", "%s has entered the room\n" % client.name, client.room)
 
-                                occupants = ''
-                                for c in clients.itervalues():
-                                    print c
-                                    if c.room == client.room:
-                                        occupants += '\n' + c.name
-
-                                send("Server", sock, "room contains: %s\n" % occupants)
+                                listoccupants(client, sock)
 
                             # if invalid room is enter give error and wait for new room
                             else:
@@ -180,13 +185,7 @@ if __name__ == "__main__":
                                     client.room = data[7:-1]
                                     broadcast(sock, "Server", "%s has entered the room\n" % client.name, client.room)
 
-                                    occupants = ''
-                                    for c in clients.itervalues():
-                                        print c
-                                        if c.room == client.room:
-                                            occupants += '\n' + c.name
-
-                                    send("Server", sock, "room contains: %s\n" % occupants)
+                                    listoccupants(client, sock)
 
                                 # If invalid room is enter give error and wait for new room
                                 else:
