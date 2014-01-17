@@ -3,15 +3,15 @@ import select
 
 
 class Client:
-
+    """ An object containing a clients name, location, and address """
     def __init__(self, add):
         self.room = "lobby"
         self.name = ""
         self.sock = add
 
 
-# Send a message to all occupants of a room
 def broadcast(origin, oname, message, room):
+    """ Send a message to all occupants of a room """
     roomlist = rooms[room]
     for sock in roomlist:
         if sock != serversocket and sock != origin:
@@ -24,8 +24,8 @@ def broadcast(origin, oname, message, room):
                 lobby.remove(sock)
 
 
-# Send a message to one user
 def send(oname, destination, message):
+    """ Send a message to one user """
     try:
         output = "\r<%s> %s" % (oname, message)
         destination.send(output)
@@ -34,14 +34,14 @@ def send(oname, destination, message):
         lobby.remove(destination)
 
 
-# Move a user from one room to another
 def move(sock, leave, enter):
+    """ Move a user from one room to another """
     enter.append(sock)
     leave.remove(sock)
 
 
-# Remove a character and move user back to the lobby
 def stab(killer, victimname):
+    """ Remove a character and move user back to the lobby """
     victim = nametosocket(victimname)
     send(killer, victim, "Stabs you: Please enter a new name\n")
     vclient = clients[victim.getpeername()]
@@ -51,8 +51,8 @@ def stab(killer, victimname):
     rooms[vroom].remove(victim)
 
 
-# Use a peer name to find the matching socket
 def nametosocket(peername):
+    """ Use a peer name to find the matching socket """
     sock = None
     print lobby
 
@@ -63,23 +63,26 @@ def nametosocket(peername):
                 sock = s
     return sock
 
-# tests to see if a string is equivalent to a room name
 def isroom(s):
+    """ tests to see if a string is equivalent to a room name """
     if s in rooms:
         return True
     else:
         return False
 
 
-# Send a list of room occupants
 def listoccupants(client, sock):
+    """ Send a list of room occupants """
     occupants = ""
 
     for c in clients.itervalues():
-        if c.room == client.room: #and not c.name == client.name:
+        if c.room == client.room and not c.name == client.name:
             occupants += "\n" + c.name
 
-    send("Server", sock, "room contains: %s\n" % occupants)
+    if not occupants:
+        send("Server", sock, "The room is empty\n")
+    else:
+        send("Server", sock, "The room contains: %s\n" % occupants)
 
 
 # Main function
