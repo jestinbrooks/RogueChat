@@ -4,10 +4,11 @@ import select
 
 class Client:
     """ An object containing a clients name, location, and address """
-    def __init__(self, add):
+    def __init__(self, add, sock):
         self.room = "lobby"
         self.name = ""
-        self.sock = add
+        self.address = add
+        self.clientsock = sock
 
 
 def broadcast(origin, oname, message, room):
@@ -42,7 +43,7 @@ def move(sock, leave, enter):
 
 def stab(killer, victimname):
     """ Remove a character and move user back to the lobby """
-    victim = nametosocket(victimname)
+    victim = clients[victimname].clientsock
     send(killer, victim, "Stabs you: Please enter a new name\n")
     vclient = clients[victim.getpeername()]
     vroom = vclient.room
@@ -50,18 +51,6 @@ def stab(killer, victimname):
     vclient.name = ""
     rooms[vroom].remove(victim)
 
-
-def nametosocket(peername):
-    """ Use a peer name to find the matching socket """
-    sock = None
-    print lobby
-
-    for s in lobby:
-        if not s == serversocket:
-            print peername, s.getpeername()
-            if peername == s.getpeername():
-                sock = s
-    return sock
 
 def isroom(s):
     """ tests to see if a string is equivalent to a room name """
@@ -121,12 +110,11 @@ if __name__ == "__main__":
         readsockets,writesockets,errorsockets = select.select(lobby,[],[])
         for sock in readsockets:
 
-
             # If the message is received on the server socket create a new connection
             if sock == serversocket:
                 newsock, address = serversocket.accept()
-                #clients[address] = ['lobby', '']
-                clients[address] = Client(address)
+                print type(address)
+                clients[address] = Client(address, newsock)
                 lobby.append(newsock)
                 send("Server", newsock, 'Welcome to RogueChat: Please enter your name\n')
 
