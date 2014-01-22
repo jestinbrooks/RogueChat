@@ -41,6 +41,12 @@ def move(sock, leave, enter):
     enter.append(sock)
     leave.remove(sock)
 
+    broadcast(sock, "Server", "%s has left the room\n" % client.name, client.room)
+    client.room = data[7:-1]
+    broadcast(sock, "Server", "%s has entered the room\n" % client.name, client.room)
+
+    listoccupants(client, sock)
+
 
 def stab(killer, victimname):
     """ Remove a character and move user back to the lobby """
@@ -168,18 +174,9 @@ if __name__ == "__main__":
 
                             # If the command was enter move the user to a different room
                             if data[1:6] == "enter":
-
                                 # if valid room is entered, enter room and list occupants
                                 if isroom(data[7:-1]):
-                                    print rooms[client.room], rooms[data[7:-1]]
                                     move(sock, rooms[client.room], rooms[data[7:-1]])
-                                    print rooms[client.room], rooms[data[7:-1]]
-
-                                    broadcast(sock, "Server", "%s has left the room\n" % client.name, client.room)
-                                    client.room = data[7:-1]
-                                    broadcast(sock, "Server", "%s has entered the room\n" % client.name, client.room)
-
-                                    listoccupants(client, sock)
 
                                 # If invalid room is enter give error and wait for new room
                                 else:

@@ -38,7 +38,7 @@
       <file leaf-file-name="roguechatserver.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/roguechatserver.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="178" column="60" selection-start="6201" selection-end="6201" vertical-scroll-proportion="1.4520991" vertical-offset="1321" max-vertical-offset="3420">
+            <state line="185" column="54" selection-start="6441" selection-end="6441" vertical-scroll-proportion="0.35414425" vertical-offset="2446" max-vertical-offset="3375">
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -325,13 +325,18 @@
       <created>1390177207189</created>
       <updated>1390177207189</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Fixed roomlist bug">
+      <created>1390356998766</created>
+      <updated>1390356998766</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="64" y="-4" width="1857" height="1085" extended-state="6" />
     <editor active="true" />
     <layout>
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32985386" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -346,7 +351,6 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32985386" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -363,7 +367,8 @@
     <MESSAGE value="Made a method for listing room occupants" />
     <MESSAGE value="changed some comments to docstrings and fixed bug where your own name was listed when entering a room" />
     <MESSAGE value="Removed the nametosock function" />
-    <option name="LAST_COMMIT_MESSAGE" value="Removed the nametosock function" />
+    <MESSAGE value="Fixed roomlist bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed roomlist bug" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -476,7 +481,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/roguechatserver.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="178" column="60" selection-start="6201" selection-end="6201" vertical-scroll-proportion="1.4520991" vertical-offset="1321" max-vertical-offset="3420">
+        <state line="185" column="54" selection-start="6441" selection-end="6441" vertical-scroll-proportion="0.35414425" vertical-offset="2446" max-vertical-offset="3375">
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>
