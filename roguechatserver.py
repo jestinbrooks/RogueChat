@@ -14,6 +14,7 @@ class Client:
 def broadcast(origin, oname, message, room):
     """ Send a message to all occupants of a room """
     roomlist = rooms[room]
+
     for sock in roomlist:
         if sock != serversocket and sock != origin:
             try:
@@ -80,7 +81,9 @@ if __name__ == "__main__":
     lobby = []
 
     # Lists of sockets for each room and a dictionary containing all of the lists
-    foyer = drawingroom = dininghall = []
+    foyer = []
+    drawingroom = []
+    dininghall = []
     rooms = {"Foyer": foyer, "Drawing Room": drawingroom, "Dining Hall": dininghall}
 
     RECV_BUFFER = 4096
