@@ -11,10 +11,8 @@ class Client:
         self.clientsock = sock
 
 
-def broadcast(origin, oname, message, room):
+def broadcast(origin, oname, message, roomlist):
     """ Send a message to all occupants of a room """
-    roomlist = rooms[room]
-
     for sock in roomlist:
         if sock != serversocket and sock != origin:
             try:
@@ -41,10 +39,10 @@ def move(sock, leave, enter):
     rooms[enter].append(sock)
     if leave:
         leave.remove(sock)
-        broadcast(sock, "Server", "%s has left the room\n" % client.name, client.room)
+        broadcast(sock, "Server", "%s has left the room\n" % client.name, rooms[client.room])
 
     client.room = enter
-    broadcast(sock, "Server", "%s has entered the room\n" % client.name, client.room)
+    broadcast(sock, "Server", "%s has entered the room\n" % client.name, rooms[client.room])
 
     listoccupants(client, sock)
 
@@ -184,12 +182,12 @@ if __name__ == "__main__":
                         # Else send the message out to the rest of the users room
                         else:
                             print "message entered"
-                            broadcast(sock, client.name, data, client.room)
+                            broadcast(sock, client.name, data, rooms[client.room])
 
                 # If a socket can't be communicated with remove it from the list and room
                 except socket.error:
                     print "error"
-                    broadcast(sock, "Server", "%s is offline\n" % client.name, client.room)
+                    broadcast(sock, "Server", "%s is offline\n" % client.name, rooms[client.room])
                     print "Client (%s, %s) is offline\n" % (address[0], address[1])
                     sock.close()
                     lobby.remove(sock)

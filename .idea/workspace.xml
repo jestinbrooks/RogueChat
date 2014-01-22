@@ -38,7 +38,7 @@
       <file leaf-file-name="roguechatserver.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/roguechatserver.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="120" column="32" selection-start="3401" selection-end="3401" vertical-scroll-proportion="1.9375672" vertical-offset="0" max-vertical-offset="3060">
+            <state line="15" column="25" selection-start="389" selection-end="389" vertical-scroll-proportion="0.2421959" vertical-offset="0" max-vertical-offset="3030">
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -331,7 +331,11 @@
       <created>1390357441824</created>
       <updated>1390357441824</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="removed lobby and put clients in Foyer once they enter a name">
+      <created>1390358758664</created>
+      <updated>1390358758664</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -371,7 +375,8 @@
     <MESSAGE value="Removed the nametosock function" />
     <MESSAGE value="Fixed roomlist bug" />
     <MESSAGE value="moved more code into the move command" />
-    <option name="LAST_COMMIT_MESSAGE" value="moved more code into the move command" />
+    <MESSAGE value="removed lobby and put clients in Foyer once they enter a name" />
+    <option name="LAST_COMMIT_MESSAGE" value="removed lobby and put clients in Foyer once they enter a name" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -480,7 +485,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/roguechatserver.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="120" column="32" selection-start="3401" selection-end="3401" vertical-scroll-proportion="1.9375672" vertical-offset="0" max-vertical-offset="3060">
+        <state line="15" column="25" selection-start="389" selection-end="389" vertical-scroll-proportion="0.2421959" vertical-offset="0" max-vertical-offset="3030">
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>
