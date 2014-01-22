@@ -5,7 +5,7 @@ import select
 class Client:
     """ An object containing a clients name, location, and address """
     def __init__(self, add, sock):
-        self.room = "lobby"
+        self.room = "Foyer"
         self.name = ""
         self.address = add
         self.clientsock = sock
@@ -38,11 +38,12 @@ def send(oname, destination, message):
 
 def move(sock, leave, enter):
     """ Move a user from one room to another """
-    enter.append(sock)
-    leave.remove(sock)
+    rooms[enter].append(sock)
+    if leave:
+        leave.remove(sock)
+        broadcast(sock, "Server", "%s has left the room\n" % client.name, client.room)
 
-    broadcast(sock, "Server", "%s has left the room\n" % client.name, client.room)
-    client.room = data[7:-1]
+    client.room = enter
     broadcast(sock, "Server", "%s has entered the room\n" % client.name, client.room)
 
     listoccupants(client, sock)
@@ -127,7 +128,6 @@ if __name__ == "__main__":
                 lobby.append(newsock)
                 send("Server", newsock, 'Welcome to RogueChat: Please enter your name\n')
 
-
             # If the message is from an existing client check the content and user state
             else:
                 try:
@@ -137,7 +137,6 @@ if __name__ == "__main__":
                         print "data entered by" + str(sock.getpeername())
                         print "%s" % data
 
-
                         # If the client has no name get its name and ask for room
                         if not client.name:
                             print "name entered"
@@ -146,27 +145,8 @@ if __name__ == "__main__":
                             else:
                                 client.name = data[:-1]
                                 names.append(client.name)
-                                send("Server", sock, "choose a room " + str(rooms.keys()) + "\n")
-
-
-                        # If the client has no room get its room and move it there
-                        elif client.room == "lobby":
-                            print "room entered"
-
-                            # if valid room is entered, enter room and list occupants
-                            if isroom(data[:-1]):
-                                client.room = data[:-1]
-                                rooms[client.room].append(sock)
-                                broadcast(sock, "Server", "%s has entered the room\n" % client.name, client.room)
-
-                                listoccupants(client, sock)
-
-                            # if invalid room is enter give error and wait for new room
-                            else:
-                                send("Server", sock, "not a room\n")
-
-
-
+                                send("Server", sock, "You are in the Foyer\n")
+                                move(sock, "", "Foyer")
 
                         # If the message is a command see which command it is
                         elif data[0] == '#':
@@ -176,7 +156,7 @@ if __name__ == "__main__":
                             if data[1:6] == "enter":
                                 # if valid room is entered, enter room and list occupants
                                 if isroom(data[7:-1]):
-                                    move(sock, rooms[client.room], rooms[data[7:-1]])
+                                    move(sock, rooms[client.room], data[7:-1])
 
                                 # If invalid room is enter give error and wait for new room
                                 else:
@@ -200,7 +180,6 @@ if __name__ == "__main__":
                                 sock.close()
                                 lobby.remove(sock)
                                 rooms[client.room].remove(sock)
-
 
                         # Else send the message out to the rest of the users room
                         else:
