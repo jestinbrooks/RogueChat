@@ -38,7 +38,7 @@
       <file leaf-file-name="roguechatserver.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/roguechatserver.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="25" selection-start="389" selection-end="389" vertical-scroll-proportion="0.2421959" vertical-offset="0" max-vertical-offset="3030">
+            <state line="24" column="0" selection-start="684" selection-end="684" vertical-scroll-proportion="-0.033369213" vertical-offset="391" max-vertical-offset="3030">
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -335,7 +335,11 @@
       <created>1390358758664</created>
       <updated>1390358758664</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="changed broadcast functions parameters">
+      <created>1390359189990</created>
+      <updated>1390359189990</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -376,7 +380,8 @@
     <MESSAGE value="Fixed roomlist bug" />
     <MESSAGE value="moved more code into the move command" />
     <MESSAGE value="removed lobby and put clients in Foyer once they enter a name" />
-    <option name="LAST_COMMIT_MESSAGE" value="removed lobby and put clients in Foyer once they enter a name" />
+    <MESSAGE value="changed broadcast functions parameters" />
+    <option name="LAST_COMMIT_MESSAGE" value="changed broadcast functions parameters" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -485,7 +490,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/roguechatserver.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="25" selection-start="389" selection-end="389" vertical-scroll-proportion="0.2421959" vertical-offset="0" max-vertical-offset="3030">
+        <state line="24" column="0" selection-start="684" selection-end="684" vertical-scroll-proportion="-0.033369213" vertical-offset="391" max-vertical-offset="3030">
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>

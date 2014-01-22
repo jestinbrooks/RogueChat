@@ -20,7 +20,7 @@ def broadcast(origin, oname, message, roomlist):
                 sock.send(output)
             except socket.error:
                 sock.close()
-                rooms[room].remove(sock)
+                roomlist.remove(sock)
                 lobby.remove(sock)
 
 
