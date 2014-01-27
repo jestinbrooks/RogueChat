@@ -48,11 +48,8 @@ if __name__ == "__main__":
                     sys.stdout.write(data)
                     prompt()
 
-            # If message is from input either quit or send to the server
+            # If message is from input send to the server
             else:
                 message = sys.stdin.readline()
-                #if message == "#quit\n":
-                #    exit()
-                #else:
                 clientsocket.send(message)
                 prompt()

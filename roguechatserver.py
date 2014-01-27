@@ -168,11 +168,9 @@ if __name__ == "__main__":
 
                             # If the command is stab remove the stabbed character from the game
                             elif data[1:6] == "stab ":
-                                for k, c in clients.iteritems():
-                                    print k, c, data[6:-1]
+                                for c in clients.itervalues():
                                     if c.name == data[6:-1]:
-                                        print "stab 2"
-                                        stab(client.name, k)
+                                        stab(client.name, c.address)
 
                             elif data[1:5] == "quit":
                                 sock.close()
