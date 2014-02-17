@@ -26,4 +26,4 @@ Commands
 "#quit" : Exits the client returning you to a terminal prompt
 
 
-Thanks to binarytides.com for their tutorial on python sockets and starter code that got this project started
+Thanks to binarytides.com for their tutorial on python sockets and example code that got this project started
