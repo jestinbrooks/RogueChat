@@ -121,7 +121,7 @@ if __name__ == "__main__":
             # If the message is received on the server socket create a new connection
             if sock == serversocket:
                 newsock, address = serversocket.accept()
-                print type(address)
+                #print type(address)
                 clients[address] = Client(address, newsock)
                 lobby.append(newsock)
                 send("Server", newsock, 'Welcome to RogueChat: Please enter your name\n')
@@ -132,7 +132,7 @@ if __name__ == "__main__":
                     client = clients[sock.getpeername()]
                     data = sock.recv(RECV_BUFFER)
                     if data:
-                        print "data entered by" + str(sock.getpeername())
+                        print "data entered by " + str(sock.getpeername())
                         print "%s" % data
 
                         # If the client has no name get its name and ask for room
