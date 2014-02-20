@@ -2,8 +2,9 @@ import socket
 import select
 import sys
 
+
 def read(csock):
-    """ Check for messages from the server sent to the socket csock"""
+    """ Check for messages from the server sent to the socket csock """
 
     # Listen for input or a message and loop through all received messages
     read_sockets, write_sockets, error_sockets = select.select([csock], [], [])
@@ -80,6 +81,28 @@ if read(clientsocktwo) == "\r<Server> The room contains: \nname\n":
     print "List Occupants: Pass"
 else:
     print "List Occupants: Fail"
+
+# Test for server notifying other occupants that client two has entered the room
+if read(clientsockone) == "\r<Server> name2 has entered the room\n":
+    print "Client Two Has Entered Room: Pass"
+else:
+    print "Client Two Has Entered Room: Fail"
+
+# Send a message from client one to client two
+clientsockone.send("hello\n")
+
+if read(clientsocktwo) == "\r<name> hello\n":
+    print "Send Message: Pass"
+else:
+    print "send Message: Fail"
+
+# Move client one to the Drawing Room
+clientsockone.send("#enter Drawing Room\n")
+
+if read(clientsockone) == "\r<Server> The room is empty\n":
+    print "Enter Room-Empty: Pass"
+else:
+    print "Enter Room-Empty: Fail"
 
 # Close connections
 clientsockone.send("#quit\n")
