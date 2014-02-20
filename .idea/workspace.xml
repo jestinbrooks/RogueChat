@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3e99179b-5341-467f-80de-bec73e0752e0" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/servertest.py" afterPath="$PROJECT_DIR$/servertest.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="RogueChat.iws" />
@@ -38,25 +38,16 @@
       <file leaf-file-name="roguechatserver.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/roguechatserver.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="127" column="0" selection-start="3795" selection-end="3795" vertical-scroll-proportion="0.0" vertical-offset="1905" max-vertical-offset="3000">
+            <state line="127" column="0" selection-start="3795" selection-end="3795" vertical-scroll-proportion="0.0" vertical-offset="150" max-vertical-offset="2985">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="servertest.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="servertest.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/servertest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="48" column="32" selection-start="1306" selection-end="1306" vertical-scroll-proportion="0.0" vertical-offset="720" max-vertical-offset="900">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="README.md" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/README.md">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="28" column="74" selection-start="845" selection-end="845" vertical-scroll-proportion="0.45356372" vertical-offset="0" max-vertical-offset="926">
+            <state line="88" column="19" selection-start="2426" selection-end="2426" vertical-scroll-proportion="0.9028078" vertical-offset="454" max-vertical-offset="1380">
               <folding />
             </state>
           </provider>
@@ -89,6 +80,7 @@
         <option value="$PROJECT_DIR$/chattest.py" />
         <option value="$PROJECT_DIR$/testclienttwo.py" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/servertest.py" />
       </list>
     </option>
   </component>
@@ -160,15 +152,15 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="213" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="242" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="1134" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="1130" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="1134" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="238" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="231" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder2" value="2" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder3" value="3" />
     <property name="FullScreen" value="false" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -371,14 +363,17 @@
       <created>1392665033857</created>
       <updated>1392665033857</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="updated readme">
+      <created>1392665091562</created>
+      <updated>1392665091562</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="1855" height="1056" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32985386" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -391,11 +386,12 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32985386" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32985386" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -430,7 +426,7 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/roguechatclient.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="26" selection-start="180" selection-end="180" vertical-scroll-proportion="0.0" vertical-offset="180" max-vertical-offset="900">
+        <state line="12" column="26" selection-start="180" selection-end="180" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="900">
           <folding />
         </state>
       </provider>
@@ -444,14 +440,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/servertest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="48" column="32" selection-start="1306" selection-end="1306" vertical-scroll-proportion="0.0" vertical-offset="720" max-vertical-offset="900">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="0" selection-start="732" selection-end="732" vertical-scroll-proportion="0.0" vertical-offset="420" max-vertical-offset="510">
+        <state line="48" column="32" selection-start="1306" selection-end="1306" vertical-scroll-proportion="0.0" vertical-offset="720" max-vertical-offset="870">
           <folding />
         </state>
       </provider>
@@ -540,13 +529,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/roguechatserver.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="127" column="0" selection-start="3795" selection-end="3795" vertical-scroll-proportion="0.0" vertical-offset="1499" max-vertical-offset="2985">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/roguechatclient.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="12" column="26" selection-start="180" selection-end="180" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="870">
@@ -554,16 +536,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/servertest.py">
+    <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="48" column="32" selection-start="1306" selection-end="1306" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="900">
+        <state line="28" column="91" selection-start="862" selection-end="862" vertical-scroll-proportion="0.45356372" vertical-offset="0" max-vertical-offset="926" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/roguechatserver.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="127" column="0" selection-start="3795" selection-end="3795" vertical-scroll-proportion="0.0" vertical-offset="1499" max-vertical-offset="2985">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
+    <entry file="file://$PROJECT_DIR$/servertest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="74" selection-start="845" selection-end="845" vertical-scroll-proportion="0.45356372" vertical-offset="0" max-vertical-offset="926">
+        <state line="88" column="19" selection-start="2426" selection-end="2426" vertical-scroll-proportion="0.9028078" vertical-offset="454" max-vertical-offset="1380">
           <folding />
         </state>
       </provider>
