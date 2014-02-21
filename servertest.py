@@ -2,6 +2,8 @@ import socket
 import select
 import sys
 
+# A script for testing server response to messages and commands from clients
+
 
 def read(csock):
     """ Check for messages from the server sent to the socket csock """
@@ -103,6 +105,14 @@ if read(clientsockone) == "\r<Server> The room is empty\n":
     print "Enter Room-Empty: Pass"
 else:
     print "Enter Room-Empty: Fail"
+
+# Try to move client one to room that doesn't exist
+clientsockone.send("#enter Bathroom\n")
+
+if read(clientsockone) == "\r<Server> not a room\n":
+    print "Enter Room-Invalid: Pass"
+else:
+    print "Enter Room-Invalid: Fail"
 
 # Close connections
 clientsockone.send("#quit\n")
