@@ -134,6 +134,46 @@ if read(clientsockone) == "\r<Server> The room contains: \nname2\n":
 else:
     print "List Occupants-after death: Fail"
 
+# get the player has entered room message without testing
+read(clientsocktwo)
+
+# Test client two stabbing itself
+clientsocktwo.send("#stab name2\n")
+
+if read(clientsocktwo) == "\r<name2> Stabs you: Please enter a new name\n":
+    print "Stab self: Pass"
+else:
+    print "Stab self: Fail"
+
+# Test entering a name that is already in use
+clientsocktwo.send("name2\n")
+if read(clientsocktwo) == "\r<Server> That name is either in use or dead\n":
+    print "New invalid name one: Pass"
+else:
+    print "New invalid name one: Fail"
+
+
+# Test entering another name that is already in use
+clientsocktwo.send("Server\n")
+if read(clientsocktwo) == "\r<Server> That name is either in use or dead\n":
+    print "New invalid name two: Pass"
+else:
+    print "New invalid name two: Fail"
+
+clientsocktwo.send("name4\n")
+if read(clientsocktwo) == "\r<Server> You are in the Foyer\n":
+    print "New name two: Pass"
+else:
+    print "New name two: Fail"
+
+if read(clientsocktwo) == "\r<Server> The room contains: \nname3\n":
+    print "List Occupants-after death two: Pass"
+else:
+    print "List Occupants-after death two: Fail"
+
+# get the player has entered room message without testing
+read(clientsockone)
+
 # Close connections
 clientsockone.send("#quit\n")
 clientsocktwo.send("#quit\n")
