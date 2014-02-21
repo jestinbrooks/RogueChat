@@ -114,6 +114,26 @@ if read(clientsockone) == "\r<Server> not a room\n":
 else:
     print "Enter Room-Invalid: Fail"
 
+# Test client two stab client one
+clientsocktwo.send("#stab name\n")
+
+if read(clientsockone) == "\r<name2> Stabs you: Please enter a new name\n":
+    print "Stab: Pass"
+else:
+    print "Stab: Fail"
+
+# Test entering new name after death
+clientsockone.send("name3\n")
+if read(clientsockone) == "\r<Server> You are in the Foyer\n":
+    print "New name: Pass"
+else:
+    print "New name: Fail"
+
+if read(clientsockone) == "\r<Server> The room contains: \nname2\n":
+    print "List Occupants-after death: Pass"
+else:
+    print "List Occupants-after death: Fail"
+
 # Close connections
 clientsockone.send("#quit\n")
 clientsocktwo.send("#quit\n")
