@@ -135,7 +135,7 @@ else:
     print "List Occupants-after death: Fail"
 
 # get the player has entered room message without testing
-read(clientsocktwo)
+print repr(read(clientsocktwo))
 
 # Test client two stabbing itself
 clientsocktwo.send("#stab name2\n")
@@ -172,7 +172,7 @@ else:
     print "List Occupants-after death two: Fail"
 
 # get the player has entered room message without testing
-read(clientsockone)
+print repr(read(clientsockone))
 
 # Close connections
 clientsockone.send("#quit\n")

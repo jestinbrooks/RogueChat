@@ -171,8 +171,9 @@ if __name__ == "__main__":
                                 for c in clients.itervalues():
                                     if c.name == data[6:-1]:
                                         stab(client.name, c.address)
-                                    else:
-                                        send("Server", sock, "There is no %s in this room\n" % data[6:-1])
+                                        break
+                                else:
+                                    send("Server", sock, "There is no %s in this room\n" % data[6:-1])
 
                             elif data[1:5] == "quit":
                                 sock.close()
