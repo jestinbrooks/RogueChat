@@ -42,15 +42,15 @@ else:
 clientsockone.send("name\n")
 
 if read(clientsockone) == "\r<Server> You are in the Foyer\n":
-    print "Enter Name: Pass"
+    print "Enter name: Pass"
 else:
-    print "Enter Name: Fail"
+    print "Enter name: Fail"
 
 # Test for correct server response to entering an empty room
 if read(clientsockone) == "\r<Server> The room is empty\n":
-    print "List Occupants-Empty: Pass"
+    print "List occupants-Empty: Pass"
 else:
-    print "List Occupants-Empty: Fail"
+    print "List occupants-Empty: Fail"
 
 
 # Add second connection
@@ -66,56 +66,61 @@ except socket.error:
 
 # Test for correct server response to new connection
 if read(clientsocktwo) == "\r<Server> Welcome to RogueChat: Please enter your name\n":
-    print "Connection Two: Pass"
+    print "Connection two: Pass"
 else:
-    print "Connection Two: Fail"
+    print "Connection two: Fail"
 
 # Test for correct server response to entering a name
 clientsocktwo.send("name2\n")
 
 if read(clientsocktwo) == "\r<Server> You are in the Foyer\n":
-    print "Enter Name Two: Pass"
+    print "Enter name two: Pass"
 else:
-    print "Enter Name Two: Fail"
+    print "Enter name two: Fail"
 
 # Test for correct server response to entering an occupied room
 if read(clientsocktwo) == "\r<Server> The room contains: \nname\n":
-    print "List Occupants: Pass"
+    print "List occupants: Pass"
 else:
-    print "List Occupants: Fail"
+    print "List occupants: Fail"
 
 # Test for server notifying other occupants that client two has entered the room
 if read(clientsockone) == "\r<Server> name2 has entered the room\n":
-    print "Client Two Has Entered Room: Pass"
+    print "Client two has entered room: Pass"
 else:
-    print "Client Two Has Entered Room: Fail"
+    print "Client two has entered room: Fail"
 
 # Send a message from client one to client two
 clientsockone.send("hello\n")
 
 if read(clientsocktwo) == "\r<name> hello\n":
-    print "Send Message: Pass"
+    print "Send message: Pass"
 else:
-    print "send Message: Fail"
+    print "Send message: Fail"
 
 # Move client one to the Drawing Room
 clientsockone.send("#enter Drawing Room\n")
 
 if read(clientsockone) == "\r<Server> The room is empty\n":
-    print "Enter Room-Empty: Pass"
+    print "Enter room-Empty: Pass"
 else:
-    print "Enter Room-Empty: Fail"
+    print "Enter room-Empty: Fail"
 
 # Try to move client one to room that doesn't exist
 clientsockone.send("#enter Bathroom\n")
 
 if read(clientsockone) == "\r<Server> not a room\n":
-    print "Enter Room-Invalid: Pass"
+    print "Enter room-Invalid: Pass"
 else:
-    print "Enter Room-Invalid: Fail"
+    print "Enter room-Invalid: Fail"
 
 # Test client two stab client one
 clientsocktwo.send("#stab name\n")
+
+if read(clientsocktwo) == "\r<Server> name has left the room\n":
+    print "Dead player left room: Pass"
+else:
+    print "Dead player left room: Fail"
 
 if read(clientsockone) == "\r<name2> Stabs you: Please enter a new name\n":
     print "Stab: Pass"
@@ -130,12 +135,14 @@ else:
     print "New name: Fail"
 
 if read(clientsockone) == "\r<Server> The room contains: \nname2\n":
-    print "List Occupants-after death: Pass"
+    print "List occupants-After death: Pass"
 else:
-    print "List Occupants-after death: Fail"
+    print "List occupants-After death: Fail"
 
-# get the player has entered room message without testing
-print repr(read(clientsocktwo))
+if read(clientsocktwo) == "\r<Server> name3 has entered the room\n":
+    print "Player enters room-After death: Pass"
+else:
+    print "Player enters room-After death: Fail"
 
 # Test client two stabbing itself
 clientsocktwo.send("#stab name2\n")
@@ -167,12 +174,14 @@ else:
     print "New name two: Fail"
 
 if read(clientsocktwo) == "\r<Server> The room contains: \nname3\n":
-    print "List Occupants-after death two: Pass"
+    print "List occupants-After death two: Pass"
 else:
-    print "List Occupants-after death two: Fail"
+    print "List occupants-After death two: Fail"
 
-# get the player has entered room message without testing
-print repr(read(clientsockone))
+if read(clientsockone) == "\r<Server> name4 has entered the room\n":
+    print "Player enters room-After death two: Pass"
+else:
+    print "Player enters room-After death two: Fail"
 
 # Close connections
 clientsockone.send("#quit\n")
