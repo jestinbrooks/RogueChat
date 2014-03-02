@@ -19,8 +19,6 @@ Commands
 
 "#enter <roomname>" : Moves you to the room you enter
 
-"#leave" : Returns you to the lobby
-
 "#stab <name>" : Kills the player you enter returning them to the lobby and making them choose a new name
 
 "#quit" : Exits the client returning you to a terminal prompt

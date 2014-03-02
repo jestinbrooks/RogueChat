@@ -160,12 +160,6 @@ if __name__ == "__main__":
                                 else:
                                     send("Server", sock, "not a room\n")
 
-                            # If the command is leave move the user back to the lobby
-                            elif data[1:6] == "leave":
-                                rooms[client.room].remove(sock)
-                                client.room = "lobby"
-                                send("Server", sock, "choose a room " + str(rooms.keys()) + "\n")
-
                             # If the command is stab remove the stabbed character from the game
                             elif data[1:6] == "stab ":
                                 for c in clients.itervalues():
