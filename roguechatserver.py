@@ -21,7 +21,7 @@ def broadcast(origin, oname, message, roomlist):
             except socket.error:
                 sock.close()
                 roomlist.remove(sock)
-                lobby.remove(sock)
+                socketlist.remove(sock)
 
 
 def send(oname, destination, message):
@@ -31,7 +31,7 @@ def send(oname, destination, message):
         destination.send(output)
     except socket.error:
         destination.close()
-        lobby.remove(destination)
+        socketlist.remove(destination)
 
 
 def move(sock, leave, enter):
@@ -48,12 +48,12 @@ def move(sock, leave, enter):
 
 
 def stab(killer, victimname):
-    """ Remove a character and move user back to the lobby """
+    """ Remove a character and move user back to entering a name """
     victim = clients[victimname].clientsock
     send(killer, victim, "Stabs you: Please enter a new name\n")
     vclient = clients[victim.getpeername()]
     vroom = vclient.room
-    vclient.room = "lobby"
+    vclient.room = ""
     vclient.name = ""
     rooms[vroom].remove(victim)
 
@@ -83,7 +83,7 @@ def listoccupants(client, sock):
 # Main function
 if __name__ == "__main__":
     # List of all sockets
-    lobby = []
+    socketlist = []
 
     # Lists of sockets for each room and a dictionary containing all of the lists
     foyer = []
@@ -108,14 +108,14 @@ if __name__ == "__main__":
     serversocket.listen(10)
 
     # Add the socket to the main list
-    lobby.append(serversocket)
+    socketlist.append(serversocket)
 
     print "Chat server started on port " + str(PORT)
 
     # Listening loop
     while True:
         # Listen for a message and loop through all received messages
-        readsockets,writesockets,errorsockets = select.select(lobby,[],[])
+        readsockets,writesockets,errorsockets = select.select(socketlist,[],[])
         for sock in readsockets:
 
             # If the message is received on the server socket create a new connection
@@ -123,7 +123,7 @@ if __name__ == "__main__":
                 newsock, address = serversocket.accept()
                 #print type(address)
                 clients[address] = Client(address, newsock)
-                lobby.append(newsock)
+                socketlist.append(newsock)
                 send("Server", newsock, 'Welcome to RogueChat: Please enter your name\n')
 
             # If the message is from an existing client check the content and user state
@@ -171,8 +171,9 @@ if __name__ == "__main__":
 
                             elif data[1:5] == "quit":
                                 sock.close()
-                                lobby.remove(sock)
+                                socketlist.remove(sock)
                                 rooms[client.room].remove(sock)
+                                del clients[client.address]
 
                         # Else send the message out to the rest of the users room
                         else:
@@ -185,7 +186,7 @@ if __name__ == "__main__":
                     broadcast(sock, "Server", "%s is offline\n" % client.name, rooms[client.room])
                     print "Client (%s, %s) is offline\n" % (address[0], address[1])
                     sock.close()
-                    lobby.remove(sock)
+                    socketlist.remove(sock)
                     rooms[client.room].remove(sock)
                     continue
 
