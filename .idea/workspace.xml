@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3e99179b-5341-467f-80de-bec73e0752e0" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/roguechatserver.py" afterPath="$PROJECT_DIR$/roguechatserver.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/servertest.py" afterPath="$PROJECT_DIR$/servertest.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -39,7 +38,7 @@
       <file leaf-file-name="roguechatserver.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/roguechatserver.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="178" column="73" selection-start="6478" selection-end="6478" vertical-scroll-proportion="0.0" vertical-offset="1981" max-vertical-offset="3015">
+            <state line="164" column="62" selection-start="5772" selection-end="5772" vertical-scroll-proportion="0.0" vertical-offset="1981" max-vertical-offset="3015">
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -62,7 +61,7 @@
       <file leaf-file-name="servertest.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/servertest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="187" column="47" selection-start="5481" selection-end="5481" vertical-scroll-proportion="0.83314794" vertical-offset="2026" max-vertical-offset="3015">
+            <state line="198" column="0" selection-start="5769" selection-end="5769" vertical-scroll-proportion="0.9332592" vertical-offset="2101" max-vertical-offset="3105">
               <folding />
             </state>
           </provider>
@@ -427,7 +426,11 @@
       <created>1393784878273</created>
       <updated>1393784878273</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Added a message for when players input an invalid command and a test to make sure it is working">
+      <created>1393785432982</created>
+      <updated>1393785432982</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -444,7 +447,7 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32985386" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32984293" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3297414" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -488,7 +491,8 @@
     <MESSAGE value="Added tests for entering and leaving room messages" />
     <MESSAGE value="Removed the leave command since it has the same effect as stabbing yourself" />
     <MESSAGE value="Fixed bug where players would still show up in rooms after quiting and made sure the client objects were removed from the list after quitting" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed bug where players would still show up in rooms after quiting and made sure the client objects were removed from the list after quitting" />
+    <MESSAGE value="Added a message for when players input an invalid command and a test to make sure it is working" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added a message for when players input an invalid command and a test to make sure it is working" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -722,7 +726,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/roguechatserver.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="178" column="73" selection-start="6478" selection-end="6478" vertical-scroll-proportion="0.0" vertical-offset="1981" max-vertical-offset="3015">
+        <state line="164" column="62" selection-start="5772" selection-end="5772" vertical-scroll-proportion="0.0" vertical-offset="1981" max-vertical-offset="3015">
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>
@@ -731,7 +735,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/servertest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="187" column="47" selection-start="5481" selection-end="5481" vertical-scroll-proportion="0.83314794" vertical-offset="2026" max-vertical-offset="3015">
+        <state line="198" column="0" selection-start="5769" selection-end="5769" vertical-scroll-proportion="0.9332592" vertical-offset="2101" max-vertical-offset="3105">
           <folding />
         </state>
       </provider>

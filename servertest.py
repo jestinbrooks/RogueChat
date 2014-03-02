@@ -190,6 +190,12 @@ if read(clientsockone) == "\r<Server> Invalid command\n":
 else:
     print "Invalid command: Fail"
 
+clientsockone.send("#stab invalid name\n")
+if read(clientsockone) == "\r<Server> There is no invalid name in this room\n":
+    print "Stab invalid name: Pass"
+else:
+    print "Stab invalid name: Fail"
+
 # Close connections
 clientsockone.send("#quit\n")
 clientsocktwo.send("#quit\n")
