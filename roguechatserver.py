@@ -175,6 +175,9 @@ if __name__ == "__main__":
                                 rooms[client.room].remove(sock)
                                 del clients[client.address]
 
+                            else:
+                                send("Server", sock, "Invalid command\n")
+
                         # Else send the message out to the rest of the users room
                         else:
                             print "message entered"

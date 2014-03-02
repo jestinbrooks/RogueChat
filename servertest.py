@@ -183,6 +183,13 @@ if read(clientsockone) == "\r<Server> name4 has entered the room\n":
 else:
     print "Player enters room-After death two: Fail"
 
+# Test entering an invalid command
+clientsockone.send("#look\n")
+if read(clientsockone) == "\r<Server> Invalid command\n":
+    print "Invalid command: Pass"
+else:
+    print "Invalid command: Fail"
+
 # Close connections
 clientsockone.send("#quit\n")
 clientsocktwo.send("#quit\n")
