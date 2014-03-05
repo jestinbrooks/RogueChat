@@ -106,6 +106,11 @@ if read(clientsockone) == "\r<Server> The room is empty\n":
 else:
     print "Enter room-Empty: Fail"
 
+if read(clientsocktwo) == "\r<Server> name has left the room\n":
+    print "Dead player left room: Pass"
+else:
+    print "Dead player left room: Fail"
+
 # Try to move client one to room that doesn't exist
 clientsockone.send("#enter Bathroom\n")
 
@@ -117,10 +122,24 @@ else:
 # Test client two stab client one
 clientsocktwo.send("#stab name\n")
 
-if read(clientsocktwo) == "\r<Server> name has left the room\n":
-    print "Dead player left room: Pass"
+if read(clientsocktwo) == "\r<Server> There is no name in this room\n":
+    print "Stab: Pass"
 else:
-    print "Dead player left room: Fail"
+    print "Stab: Fail"
+
+clientsocktwo.send("#enter Drawing Room\n")
+
+if read(clientsocktwo) == "\r<Server> The room contains: \nname\n":
+    print "Change room: Pass"
+else:
+    print "Change room: Fail"
+
+if read(clientsockone) == "\r<Server> name2 has entered the room\n":
+    print "Client two has entered room-Two: Pass"
+else:
+    print "Client two has entered room-Two: Fail"
+
+clientsocktwo.send("#stab name\n")
 
 if read(clientsockone) == "\r<name2> Stabs you: Please enter a new name\n":
     print "Stab: Pass"
@@ -134,15 +153,10 @@ if read(clientsockone) == "\r<Server> You are in the Foyer\n":
 else:
     print "New name: Fail"
 
-if read(clientsockone) == "\r<Server> The room contains: \nname2\n":
+if read(clientsockone) == "\r<Server> The room is empty\n":
     print "List occupants-After death: Pass"
 else:
     print "List occupants-After death: Fail"
-
-if read(clientsocktwo) == "\r<Server> name3 has entered the room\n":
-    print "Player enters room-After death: Pass"
-else:
-    print "Player enters room-After death: Fail"
 
 # Test client two stabbing itself
 clientsocktwo.send("#stab name2\n")

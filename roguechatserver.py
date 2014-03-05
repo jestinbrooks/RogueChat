@@ -163,7 +163,7 @@ if __name__ == "__main__":
                             # If the command is stab remove the stabbed character from the game
                             elif data[1:6] == "stab ":
                                 for c in clients.itervalues():
-                                    if c.name == data[6:-1]:
+                                    if c.name == data[6:-1] and c.room == client.room:
                                         stab(client.name, c.address)
                                         break
                                 else:
