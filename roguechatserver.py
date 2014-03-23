@@ -47,15 +47,17 @@ def move(sock, leave, enter):
     listoccupants(client, sock)
 
 
-def stab(killer, victimname):
+def stab(killer, victimadd):
     """ Remove a character and move user back to entering a name """
-    victim = clients[victimname].clientsock
-    send(killer, victim, "Stabs you: Please enter a new name\n")
-    vclient = clients[victim.getpeername()]
-    vroom = vclient.room
-    vclient.room = ""
-    vclient.name = ""
-    rooms[vroom].remove(victim)
+    victim = clients[victimadd]
+    send(killer, victim.clientsock, "Stabs you: Please enter a new name\n")
+    broadcast(victim.clientsock, "Server", "%s has been stabbed" % victim.name, rooms[client.room])
+    
+    # reset victim and remove from room
+    vroom = victim.room
+    victim.room = ""
+    victim.name = ""
+    rooms[vroom].remove(victim.clientsock)
 
 
 def isroom(s):

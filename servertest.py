@@ -123,9 +123,9 @@ else:
 clientsocktwo.send("#stab name\n")
 
 if read(clientsocktwo) == "\r<Server> There is no name in this room\n":
-    print "Stab: Pass"
+    print "Stab-Not in room: Pass"
 else:
-    print "Stab: Fail"
+    print "Stab-Not in room: Fail"
 
 clientsocktwo.send("#enter Drawing Room\n")
 
@@ -157,6 +157,12 @@ if read(clientsockone) == "\r<Server> The room is empty\n":
     print "List occupants-After death: Pass"
 else:
     print "List occupants-After death: Fail"
+
+# Test notified of stabbing
+if read(clientsocktwo) == "\r<Server> name has been stabbed":
+    print "Notify of stabbing: Pass"
+else:
+    print "Notify of stabbing: Fail"
 
 # Test client two stabbing itself
 clientsocktwo.send("#stab name2\n")
