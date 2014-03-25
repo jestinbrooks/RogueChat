@@ -5,22 +5,42 @@ import select
 class Client:
     """ An object containing a clients name, location, and address """
     def __init__(self, add, sock):
-        self.room = "Foyer"
+        self.room = None
         self.name = ""
         self.address = add
         self.clientsock = sock
 
 
-def broadcast(origin, oname, message, roomlist):
+class Room:
+    """ An object containing a list of room properties and methods for editing them"""
+    def __init__(self, name, description):
+        self.occupantslist = []
+        self.name = name
+        self.description = description
+
+    def addoccupant(self, occupant):
+        self.occupantslist.append(occupant)
+
+    def removeoccupant(self, occupant):
+        self.occupantslist.remove(occupant)
+
+
+def broadcast(origin, oname, message):
     """ Send a message to all occupants of a room """
-    for sock in roomlist:
-        if sock != serversocket and sock != origin:
+    print "origin & server"
+    print origin.clientsock, serversocket
+    print origin.room.occupantslist
+    for sock in origin.room.occupantslist:
+        print "test socket"
+        print sock
+        if sock != serversocket and sock != origin.clientsock:
+            print "test"
             try:
                 output = "\r<%s> %s" % (oname, message)
                 sock.send(output)
             except socket.error:
                 sock.close()
-                roomlist.remove(sock)
+                origin.room.removeoccupants(sock)
                 socketlist.remove(sock)
 
 
@@ -34,30 +54,33 @@ def send(oname, destination, message):
         socketlist.remove(destination)
 
 
-def move(sock, leave, enter):
+def move(client, enter):
     """ Move a user from one room to another """
-    rooms[enter].append(sock)
-    if leave:
-        leave.remove(sock)
-        broadcast(sock, "Server", "%s has left the room\n" % client.name, rooms[client.room])
 
-    client.room = enter
-    broadcast(sock, "Server", "%s has entered the room\n" % client.name, rooms[client.room])
+    if client.room:
+        client.room.removeoccupant(client.clientsock)
+        broadcast(client, "Server", "%s has left the room\n" % client.name)
 
-    listoccupants(client, sock)
+    rooms[enter].addoccupant(client.clientsock)
+
+    client.room = rooms[enter]
+    print client.room
+    broadcast(client, "Server", "%s has entered the room\n" % client.name)
+
+    listoccupants(client)
 
 
 def stab(killer, victimadd):
     """ Remove a character and move user back to entering a name """
     victim = clients[victimadd]
     send(killer, victim.clientsock, "Stabs you: Please enter a new name\n")
-    broadcast(victim.clientsock, "Server", "%s has been stabbed" % victim.name, rooms[client.room])
+    broadcast(victim, "Server", "%s has been stabbed" % victim.name)
     
     # reset victim and remove from room
     vroom = victim.room
-    victim.room = ""
+    victim.room = None
     victim.name = ""
-    rooms[vroom].remove(victim.clientsock)
+    vroom.removeoccupant(victim.clientsock)
 
 
 def isroom(s):
@@ -68,7 +91,7 @@ def isroom(s):
         return False
 
 
-def listoccupants(client, sock):
+def listoccupants(client):
     """ Send a list of room occupants """
     occupants = ""
 
@@ -77,9 +100,9 @@ def listoccupants(client, sock):
             occupants += "\n" + c.name
 
     if not occupants:
-        send("Server", sock, "The room is empty\n")
+        send("Server", client.clientsock, "The room is empty\n")
     else:
-        send("Server", sock, "The room contains: %s\n" % occupants)
+        send("Server", client.clientsock, "The room contains: %s\n" % occupants)
 
 
 # Main function
@@ -88,9 +111,9 @@ if __name__ == "__main__":
     socketlist = []
 
     # Lists of sockets for each room and a dictionary containing all of the lists
-    foyer = []
-    drawingroom = []
-    dininghall = []
+    foyer = Room("Foyer", "The Foyer")
+    drawingroom = Room("Drawing Room", "The Drawing Room")
+    dininghall = Room("Dining Hall", "The Dining Hall")
     rooms = {"Foyer": foyer, "Drawing Room": drawingroom, "Dining Hall": dininghall}
 
     RECV_BUFFER = 4096
@@ -146,7 +169,7 @@ if __name__ == "__main__":
                                 client.name = data[:-1]
                                 names.append(client.name)
                                 send("Server", sock, "You are in the Foyer\n")
-                                move(sock, "", "Foyer")
+                                move(client, "Foyer")
 
                         # If the message is a command see which command it is
                         elif data[0] == '#':
@@ -156,7 +179,7 @@ if __name__ == "__main__":
                             if data[1:6] == "enter":
                                 # if valid room is entered, enter room and list occupants
                                 if isroom(data[7:-1]):
-                                    move(sock, rooms[client.room], data[7:-1])
+                                    move(client, data[7:-1])
 
                                 # If invalid room is enter give error and wait for new room
                                 else:
@@ -174,7 +197,7 @@ if __name__ == "__main__":
                             elif data[1:5] == "quit":
                                 sock.close()
                                 socketlist.remove(sock)
-                                rooms[client.room].remove(sock)
+                                client.room.removeoccupant(sock)
                                 del clients[client.address]
 
                             else:
@@ -183,16 +206,16 @@ if __name__ == "__main__":
                         # Else send the message out to the rest of the users room
                         else:
                             print "message entered"
-                            broadcast(sock, client.name, data, rooms[client.room])
+                            broadcast(client, client.name, data)
 
                 # If a socket can't be communicated with remove it from the list and room
                 except socket.error:
                     print "error"
-                    broadcast(sock, "Server", "%s is offline\n" % client.name, rooms[client.room])
+                    broadcast(client, "Server", "%s is offline\n" % client.name)
                     print "Client (%s, %s) is offline\n" % (address[0], address[1])
                     sock.close()
                     socketlist.remove(sock)
-                    rooms[client.room].remove(sock)
+                    client.room.removeoccupant(sock)
                     continue
 
     serversocket.close()
