@@ -27,14 +27,8 @@ class Room:
 
 def broadcast(origin, oname, message):
     """ Send a message to all occupants of a room """
-    print "origin & server"
-    print origin.clientsock, serversocket
-    print origin.room.occupantslist
     for sock in origin.room.occupantslist:
-        print "test socket"
-        print sock
         if sock != serversocket and sock != origin.clientsock:
-            print "test"
             try:
                 output = "\r<%s> %s" % (oname, message)
                 sock.send(output)
@@ -64,7 +58,6 @@ def move(client, enter):
     rooms[enter].addoccupant(client.clientsock)
 
     client.room = rooms[enter]
-    print client.room
     broadcast(client, "Server", "%s has entered the room\n" % client.name)
 
     listoccupants(client)
