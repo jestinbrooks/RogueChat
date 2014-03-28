@@ -77,7 +77,7 @@ def stab(killer, victimadd):
 
 
 def isroom(s):
-    """ tests to see if a string is equivalent to a room name """
+    """ Tests to see if a string is equivalent to a room name """
     if s in rooms:
         return True
     else:
@@ -98,15 +98,28 @@ def listoccupants(client):
         send("Server", client.clientsock, "The room contains: %s\n" % occupants)
 
 
+def look(client):
+    """ Give the player a list of information about the room they are in
+    """
+    send("Server", client.clientsock, "You are in the %s, %s\n" % (client.room.name, client.room.description))
+
+    otherrooms = list(rooms.iterkeys())
+    otherrooms.remove(client.room.name)
+
+    send("Server", client.clientsock, "There are doors to the %s\n" % " and ".join(otherrooms))
+
+    listoccupants(client)
+
+
 # Main function
 if __name__ == "__main__":
     # List of all sockets
     socketlist = []
 
     # Lists of sockets for each room and a dictionary containing all of the lists
-    foyer = Room("Foyer", "The Foyer")
-    drawingroom = Room("Drawing Room", "The Drawing Room")
-    dininghall = Room("Dining Hall", "The Dining Hall")
+    foyer = Room("Foyer", "It looks like a Foyer")
+    drawingroom = Room("Drawing Room", "It looks like a Drawing Room")
+    dininghall = Room("Dining Hall", "It looks like a Dining Hall")
     rooms = {"Foyer": foyer, "Drawing Room": drawingroom, "Dining Hall": dininghall}
 
     RECV_BUFFER = 4096
@@ -192,6 +205,9 @@ if __name__ == "__main__":
                                 socketlist.remove(sock)
                                 client.room.removeoccupant(sock)
                                 del clients[client.address]
+
+                            elif data[1:5] == "look":
+                                look(client)
 
                             else:
                                 send("Server", sock, "Invalid command\n")

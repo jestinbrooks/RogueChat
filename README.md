@@ -23,5 +23,7 @@ Commands
 
 "#quit" : Exits the client returning you to a terminal prompt
 
+"#look" : Gives information for the room the player is in, a list of other rooms and a list of players in the room
+
 
 Thanks to binarytides.com for their tutorial on python sockets and example code that got this project started

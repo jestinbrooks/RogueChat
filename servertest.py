@@ -9,7 +9,7 @@ def test(sock, testmessage, name):
     if read(sock) == testmessage:
         print "\033[32m Pass\033[0m : " + name
     else:
-        print "\033[31mFail\033[0m : " + name
+        print "\033[31m Fail\033[0m : " + name
 
 def read(csock):
     """ Check for messages from the server sent to the socket csock """
@@ -122,11 +122,15 @@ test(clientsocktwo, "\r<Server> The room contains: \nname3\n", "List occupants-A
 test(clientsockone, "\r<Server> name4 has entered the room\n", "Player enters room-After death two")
 
 # Test entering an invalid command
-clientsockone.send("#look\n")
+clientsockone.send("#run\n")
 test(clientsockone, "\r<Server> Invalid command\n", "Invalid command")
 
 clientsockone.send("#stab invalid name\n")
 test(clientsockone, "\r<Server> There is no invalid name in this room\n", "Stab invalid name")
+
+clientsocktwo.send("#look\n")
+test(clientsocktwo, "\r<Server> You are in the Foyer, It looks like a Foyer\n", "Look command part one")
+test(clientsocktwo, "\r<Server> There are doors to the Dining Hall and Drawing Room\n\r<Server> The room contains: \nname3\n", "Look command part two")
 
 # Close connections
 clientsockone.send("#quit\n")
