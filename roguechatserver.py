@@ -17,12 +17,32 @@ class Room:
         self.occupantslist = []
         self.name = name
         self.description = description
+        self.bodies = 0
+        self.poolofblood = False
 
     def addoccupant(self, occupant):
         self.occupantslist.append(occupant)
 
     def removeoccupant(self, occupant):
         self.occupantslist.remove(occupant)
+
+    def getdescription(self):
+        descrip = self.description
+        if self.bodies and not self.poolofblood:
+            if self.bodies == 1:
+                descrip += " There is 1 body on the floor."
+            else:
+                descrip += " There are %s bodies on the floor." % str(self.bodies)
+        elif self.poolofblood and not self.bodies:
+            descrip += " There is a pool of blood on the floor."
+        elif self.poolofblood and self.bodies:
+            if self.bodies == 1:
+                descrip += " There is 1 body in a pool of blood on the floor."
+            else:
+                descrip += " There are %s bodies in a pool of blood on the floor." % str(self.bodies)
+        return descrip
+
+
 
 
 def broadcast(origin, oname, message):
@@ -60,7 +80,7 @@ def move(client, enter):
     client.room = rooms[enter]
     broadcast(client, "Server", "%s has entered the room\n" % client.name)
 
-    listoccupants(client)
+    send("Server", client.clientsock, listoccupants(client))
 
 
 def stab(killer, victimadd):
@@ -71,6 +91,8 @@ def stab(killer, victimadd):
     
     # reset victim and remove from room
     vroom = victim.room
+    vroom.bodies += 1
+    vroom.poolofblood = True
     victim.room = None
     victim.name = ""
     vroom.removeoccupant(victim.clientsock)
@@ -93,22 +115,22 @@ def listoccupants(client):
             occupants += "\n" + c.name
 
     if not occupants:
-        send("Server", client.clientsock, "The room is empty\n")
+        return "The room is empty\n"
     else:
-        send("Server", client.clientsock, "The room contains: %s\n" % occupants)
+        return "The room contains: %s\n" % occupants
 
 
 def look(client):
     """ Give the player a list of information about the room they are in
     """
-    send("Server", client.clientsock, "You are in the %s, %s\n" % (client.room.name, client.room.description))
+    send("Server", client.clientsock, "You are in the %s, %s\n" % (client.room.name, client.room.getdescription()))
 
     otherrooms = list(rooms.iterkeys())
     otherrooms.remove(client.room.name)
 
     send("Server", client.clientsock, "There are doors to the %s\n" % " and ".join(otherrooms))
 
-    listoccupants(client)
+    send("Server", client.clientsock, listoccupants(client))
 
 
 # Main function
@@ -117,9 +139,9 @@ if __name__ == "__main__":
     socketlist = []
 
     # Lists of sockets for each room and a dictionary containing all of the lists
-    foyer = Room("Foyer", "It looks like a Foyer")
-    drawingroom = Room("Drawing Room", "It looks like a Drawing Room")
-    dininghall = Room("Dining Hall", "It looks like a Dining Hall")
+    foyer = Room("Foyer", "It looks like a Foyer.")
+    drawingroom = Room("Drawing Room", "It looks like a Drawing Room.")
+    dininghall = Room("Dining Hall", "It looks like a Dining Hall.")
     rooms = {"Foyer": foyer, "Drawing Room": drawingroom, "Dining Hall": dininghall}
 
     RECV_BUFFER = 4096

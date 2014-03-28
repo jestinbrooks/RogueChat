@@ -129,7 +129,7 @@ test(clientsocktwo, "\r<Server> The room contains: \nname3\n", "List occupants-A
 
 test(clientsockone, "\r<Server> name4 has entered the room\n", "Player enters room-After death client two")
 
-print "\n==== Tests for invalid commands and look command ===="
+print "\n==== Tests for invalid commands ===="
 
 # Test entering an invalid command
 clientsockone.send("#run\n")
@@ -138,11 +138,26 @@ test(clientsockone, "\r<Server> Invalid command\n", "Invalid command")
 clientsockone.send("#stab invalid name\n")
 test(clientsockone, "\r<Server> There is no invalid name in this room\n", "Stab-Invalid name")
 
+print "\n==== Tests the look command and room descriptions ===="
+
 clientsocktwo.send("#look\n")
-test(clientsocktwo, "\r<Server> You are in the Foyer, It looks like a Foyer\n", "Look command-Part one")
+test(clientsocktwo, "\r<Server> You are in the Foyer, It looks like a Foyer.\n", "Look command-Part one clean")
 test(clientsocktwo,
      "\r<Server> There are doors to the Dining Hall and Drawing Room\n\r<Server> The room contains: \nname3\n",
-     "Look command-Part two")
+     "Look command-Part two Foyer with one occupant")
+
+# Move to a room with contents without testing
+clientsocktwo.send("#enter Drawing Room\n")
+read(clientsocktwo)
+read(clientsockone)
+
+clientsocktwo.send("#look\n")
+test(clientsocktwo,
+     "\r<Server> You are in the Drawing Room, It looks like a Drawing Room. "
+     "There are 2 bodies in a pool of blood on the floor.\n",
+     "Look command-Part one with bodies and blood")
+test(clientsocktwo, "\r<Server> There are doors to the Foyer and Dining Hall\n\r<Server> The room is empty\n",
+     "Look command-Part two drawing room empty")
 
 # Close connections
 clientsockone.send("#quit\n")
