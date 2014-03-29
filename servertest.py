@@ -108,7 +108,7 @@ test(clientsockone, "\r<Server> You are in the Foyer\n", "Start over after death
 test(clientsockone, "\r<Server> The room is empty\n", "List occupants-After death empty room")
 
 # Test notified of stabbing
-test(clientsocktwo, "\r<Server> name has been stabbed", "Notify of stabbing-Client two")
+test(clientsocktwo, "\r<Server> name has been stabbed\n", "Notify of stabbing-Client two")
 
 # Test client two stabbing itself
 clientsocktwo.send("#stab name2\n")
@@ -158,6 +158,24 @@ test(clientsocktwo,
      "Look command-Part one with bodies and blood")
 test(clientsocktwo, "\r<Server> There are doors to the Foyer and Dining Hall\n\r<Server> The room is empty\n",
      "Look command-Part two drawing room empty")
+
+clientsocktwo.send("#clean\n")
+#print repr(read(clientsockone))
+
+clientsocktwo.send("#look\n")
+test(clientsocktwo,
+     "\r<Server> You are in the Drawing Room, It looks like a Drawing Room. There are 2 bodies on the floor.\n",
+     "Look command-Part one after cleaning but not hiding")
+#look part 2 is the same as last time so it isn't tested
+read(clientsocktwo)
+
+# Move to a room with contents without testing
+clientsocktwo.send("#enter Foyer\n")
+read(clientsocktwo)
+read(clientsockone)
+
+clientsocktwo.send("#clean\n")
+test(clientsockone, "\r<name4> cleans up the blood\n", "Player is cleaning-Already clean room with one occupant")
 
 # Close connections
 clientsockone.send("#quit\n")

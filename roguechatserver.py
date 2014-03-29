@@ -45,6 +45,7 @@ class Room:
 
 
 
+
 def broadcast(origin, oname, message):
     """ Send a message to all occupants of a room """
     for sock in origin.room.occupantslist:
@@ -87,7 +88,7 @@ def stab(killer, victimadd):
     """ Remove a character and move user back to entering a name """
     victim = clients[victimadd]
     send(killer, victim.clientsock, "Stabs you: Please enter a new name\n")
-    broadcast(victim, "Server", "%s has been stabbed" % victim.name)
+    broadcast(victim, "Server", "%s has been stabbed\n" % victim.name)
     
     # reset victim and remove from room
     vroom = victim.room
@@ -231,8 +232,13 @@ if __name__ == "__main__":
                             elif data[1:5] == "look":
                                 look(client)
 
+                            elif data[1:6] == "clean":
+                                client.room.poolofblood = False
+                                broadcast(client, client.name, "cleans up the blood\n")
+
                             else:
                                 send("Server", sock, "Invalid command\n")
+
 
                         # Else send the message out to the rest of the users room
                         else:
