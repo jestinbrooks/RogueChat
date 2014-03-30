@@ -169,6 +169,14 @@ test(clientsocktwo,
 #look part 2 is the same as last time so it isn't tested
 read(clientsocktwo)
 
+clientsocktwo.send("#hide body\n")
+clientsocktwo.send("#look\n")
+test(clientsocktwo,
+     "\r<Server> You are in the Drawing Room, It looks like a Drawing Room. There is 1 body on the floor.\n",
+     "Look command-Part one after hiding body")
+#look part is the same as last time so it isn't tested
+read(clientsocktwo)
+
 # Move to a room with contents without testing
 clientsocktwo.send("#enter Foyer\n")
 read(clientsocktwo)

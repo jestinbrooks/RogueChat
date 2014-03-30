@@ -25,7 +25,9 @@ Commands
 
 "#look" : Gives information for the room the player is in, a list of other rooms and a list of players in the room
 
-"#clean" : Removes blood from the room the player is in and notifies occupants of the room that the player is cleaning
+"#clean" : Removes blood from the players current room and notifies occupants of that room
+
+"#hide body" : Removes a body from the players current room and notifies the occupants of that room
 
 
 Thanks to binarytides.com for their tutorial on python sockets and example code that got this project started

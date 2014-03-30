@@ -236,6 +236,13 @@ if __name__ == "__main__":
                                 client.room.poolofblood = False
                                 broadcast(client, client.name, "cleans up the blood\n")
 
+                            elif data[1:10] == "hide body":
+                                if client.room.bodies > 0:
+                                    client.room.bodies -= 1
+                                    broadcast(client, client.name, "hides a body\n")
+                                else:
+                                    client.room.bodies = 0
+
                             else:
                                 send("Server", sock, "Invalid command\n")
 
