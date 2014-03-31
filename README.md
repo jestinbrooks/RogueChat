@@ -17,9 +17,9 @@ Setup for running locally on a unix or linux computer
 
 Commands
 
-\#enter <roomname> : Moves you to the room you enter
+\#enter \<roomname\> : Moves you to the room you enter
 
-\#stab <name> : Kills the player you enter returning them to the lobby and making them choose a new name
+\#stab \<name\> : Kills the player you enter returning them to the lobby and making them choose a new name
 
 \#quit : Exits the client returning you to a terminal prompt
 

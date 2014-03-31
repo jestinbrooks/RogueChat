@@ -47,7 +47,7 @@
       <file leaf-file-name="README.md" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider editor-type-id="text-editor">
-            <state line="17" column="8" selection-start="506" selection-end="506" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="570">
+            <state line="21" column="14" selection-start="578" selection-end="578" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="570">
               <folding />
             </state>
           </provider>
@@ -461,7 +461,11 @@
       <created>1396198992047</created>
       <updated>1396198992047</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="updated readme">
+      <created>1396306253446</created>
+      <updated>1396306253446</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -503,7 +507,6 @@
     <MESSAGE value="oops" />
     <MESSAGE value="removed some lines left over from tests" />
     <MESSAGE value="added a script that tests the server response to several commands" />
-    <MESSAGE value="updated readme" />
     <MESSAGE value="added tests for serving two users and simplified the read function" />
     <MESSAGE value="added tests for sending a message between two clients and moving into a new room" />
     <MESSAGE value="added test for trying to enter a room with an invalid name" />
@@ -525,7 +528,8 @@
     <MESSAGE value="Added a body count and pool of blood to the room description that get modified when someone is killed in the room" />
     <MESSAGE value="Added a clean command that removes the pool of blood from the room descriptions and updated readme and test to include the new command" />
     <MESSAGE value="Added a hide body command that removes one body from the room and updated readme and tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added a hide body command that removes one body from the room and updated readme and tests" />
+    <MESSAGE value="updated readme" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated readme" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -778,7 +782,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider editor-type-id="text-editor">
-        <state line="17" column="8" selection-start="506" selection-end="506" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="570">
+        <state line="21" column="14" selection-start="578" selection-end="578" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="570">
           <folding />
         </state>
       </provider>
