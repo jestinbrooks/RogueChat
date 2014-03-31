@@ -17,17 +17,17 @@ Setup for running locally on a unix or linux computer
 
 Commands
 
-"#enter <roomname>" : Moves you to the room you enter
+\#enter <roomname> : Moves you to the room you enter
 
-"#stab <name>" : Kills the player you enter returning them to the lobby and making them choose a new name
+\#stab <name> : Kills the player you enter returning them to the lobby and making them choose a new name
 
-"#quit" : Exits the client returning you to a terminal prompt
+\#quit : Exits the client returning you to a terminal prompt
 
-"#look" : Gives information for the room the player is in, a list of other rooms and a list of players in the room
+\#look : Gives information for the room the player is in, a list of other rooms and a list of players in the room
 
-"#clean" : Removes blood from the players current room and notifies occupants of that room
+\#clean : Removes blood from the players current room and notifies occupants of that room
 
-"#hide body" : Removes a body from the players current room and notifies the occupants of that room
+\#hide body : Removes a body from the players current room and notifies the occupants of that room
 
 
 Thanks to binarytides.com for their tutorial on python sockets and example code that got this project started

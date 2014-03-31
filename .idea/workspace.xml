@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="3e99179b-5341-467f-80de-bec73e0752e0" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/roguechatserver.py" afterPath="$PROJECT_DIR$/roguechatserver.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/servertest.py" afterPath="$PROJECT_DIR$/servertest.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="RogueChat.iws" />
@@ -31,29 +29,29 @@
       <file leaf-file-name="roguechatserver.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/roguechatserver.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="243" column="58" selection-start="9005" selection-end="9005" vertical-scroll-proportion="0.0" vertical-offset="2899" max-vertical-offset="4035">
+            <state line="243" column="58" selection-start="9005" selection-end="9005" vertical-scroll-proportion="0.0" vertical-offset="3034" max-vertical-offset="4035">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="servertest.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="servertest.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/servertest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="176" column="54" selection-start="6839" selection-end="6839" vertical-scroll-proportion="0.64362854" vertical-offset="2014" max-vertical-offset="2940">
+            <state line="176" column="54" selection-start="6839" selection-end="6839" vertical-scroll-proportion="0.0" vertical-offset="2014" max-vertical-offset="2940">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="README.md" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="README.md" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/README.md">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="90" selection-start="939" selection-end="939" vertical-scroll-proportion="-14.464286" vertical-offset="0" max-vertical-offset="570">
+          <provider editor-type-id="text-editor">
+            <state line="17" column="8" selection-start="506" selection-end="506" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="570">
               <folding />
             </state>
           </provider>
-          <provider editor-type-id="MarkdownPreviewEditor">
+          <provider selected="true" editor-type-id="MarkdownPreviewEditor">
             <state />
           </provider>
         </entry>
@@ -86,8 +84,8 @@
         <option value="$PROJECT_DIR$/servertest2.py" />
         <option value="$PROJECT_DIR$/roguechattest.py" />
         <option value="$PROJECT_DIR$/roguechatserver.py" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/servertest.py" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -459,7 +457,11 @@
       <created>1396109994230</created>
       <updated>1396109994230</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="Added a hide body command that removes one body from the room and updated readme and tests">
+      <created>1396198992047</created>
+      <updated>1396198992047</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -498,7 +500,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="changed broadcast functions parameters" />
     <MESSAGE value="oops" />
     <MESSAGE value="removed some lines left over from tests" />
     <MESSAGE value="added a script that tests the server response to several commands" />
@@ -523,7 +524,8 @@
     <MESSAGE value="Updated the testing script with more organized and informative output" />
     <MESSAGE value="Added a body count and pool of blood to the room description that get modified when someone is killed in the room" />
     <MESSAGE value="Added a clean command that removes the pool of blood from the room descriptions and updated readme and test to include the new command" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added a clean command that removes the pool of blood from the room descriptions and updated readme and test to include the new command" />
+    <MESSAGE value="Added a hide body command that removes one body from the room and updated readme and tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added a hide body command that removes one body from the room and updated readme and tests" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -760,6 +762,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/servertest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="176" column="54" selection-start="6839" selection-end="6839" vertical-scroll-proportion="0.0" vertical-offset="2014" max-vertical-offset="2940">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/roguechatserver.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="243" column="58" selection-start="9005" selection-end="9005" vertical-scroll-proportion="0.0" vertical-offset="2899" max-vertical-offset="4035">
@@ -768,20 +777,13 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="90" selection-start="939" selection-end="939" vertical-scroll-proportion="-14.464286" vertical-offset="0" max-vertical-offset="570">
+      <provider editor-type-id="text-editor">
+        <state line="17" column="8" selection-start="506" selection-end="506" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="570">
           <folding />
         </state>
       </provider>
-      <provider editor-type-id="MarkdownPreviewEditor">
+      <provider selected="true" editor-type-id="MarkdownPreviewEditor">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/servertest.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="176" column="54" selection-start="6839" selection-end="6839" vertical-scroll-proportion="0.64362854" vertical-offset="2014" max-vertical-offset="2940">
-          <folding />
-        </state>
       </provider>
     </entry>
   </component>
