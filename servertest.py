@@ -19,8 +19,8 @@ def read(csock):
     read_sockets, write_sockets, error_sockets = select.select([csock], [], [])
     data = read_sockets[0].recv(4096)
     if not data:
-        print '\nDisconnected from chat server'
-        sys.exit()
+        return '\nDisconnected from chat server'
+        #sys.exit()
     # Print messages from the server
     else:
         return data
@@ -185,9 +185,19 @@ read(clientsockone)
 clientsocktwo.send("#clean\n")
 test(clientsockone, "\r<name4> cleans up the blood\n", "Player is cleaning-Already clean room with one occupant")
 
+print "\n==== Tests for quiting ===="
+
 # Close connections
 clientsockone.send("#quit\n")
-clientsocktwo.send("#quit\n")
+test(clientsockone, "\nDisconnected from chat server", "Quit-Client one")
 
-read(clientsockone)
-read(clientsocktwo)
+clientsocktwo.send("#enter Dining Hall\n")
+test(clientsocktwo, "\r<Server> The room is empty\n", "Room empty-Dining Hall")
+
+clientsocktwo.send("#enter Drawing Room\n")
+test(clientsocktwo, "\r<Server> The room is empty\n", "Room empty-Drawing Room")
+clientsocktwo.send("#enter Foyer\n")
+test(clientsocktwo, "\r<Server> The room is empty\n", "Room empty-Foyer")
+
+clientsocktwo.send("#quit\n")
+test(clientsocktwo, "\nDisconnected from chat server", "Quit-Client two")
