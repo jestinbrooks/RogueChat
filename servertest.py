@@ -141,10 +141,11 @@ test(clientsockone, "\r<Server> There is no invalid name in this room\n", "Stab-
 print "\n==== Tests the look command and room descriptions ===="
 
 clientsocktwo.send("#look\n")
-test(clientsocktwo, "\r<Server> You are in the Foyer, It looks like a Foyer.\n", "Look command-Part one clean")
-test(clientsocktwo,
-     "\r<Server> There are doors to the Dining Hall and Drawing Room\n\r<Server> The room contains: \nname3\n",
-     "Look command-Part two Foyer with one occupant")
+#print repr(read(clientsocktwo))
+test(clientsocktwo, "\r<Server> You are in the Foyer, It looks like a Foyer.\n"
+                    "There are doors to the Dining Hall and Drawing Room\n"
+                    "The room contains: \nname3\n",
+     "Look command-Clean in foyer with one occupant")
 
 # Move to a room with contents without testing
 clientsocktwo.send("#enter Drawing Room\n")
@@ -152,30 +153,28 @@ read(clientsocktwo)
 read(clientsockone)
 
 clientsocktwo.send("#look\n")
-test(clientsocktwo,
-     "\r<Server> You are in the Drawing Room, It looks like a Drawing Room. "
-     "There are 2 bodies in a pool of blood on the floor.\n",
-     "Look command-Part one with bodies and blood")
-test(clientsocktwo, "\r<Server> There are doors to the Foyer and Dining Hall\n\r<Server> The room is empty\n",
-     "Look command-Part two drawing room empty")
+test(clientsocktwo, "\r<Server> You are in the Drawing Room, It looks like a Drawing Room. "
+     "There are 2 bodies in a pool of blood on the floor.\n"
+     "There are doors to the Foyer and Dining Hall\nThe room is empty\n",
+     "Look command-Bodies and blood in empty drawing room")
 
 clientsocktwo.send("#clean\n")
 #print repr(read(clientsockone))
 
 clientsocktwo.send("#look\n")
 test(clientsocktwo,
-     "\r<Server> You are in the Drawing Room, It looks like a Drawing Room. There are 2 bodies on the floor.\n",
-     "Look command-Part one after cleaning but not hiding")
-#look part 2 is the same as last time so it isn't tested
-read(clientsocktwo)
+     "\r<Server> You are in the Drawing Room, It looks like a Drawing Room. "
+     "There are 2 bodies on the floor.\n"
+     "There are doors to the Foyer and Dining Hall\nThe room is empty\n",
+     "Look command-After cleaning but not hiding")
 
 clientsocktwo.send("#hide body\n")
 clientsocktwo.send("#look\n")
 test(clientsocktwo,
-     "\r<Server> You are in the Drawing Room, It looks like a Drawing Room. There is 1 body on the floor.\n",
-     "Look command-Part one after hiding body")
-#look part is the same as last time so it isn't tested
-read(clientsocktwo)
+     "\r<Server> You are in the Drawing Room, It looks like a Drawing Room. "
+     "There is 1 body on the floor.\n"
+     "There are doors to the Foyer and Dining Hall\nThe room is empty\n",
+     "Look command-After hiding body")
 
 # Move to a room with contents without testing
 clientsocktwo.send("#enter Foyer\n")

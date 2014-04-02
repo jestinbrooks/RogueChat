@@ -124,15 +124,14 @@ def listoccupants(client):
 def look(client):
     """ Give the player a list of information about the room they are in
     """
-    send("Server", client.clientsock, "You are in the %s, %s\n" % (client.room.name, client.room.getdescription()))
-
     otherrooms = list(rooms.iterkeys())
     otherrooms.remove(client.room.name)
 
-    send("Server", client.clientsock, "There are doors to the %s\n" % " and ".join(otherrooms))
+    a = "You are in the %s, %s\n" % (client.room.name, client.room.getdescription()) + \
+        "There are doors to the %s\n" % " and ".join(otherrooms) + \
+        listoccupants(client)
 
-    send("Server", client.clientsock, listoccupants(client))
-
+    send("Server", client.clientsock, a)
 
 # Main function
 if __name__ == "__main__":
