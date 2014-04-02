@@ -227,6 +227,7 @@ if __name__ == "__main__":
                                 sock.close()
                                 socketlist.remove(sock)
                                 client.room.removeoccupant(sock)
+                                broadcast(client, "Server", "%s disappears in a puff of smoke\n" % client.name)
                                 del clients[client.address]
 
                             elif data[1:5] == "look":

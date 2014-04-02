@@ -190,12 +190,14 @@ print "\n==== Tests for quiting ===="
 # Close connections
 clientsockone.send("#quit\n")
 test(clientsockone, "\nDisconnected from chat server", "Quit-Client one")
+test(clientsocktwo, "\r<Server> name3 disappears in a puff of smoke\n", "Player has quit message-Client two")
 
 clientsocktwo.send("#enter Dining Hall\n")
 test(clientsocktwo, "\r<Server> The room is empty\n", "Room empty-Dining Hall")
 
 clientsocktwo.send("#enter Drawing Room\n")
 test(clientsocktwo, "\r<Server> The room is empty\n", "Room empty-Drawing Room")
+
 clientsocktwo.send("#enter Foyer\n")
 test(clientsocktwo, "\r<Server> The room is empty\n", "Room empty-Foyer")
 
