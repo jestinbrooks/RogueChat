@@ -142,7 +142,7 @@ print "\n==== Tests the look command and room descriptions ===="
 
 clientsocktwo.send("#look\n")
 #print repr(read(clientsocktwo))
-test(clientsocktwo, "\r<Server> You are in the Foyer, It looks like a Foyer.\n"
+test(clientsocktwo, "\r<Server> You are in the Foyer, It looks like a Foyer. \n"
                     "There are doors to the Dining Hall and Drawing Room\n"
                     "The room contains: \nname3\n",
      "Look command-Clean in foyer with one occupant")
@@ -154,17 +154,15 @@ read(clientsockone)
 
 clientsocktwo.send("#look\n")
 test(clientsocktwo, "\r<Server> You are in the Drawing Room, It looks like a Drawing Room. "
-     "There are 2 bodies in a pool of blood on the floor.\n"
+     "There are 2 bodies in a pool of blood on the floor. \n"
      "There are doors to the Foyer and Dining Hall\nThe room is empty\n",
      "Look command-Bodies and blood in empty drawing room")
 
 clientsocktwo.send("#clean\n")
-#print repr(read(clientsockone))
-
 clientsocktwo.send("#look\n")
 test(clientsocktwo,
      "\r<Server> You are in the Drawing Room, It looks like a Drawing Room. "
-     "There are 2 bodies on the floor.\n"
+     "There are 2 bodies on the floor. \n"
      "There are doors to the Foyer and Dining Hall\nThe room is empty\n",
      "Look command-After cleaning but not hiding")
 
@@ -172,7 +170,7 @@ clientsocktwo.send("#hide body\n")
 clientsocktwo.send("#look\n")
 test(clientsocktwo,
      "\r<Server> You are in the Drawing Room, It looks like a Drawing Room. "
-     "There is 1 body on the floor.\n"
+     "There is 1 body on the floor. \n"
      "There are doors to the Foyer and Dining Hall\nThe room is empty\n",
      "Look command-After hiding body")
 
@@ -183,6 +181,14 @@ read(clientsockone)
 
 clientsocktwo.send("#clean\n")
 test(clientsockone, "\r<name4> cleans up the blood\n", "Player is cleaning-Already clean room with one occupant")
+
+clientsocktwo.send("#hang painting of mice\n")
+test(clientsockone, "\r<Server> name4 hangs something on the wall", "Player hangs art-Client one in Foyer")
+clientsockone.send("#look\n")
+test(clientsockone, "\r<Server> You are in the Foyer, It looks like a Foyer. "
+                    "On the wall hangs a painting of mice. \n"
+                    "There are doors to the Dining Hall and Drawing Room\nThe room contains: \nname4\n",
+     "Look command-With art")
 
 print "\n==== Tests for quiting ===="
 

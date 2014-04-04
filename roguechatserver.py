@@ -19,6 +19,7 @@ class Room:
         self.description = description
         self.bodies = 0
         self.poolofblood = False
+        self.art = ""
 
     def addoccupant(self, occupant):
         self.occupantslist.append(occupant)
@@ -28,18 +29,23 @@ class Room:
 
     def getdescription(self):
         descrip = self.description
+
         if self.bodies and not self.poolofblood:
             if self.bodies == 1:
-                descrip += " There is 1 body on the floor."
+                descrip += "There is 1 body on the floor. "
             else:
-                descrip += " There are %s bodies on the floor." % str(self.bodies)
+                descrip += "There are %s bodies on the floor. " % str(self.bodies)
         elif self.poolofblood and not self.bodies:
-            descrip += " There is a pool of blood on the floor."
+            descrip += "There is a pool of blood on the floor. "
         elif self.poolofblood and self.bodies:
             if self.bodies == 1:
-                descrip += " There is 1 body in a pool of blood on the floor."
+                descrip += "There is 1 body in a pool of blood on the floor. "
             else:
-                descrip += " There are %s bodies in a pool of blood on the floor." % str(self.bodies)
+                descrip += "There are %s bodies in a pool of blood on the floor. " % str(self.bodies)
+
+        if self.art:
+            descrip += "On the wall hangs a " + self.art + ". "
+
         return descrip
 
 
@@ -139,9 +145,9 @@ if __name__ == "__main__":
     socketlist = []
 
     # Lists of sockets for each room and a dictionary containing all of the lists
-    foyer = Room("Foyer", "It looks like a Foyer.")
-    drawingroom = Room("Drawing Room", "It looks like a Drawing Room.")
-    dininghall = Room("Dining Hall", "It looks like a Dining Hall.")
+    foyer = Room("Foyer", "It looks like a Foyer. ")
+    drawingroom = Room("Drawing Room", "It looks like a Drawing Room. ")
+    dininghall = Room("Dining Hall", "It looks like a Dining Hall. ")
     rooms = {"Foyer": foyer, "Drawing Room": drawingroom, "Dining Hall": dininghall}
 
     RECV_BUFFER = 4096
@@ -230,6 +236,7 @@ if __name__ == "__main__":
                                 del clients[client.address]
 
                             elif data[1:5] == "look":
+                                print id(client.room)
                                 look(client)
 
                             elif data[1:6] == "clean":
@@ -242,6 +249,10 @@ if __name__ == "__main__":
                                     broadcast(client, client.name, "hides a body\n")
                                 else:
                                     client.room.bodies = 0
+
+                            elif data[1:5] == "hang":
+                                client.room.art = "%s" % data[6:26].rstrip()
+                                broadcast(client, "Server", "%s hangs something on the wall" % client.name)
 
                             else:
                                 send("Server", sock, "Invalid command\n")

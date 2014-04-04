@@ -29,5 +29,7 @@ Commands
 
 \#hide body : Removes a body from the players current room and notifies the occupants of that room
 
+\#hang \<description of art\> : Adds a description of a piece of art to the players current rooms description
+                                (must be less than 20 characters in length)
 
 Thanks to binarytides.com for their tutorial on python sockets and example code that got this project started
