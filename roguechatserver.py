@@ -1,6 +1,7 @@
 import socket
 import select
 
+import config
 
 class Client:
     """ An object containing a clients name, location, and address """
@@ -145,10 +146,9 @@ if __name__ == "__main__":
     socketlist = []
 
     # Lists of sockets for each room and a dictionary containing all of the lists
-    foyer = Room("Foyer", "It looks like a Foyer. ")
-    drawingroom = Room("Drawing Room", "It looks like a Drawing Room. ")
-    dininghall = Room("Dining Hall", "It looks like a Dining Hall. ")
-    rooms = {"Foyer": foyer, "Drawing Room": drawingroom, "Dining Hall": dininghall}
+    rooms = {}
+    for room in config.rooms:
+        rooms[room['name']] = Room(room['name'], room['description'])
 
     RECV_BUFFER = 4096
     # The port which the application listens on
@@ -158,7 +158,7 @@ if __name__ == "__main__":
     clients = {}
 
     # List of names that are in use or have been killed
-    names = ['Server', 'server']
+    names = config.names
 
     # Create and bind a socket for listening on
     serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
