@@ -52,7 +52,7 @@ test(clientsockone, "\r<Server> Welcome to RogueChat: Please enter your name\n",
 
 # Test for correct server response to entering a name
 clientsockone.send("name\n")
-test(clientsockone, "\r<Server> You are in the Foyer\n", "Enter Name-When connecting first client")
+test(clientsockone, "\r<Server> You are in the Foyer. Enter #help for more information\n", "Enter Name-When connecting first client")
 
 # Test for correct server response to entering an empty room
 test(clientsockone, "\r<Server> The room is empty\n", "List occupants-Empty room")
@@ -63,7 +63,7 @@ test(clientsocktwo, "\r<Server> Welcome to RogueChat: Please enter your name\n",
 
 # Test for correct server response to entering a name
 clientsocktwo.send("name2\n")
-test(clientsocktwo, "\r<Server> You are in the Foyer\n", "Enter name-When connecting second client")
+test(clientsocktwo, "\r<Server> You are in the Foyer. Enter #help for more information\n", "Enter name-When connecting second client")
 
 # Test for correct server response to entering an occupied room
 test(clientsocktwo, "\r<Server> The room contains: \nname\n", "List occupants-One occupant")
@@ -103,7 +103,7 @@ test(clientsockone, "\r<name2> Stabs you: Please enter a new name\n", "Stab-Clie
 
 # Test entering new name after death
 clientsockone.send("name3\n")
-test(clientsockone, "\r<Server> You are in the Foyer\n", "Start over after death-Client one")
+test(clientsockone, "\r<Server> You are in the Foyer. Enter #help for more information\n", "Start over after death-Client one")
 
 test(clientsockone, "\r<Server> The room is empty\n", "List occupants-After death empty room")
 
@@ -123,7 +123,7 @@ clientsocktwo.send("Server\n")
 test(clientsocktwo, "\r<Server> That name is either in use or dead\n", "Start over after death-Imitating the server")
 
 clientsocktwo.send("name4\n")
-test(clientsocktwo, "\r<Server> You are in the Foyer\n", "Start over after death-Client two")
+test(clientsocktwo, "\r<Server> You are in the Foyer. Enter #help for more information\n", "Start over after death-Client two")
 
 test(clientsocktwo, "\r<Server> The room contains: \nname3\n", "List occupants-After death client two")
 

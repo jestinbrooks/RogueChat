@@ -202,7 +202,7 @@ if __name__ == "__main__":
                             else:
                                 client.name = data[:-1]
                                 names.append(client.name)
-                                send("Server", sock, "You are in the Foyer\n")
+                                send("Server", sock, "You are in the Foyer. Enter #help for more information\n")
                                 move(client, "Foyer")
 
                         # If the message is a command see which command it is
@@ -257,6 +257,9 @@ if __name__ == "__main__":
                             elif data[1:10] == "steal art":
                                 client.room.art = ""
                                 broadcast(client, "Server", "%s takes something off the wall\n" % client.name)
+
+                            elif data[1:5] == "help":
+                                send("Server", sock, config.helptext)
 
                             else:
                                 send("Server", sock, "Invalid command\n")
