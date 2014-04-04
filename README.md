@@ -32,4 +32,6 @@ Commands
 \#hang \<description of art\> : Adds a description of a piece of art to the players current rooms description
                                 (must be less than 20 characters in length)
 
+\#steal art : Removes any art from the wall of the players current room
+
 Thanks to binarytides.com for their tutorial on python sockets and example code that got this project started

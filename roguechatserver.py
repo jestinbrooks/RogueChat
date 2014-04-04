@@ -252,7 +252,11 @@ if __name__ == "__main__":
 
                             elif data[1:5] == "hang":
                                 client.room.art = "%s" % data[6:26].rstrip()
-                                broadcast(client, "Server", "%s hangs something on the wall" % client.name)
+                                broadcast(client, "Server", "%s hangs something on the wall\n" % client.name)
+
+                            elif data[1:10] == "steal art":
+                                client.room.art = ""
+                                broadcast(client, "Server", "%s takes something off the wall\n" % client.name)
 
                             else:
                                 send("Server", sock, "Invalid command\n")

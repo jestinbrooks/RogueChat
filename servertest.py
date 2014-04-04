@@ -183,12 +183,22 @@ clientsocktwo.send("#clean\n")
 test(clientsockone, "\r<name4> cleans up the blood\n", "Player is cleaning-Already clean room with one occupant")
 
 clientsocktwo.send("#hang painting of mice\n")
-test(clientsockone, "\r<Server> name4 hangs something on the wall", "Player hangs art-Client one in Foyer")
+test(clientsockone, "\r<Server> name4 hangs something on the wall\n", "Player hangs art-Client one in Foyer")
+
 clientsockone.send("#look\n")
 test(clientsockone, "\r<Server> You are in the Foyer, It looks like a Foyer. "
                     "On the wall hangs a painting of mice. \n"
                     "There are doors to the Dining Hall and Drawing Room\nThe room contains: \nname4\n",
      "Look command-With art")
+
+clientsockone.send("#steal art\n")
+test(clientsocktwo, "\r<Server> name3 takes something off the wall\n", "Player steals art-Client two in Foyer")
+
+clientsockone.send("#look")
+test(clientsockone,
+     "\r<Server> You are in the Foyer, It looks like a Foyer. \n"
+     "There are doors to the Dining Hall and Drawing Room\nThe room contains: \nname4\n",
+     "Look command-After stealing art")
 
 print "\n==== Tests for quiting ===="
 
