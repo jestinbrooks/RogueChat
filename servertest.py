@@ -45,7 +45,7 @@ def connect():
 
 clientsockone = connect()
 
-print "\n==== Tests for connecting to server ===="
+print "==== Tests for connecting to server ===="
 
 # Test for correct server response to new connection
 test(clientsockone, "\r<Server> Welcome to RogueChat: Please enter your name\n", "Connection-First client")
@@ -141,7 +141,6 @@ test(clientsockone, "\r<Server> There is no invalid name in this room\n", "Stab-
 print "\n==== Tests the look command and room descriptions ===="
 
 clientsocktwo.send("#look\n")
-#print repr(read(clientsocktwo))
 test(clientsocktwo, "\r<Server> You are in the Foyer, It looks like a Foyer. \n"
                     "There are doors to the Dining Hall and Drawing Room\n"
                     "The room contains: \nname3\n",
@@ -228,7 +227,6 @@ clientsockthree.send("name5\n")
 
 test(clientsockthree, "\r<Server> You are in the Foyer. Enter #help for more information\n", "Enter Name-When connecting third client")
 test(clientsockthree, "\r<Server> The room contains: \nname4\n", "List occupants-One occupant disconnected incorrectly")
-#print repr(read(clientsockthree))
 
 clientsockthree.send("Hello")
 clientsockthree.send("#look")

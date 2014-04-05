@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3e99179b-5341-467f-80de-bec73e0752e0" name="Default" comment="">
+    <list default="true" id="3e99179b-5341-467f-80de-bec73e0752e0" name="Default" comment="rewrote command processing section to be more readable">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/roguechatserver.py" afterPath="$PROJECT_DIR$/roguechatserver.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/servertest.py" afterPath="$PROJECT_DIR$/servertest.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="RogueChat.iws" />
@@ -26,10 +27,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="roguechatserver.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="roguechatserver.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/roguechatserver.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="104" column="0" selection-start="3108" selection-end="3108" vertical-scroll-proportion="0.4697624" vertical-offset="1125" max-vertical-offset="3690">
+            <state line="58" column="0" selection-start="1874" selection-end="1874" vertical-scroll-proportion="0.0" vertical-offset="529" max-vertical-offset="3720">
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -46,10 +47,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="servertest.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="servertest.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/servertest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="187" column="29" selection-start="7332" selection-end="7332" vertical-scroll-proportion="0.0" vertical-offset="2254" max-vertical-offset="3675">
+            <state line="43" column="21" selection-start="1110" selection-end="1110" vertical-scroll-proportion="0.4697624" vertical-offset="180" max-vertical-offset="3645">
               <folding />
             </state>
           </provider>
@@ -57,13 +58,13 @@
       </file>
       <file leaf-file-name="README.md" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/README.md">
-          <provider editor-type-id="MarkdownPreviewEditor">
-            <state />
-          </provider>
           <provider selected="true" editor-type-id="text-editor">
             <state line="19" column="63" selection-start="571" selection-end="571" vertical-scroll-proportion="-10.178572" vertical-offset="0" max-vertical-offset="660">
               <folding />
             </state>
+          </provider>
+          <provider editor-type-id="MarkdownPreviewEditor">
+            <state />
           </provider>
         </entry>
       </file>
@@ -97,8 +98,8 @@
         <option value="$PROJECT_DIR$/config.py" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/objects.py" />
-        <option value="$PROJECT_DIR$/servertest.py" />
         <option value="$PROJECT_DIR$/roguechatserver.py" />
+        <option value="$PROJECT_DIR$/servertest.py" />
       </list>
     </option>
   </component>
@@ -514,20 +515,23 @@
       <created>1396656895264</created>
       <updated>1396656895264</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="Removed a line continue">
+      <created>1396657741581</created>
+      <updated>1396657741581</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="1855" height="1056" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32985386" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32984293" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24932542" sideWeight="0.67014617" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1122504" sideWeight="0.67014617" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32985386" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -536,6 +540,7 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -553,7 +558,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="added message that informs the client if they try to stab someone who is not in the room" />
     <MESSAGE value="fixed message that informs the client if they try to stab someone who is not in the room" />
     <MESSAGE value="Added tests for entering and leaving room messages" />
     <MESSAGE value="Removed the leave command since it has the same effect as stabbing yourself" />
@@ -578,12 +582,46 @@
     <MESSAGE value="Moved room data and banned name list moved to a config file to make it easier to modify" />
     <MESSAGE value="Added a help command, updated the readme and fixed the tests to pass" />
     <MESSAGE value="Fixed several bugs related to improperly disconnecting, moved the Room and Client objects to a new file and update tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed several bugs related to improperly disconnecting, moved the Room and Client objects to a new file and update tests" />
+    <MESSAGE value="Removed a line continue" />
+    <option name="LAST_COMMIT_MESSAGE" value="Removed a line continue" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/roguechatserver.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="219" column="41" selection-start="7548" selection-end="7548" vertical-scroll-proportion="0.0" vertical-offset="60" max-vertical-offset="3735">
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/objects.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="46" column="0" selection-start="1528" selection-end="1528" vertical-scroll-proportion="0.0" vertical-offset="690" max-vertical-offset="780">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/servertest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="143" column="32" selection-start="5512" selection-end="5512" vertical-scroll-proportion="0.0" vertical-offset="2145" max-vertical-offset="3705">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="63" selection-start="571" selection-end="571" vertical-scroll-proportion="0.0" vertical-offset="285" max-vertical-offset="660">
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="MarkdownPreviewEditor">
+        <state />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/roguechatserver.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="124" column="72" selection-start="3701" selection-end="3701" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4050">
@@ -633,11 +671,11 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="MarkdownPreviewEditor">
-        <state />
-      </provider>
       <provider editor-type-id="text-editor">
         <state line="21" column="14" selection-start="578" selection-end="578" vertical-scroll-proportion="0.0" vertical-offset="315" max-vertical-offset="570" />
+      </provider>
+      <provider selected="true" editor-type-id="MarkdownPreviewEditor">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/roguechatclient.py">
@@ -718,11 +756,11 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
-      <provider editor-type-id="MarkdownPreviewEditor">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state line="26" column="24" selection-start="758" selection-end="758" vertical-scroll-proportion="0.0" vertical-offset="390" max-vertical-offset="480" />
+      </provider>
+      <provider editor-type-id="MarkdownPreviewEditor">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/servertest.py">
@@ -747,11 +785,11 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
-      <provider editor-type-id="MarkdownPreviewEditor">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state line="26" column="24" selection-start="758" selection-end="758" vertical-scroll-proportion="0.0" vertical-offset="390" max-vertical-offset="480" />
+      </provider>
+      <provider editor-type-id="MarkdownPreviewEditor">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/servertest.py">
@@ -878,16 +916,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider editor-type-id="MarkdownPreviewEditor">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="63" selection-start="571" selection-end="571" vertical-scroll-proportion="-10.178572" vertical-offset="0" max-vertical-offset="660">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/objects.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="46" column="0" selection-start="1528" selection-end="1528" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="780">
@@ -895,19 +923,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/servertest.py">
+    <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="187" column="29" selection-start="7332" selection-end="7332" vertical-scroll-proportion="0.0" vertical-offset="2254" max-vertical-offset="3675">
+        <state line="19" column="63" selection-start="571" selection-end="571" vertical-scroll-proportion="-10.178572" vertical-offset="0" max-vertical-offset="660">
           <folding />
         </state>
+      </provider>
+      <provider editor-type-id="MarkdownPreviewEditor">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/roguechatserver.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="104" column="0" selection-start="3108" selection-end="3108" vertical-scroll-proportion="0.4697624" vertical-offset="1125" max-vertical-offset="3690">
+        <state line="58" column="0" selection-start="1874" selection-end="1874" vertical-scroll-proportion="0.0" vertical-offset="529" max-vertical-offset="3720">
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/servertest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="43" column="21" selection-start="1110" selection-end="1110" vertical-scroll-proportion="0.4697624" vertical-offset="180" max-vertical-offset="3645">
+          <folding />
         </state>
       </provider>
     </entry>

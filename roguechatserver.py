@@ -5,6 +5,7 @@ import config
 from objects import Room, Client
 
 
+# Functions for sending messages
 def broadcast(originclient, oname, message):
     """ Send a message to all occupants of a room """
     for sock in originclient.room.occupantslist:
@@ -35,6 +36,68 @@ def send(originname, destclient, message):
         del clients[destclient.clientsock]
 
 
+# Commands
+def rc_help(client, data):
+    send("Server", client, config.helptext)
+
+
+def enter(client, data):
+    # if valid room is entered, enter room and list occupants
+    if isroom(data[7:-1]):
+        move(client, data[7:-1])
+
+    # If invalid room is entered give error and wait for new room
+    else:
+        send("Server", client, "not a room\n")
+
+
+def rc_stab(client, data):
+    for victim in clients.itervalues():
+        if victim.name == data[6:-1] and victim.room == client.room:
+            send(client.name, victim, "Stabs you: Please enter a new name\n")
+            broadcast(victim, "Server", "%s has been stabbed\n" % victim.name)
+
+            victim.room.bodies += 1
+            victim.room.poolofblood = True
+            victim.room.removeoccupant(victim.clientsock)
+            victim.room = None
+            victim.name = ""
+
+            break
+    else:
+        send("Server", client, "There is no %s in this room\n" % data[6:-1])
+
+
+def rc_quit(client, data):
+    sock.close()
+    socketlist.remove(sock)
+    client.room.removeoccupant(sock)
+    broadcast(client, "Server", "%s disappears in a puff of smoke\n" % client.name)
+    del clients[client.clientsock]
+
+
+def clean(client, data):
+    client.room.poolofblood = False
+    broadcast(client, client.name, "cleans up the blood\n")
+
+def hide(client, data):
+    if client.room.bodies > 0:
+        client.room.bodies -= 1
+        broadcast(client, client.name, "hides a body\n")
+    else:
+        client.room.bodies = 0
+
+
+def hang(client, data):
+    client.room.art = "%s" % data[6:26].rstrip()
+    broadcast(client, "Server", "%s hangs something on the wall\n" % client.name)
+
+
+def steal(client, data):
+    client.room.art = ""
+    broadcast(client, "Server", "%s takes something off the wall\n" % client.name)
+
+
 def move(client, enter):
     """ Move a user from one room to another """
 
@@ -48,21 +111,6 @@ def move(client, enter):
     broadcast(client, "Server", "%s has entered the room\n" % client.name)
 
     send("Server", client, listoccupants(client))
-
-
-def stab(killer, victimadd):
-    """ Remove a character and move user back to entering a name """
-    victim = clients[victimadd]
-    send(killer, victim, "Stabs you: Please enter a new name\n")
-    broadcast(victim, "Server", "%s has been stabbed\n" % victim.name)
-    
-    # reset victim and remove from room
-    vroom = victim.room
-    vroom.bodies += 1
-    vroom.poolofblood = True
-    victim.room = None
-    victim.name = ""
-    vroom.removeoccupant(victim.clientsock)
 
 
 def isroom(s):
@@ -87,7 +135,7 @@ def listoccupants(client):
         return "The room contains: %s\n" % occupants
 
 
-def look(client):
+def look(client, data):
     """ Give the player a list of information about the room they are in"""
     otherrooms = list(rooms.iterkeys())
     otherrooms.remove(client.room.name)
@@ -100,17 +148,17 @@ def look(client):
 
 # Main function
 if __name__ == "__main__":
-    # List of all sockets
-    socketlist = []
+    # Dictionary containing all the commands and functions they map too
+    commands = {'help': rc_help, 'enter': enter, 'stab': rc_stab, 'quit': rc_quit, 'look': look, 'clean': clean,
+                'hide': hide, 'hang': hang, 'steal': steal}
 
-    # Lists of sockets for each room and a dictionary containing all of the lists
+    # Dictionary containing all of the Room objects
     rooms = {}
     for room in config.rooms:
         rooms[room['name']] = Room(room['name'], room['description'])
 
-    RECV_BUFFER = 4096
-    # The port which the application listens on
-    PORT = 5000
+    # List of all sockets
+    socketlist = []
 
     # Dictionary of clients connected to the server
     clients = {}
@@ -118,7 +166,9 @@ if __name__ == "__main__":
     # List of names that are in use or have been killed
     names = config.names
 
-    # Create and bind a socket for listening on
+    # Set up the server socket
+    RECEIVE_BUFFER = 4096
+    PORT = 5000 # The port which the application listens on
     serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     serversocket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     serversocket.bind(("0.0.0.0", PORT))
@@ -147,7 +197,7 @@ if __name__ == "__main__":
             else:
                 try:
                     client = clients[sock]
-                    data = sock.recv(RECV_BUFFER)
+                    data = sock.recv(RECEIVE_BUFFER)
                     if data:
                         print "data entered by " + str(sock)
                         print "%s" % data
@@ -166,58 +216,10 @@ if __name__ == "__main__":
                         # If the message is a command see which command it is
                         elif data[0] == '#':
                             print "command entered"
-
-                            # If the command was enter move the user to a different room
-                            if data[1:6] == "enter":
-                                # if valid room is entered, enter room and list occupants
-                                if isroom(data[7:-1]):
-                                    move(client, data[7:-1])
-
-                                # If invalid room is enter give error and wait for new room
-                                else:
-                                    send("Server", client, "not a room\n")
-
-                            # If the command is stab remove the stabbed character from the game
-                            elif data[1:6] == "stab ":
-                                for c in clients.itervalues():
-                                    if c.name == data[6:-1] and c.room == client.room:
-                                        stab(client.name, c.clientsock)
-                                        break
-                                else:
-                                    send("Server", client, "There is no %s in this room\n" % data[6:-1])
-
-                            elif data[1:5] == "quit":
-                                sock.close()
-                                socketlist.remove(sock)
-                                client.room.removeoccupant(sock)
-                                broadcast(client, "Server", "%s disappears in a puff of smoke\n" % client.name)
-                                del clients[client.clientsock]
-
-                            elif data[1:5] == "look":
-                                look(client)
-
-                            elif data[1:6] == "clean":
-                                client.room.poolofblood = False
-                                broadcast(client, client.name, "cleans up the blood\n")
-
-                            elif data[1:10] == "hide body":
-                                if client.room.bodies > 0:
-                                    client.room.bodies -= 1
-                                    broadcast(client, client.name, "hides a body\n")
-                                else:
-                                    client.room.bodies = 0
-
-                            elif data[1:5] == "hang":
-                                client.room.art = "%s" % data[6:26].rstrip()
-                                broadcast(client, "Server", "%s hangs something on the wall\n" % client.name)
-
-                            elif data[1:10] == "steal art":
-                                client.room.art = ""
-                                broadcast(client, "Server", "%s takes something off the wall\n" % client.name)
-
-                            elif data[1:5] == "help":
-                                send("Server", client, config.helptext)
-
+                            command = data.split(' ', 1)[0][1:].rstrip()
+                            print repr(command)
+                            if command in commands:
+                                commands[command](client, data)
                             else:
                                 send("Server", client, "Invalid command\n")
 
