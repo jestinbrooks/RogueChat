@@ -216,5 +216,26 @@ test(clientsocktwo, "\r<Server> The room is empty\n", "Room empty-Drawing Room")
 clientsocktwo.send("#enter Foyer\n")
 test(clientsocktwo, "\r<Server> The room is empty\n", "Room empty-Foyer")
 
-clientsocktwo.send("#quit\n")
-test(clientsocktwo, "\nDisconnected from chat server", "Quit-Client two")
+del clientsocktwo
+clientsockthree = connect()
+
+# Test for correct server response to new connection
+test(clientsockthree, "\r<Server> Welcome to RogueChat: Please enter your name\n", "Connection-Third client")
+
+# Test for correct server response to entering a name
+clientsockthree.send("name5\n")
+
+
+test(clientsockthree, "\r<Server> You are in the Foyer. Enter #help for more information\n", "Enter Name-When connecting third client")
+test(clientsockthree, "\r<Server> The room contains: \nname4\n", "List occupants-One occupant disconnected incorrectly")
+#print repr(read(clientsockthree))
+
+clientsockthree.send("Hello")
+clientsockthree.send("#look")
+test(clientsockthree,
+     "\r<Server> You are in the Foyer, It looks like a Foyer. \n"
+     "There are doors to the Dining Hall and Drawing Room\nThe room is empty\n",
+     "Look command-After improper disconnect and sending a message")
+
+clientsockthree.send("#quit")
+test(clientsockthree, "\nDisconnected from chat server", "Quit-Client three")
