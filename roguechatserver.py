@@ -92,9 +92,9 @@ def look(client):
     otherrooms = list(rooms.iterkeys())
     otherrooms.remove(client.room.name)
 
-    description = "You are in the %s, %s\n" % (client.room.name, client.room.getdescription()) + \
-        "There are doors to the %s\n" % " and ".join(otherrooms) + \
-        listoccupants(client)
+    description = ("You are in the %s, %s\n" % (client.room.name, client.room.getdescription()) +
+        "There are doors to the %s\n" % " and ".join(otherrooms) +
+        listoccupants(client))
 
     send("Server", client, description)
 
