@@ -12,7 +12,10 @@ def prompt():
 # Main function
 if __name__ == "__main__":
 
-    host = raw_input("enter host name: ")
+    try:
+        host = sys.argv[1]
+    except IndexError:
+        host = "localhost"
 
     # Server connection information
     #host = 'localhost'

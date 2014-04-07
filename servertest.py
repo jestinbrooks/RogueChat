@@ -26,8 +26,7 @@ def read(csock):
         return data
 
 
-def connect():
-    host = 'localhost'
+def connect(host):
     port = 5000
 
     # Create socket to connect to server
@@ -43,7 +42,12 @@ def connect():
 
     return clientsock
 
-clientsockone = connect()
+try:
+    host = sys.argv[1]
+except IndexError:
+    host = "localhost"
+
+clientsockone = connect(host)
 
 print "==== Tests for connecting to server ===="
 
@@ -58,7 +62,7 @@ test(clientsockone, "\r<Server> You are in the Foyer. Enter #help for more infor
 test(clientsockone, "\r<Server> The room is empty\n", "List occupants-Empty room")
 
 # Test for correct server response to new connection
-clientsocktwo = connect()
+clientsocktwo = connect(host)
 test(clientsocktwo, "\r<Server> Welcome to RogueChat: Please enter your name\n", "Connection-Second client")
 
 # Test for correct server response to entering a name
@@ -216,7 +220,7 @@ clientsocktwo.send("#enter Foyer\n")
 test(clientsocktwo, "\r<Server> The room is empty\n", "Room empty-Foyer")
 
 del clientsocktwo
-clientsockthree = connect()
+clientsockthree = connect(host)
 
 # Test for correct server response to new connection
 test(clientsockthree, "\r<Server> Welcome to RogueChat: Please enter your name\n", "Connection-Third client")
