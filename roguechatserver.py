@@ -4,8 +4,9 @@ import select
 import config
 from objects import Room, Client
 
-
 # Functions for sending messages
+
+
 def broadcast(originclient, oname, message):
     """ Send a message to all occupants of a room """
     for sock in originclient.room.occupantslist:
@@ -35,8 +36,9 @@ def send(originname, destclient, message):
         socketlist.remove(destclient.clientsock)
         del clients[destclient.clientsock]
 
+# Command functions
 
-# Commands
+
 def rc_help(client, data):
     send("Server", client, config.helptext)
 
@@ -80,12 +82,41 @@ def clean(client, data):
     client.room.poolofblood = False
     broadcast(client, client.name, "cleans up the blood\n")
 
+
 def hide(client, data):
     if client.room.bodies > 0:
         client.room.bodies -= 1
         broadcast(client, client.name, "hides a body\n")
     else:
         client.room.bodies = 0
+
+
+def look(client, data):
+    """ Give the player a list of information about the room they are in"""
+    if len(data) > 6:
+        lookplayer(client, data)
+    else:
+        lookroom(client)
+
+
+def lookplayer(client, data):
+    for player in clients.itervalues():
+        if player.name == data[6:-1] and player.room == client.room:
+            send("Server", client, "%s, %s\n" % (player.name, player.description))
+            break
+    else:
+        send("Server", client, "There is no %s here" % data[6:-1])
+
+
+def lookroom(client):
+    otherrooms = list(rooms.iterkeys())
+    otherrooms.remove(client.room.name)
+
+    description = ("You are in the %s, %s\n" % (client.room.name, client.room.getdescription()) +
+        "There are doors to the %s\n" % " and ".join(otherrooms) +
+        listoccupants(client))
+
+    send("Server", client, description)
 
 
 def hang(client, data):
@@ -96,6 +127,12 @@ def hang(client, data):
 def steal(client, data):
     client.room.art = ""
     broadcast(client, "Server", "%s takes something off the wall\n" % client.name)
+
+
+def describeself(client, data):
+    client.description = data[10:31].rstrip()
+
+# Other functions
 
 
 def move(client, enter):
@@ -135,22 +172,11 @@ def listoccupants(client):
         return "The room contains: %s\n" % occupants
 
 
-def look(client, data):
-    """ Give the player a list of information about the room they are in"""
-    otherrooms = list(rooms.iterkeys())
-    otherrooms.remove(client.room.name)
-
-    description = ("You are in the %s, %s\n" % (client.room.name, client.room.getdescription()) +
-        "There are doors to the %s\n" % " and ".join(otherrooms) +
-        listoccupants(client))
-
-    send("Server", client, description)
-
 # Main function
 if __name__ == "__main__":
     # Dictionary containing all the commands and functions they map too
     commands = {'help': rc_help, 'enter': enter, 'stab': rc_stab, 'quit': rc_quit, 'look': look, 'clean': clean,
-                'hide': hide, 'hang': hang, 'steal': steal}
+                'hide': hide, 'hang': hang, 'steal': steal, 'describe': describeself}
 
     # Dictionary containing all of the Room objects
     rooms = {}
@@ -188,7 +214,6 @@ if __name__ == "__main__":
             # If the message is received on the server socket create a new connection
             if sock == serversocket:
                 newsock, address = serversocket.accept()
-                #print type(address)
                 clients[newsock] = Client(address, newsock)
                 socketlist.append(newsock)
                 send("Server", clients[newsock], 'Welcome to RogueChat: Please enter your name\n')

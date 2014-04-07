@@ -4,6 +4,7 @@ class Client:
     def __init__(self, add, sock):
         self.room = None
         self.name = ""
+        self.description = "They look nondescript"
         self.address = add
         self.clientsock = sock
 

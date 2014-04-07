@@ -27,6 +27,8 @@ Commands
 
 \#look : Gives information for the room the player is in, a list of other rooms and a list of players in the room
 
+\#look \[name\] : Gives information about a player
+
 \#clean : Removes blood from the players current room and notifies occupants of that room
 
 \#hide body : Removes a body from the players current room and notifies the occupants of that room
@@ -35,5 +37,7 @@ Commands
                                 (must be less than 20 characters in length)
 
 \#steal art : Removes any art from the wall of the players current room
+
+\#describe \<description of player\> : Set a description for the player (must be less than 20 characters in length)
 
 Thanks to binarytides.com for their tutorial on python sockets and example code that got this project started

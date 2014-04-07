@@ -197,11 +197,26 @@ test(clientsockone, "\r<Server> You are in the Foyer, It looks like a Foyer. "
 clientsockone.send("#steal art\n")
 test(clientsocktwo, "\r<Server> name3 takes something off the wall\n", "Player steals art-Client two in Foyer")
 
-clientsockone.send("#look")
+clientsockone.send("#look\n")
 test(clientsockone,
      "\r<Server> You are in the Foyer, It looks like a Foyer. \n"
      "There are doors to the Dining Hall and Drawing Room\nThe room contains: \nname4\n",
      "Look command-After stealing art")
+
+print "\n==== Tests the look command and player descriptions ===="
+
+clientsockone.send("#look name3\n")
+test(clientsockone, "\r<Server> name3, They look nondescript\n", "Look at player-Self Default description")
+
+clientsockone.send("#describe has pretty tentacles")
+clientsockone.send("#look name3\n")
+test(clientsockone, "\r<Server> name3, has pretty tentacles\n", "Look at player-Self New description")
+
+clientsockone.send("#look name4\n")
+test(clientsockone, "\r<Server> name4, They look nondescript\n", "Look at player-Other default")
+
+clientsockone.send("#look invalid\n")
+test(clientsockone, "\r<Server> There is no invalid here", "Look at player-invalid")
 
 print "\n==== Tests for quiting ===="
 
