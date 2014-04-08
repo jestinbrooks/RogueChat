@@ -42,9 +42,9 @@ def connect(host):
 
     return clientsock
 
-try:
+if len(sys.argv) > 1:
     host = sys.argv[1]
-except IndexError:
+else:
     host = "localhost"
 
 clientsockone = connect(host)

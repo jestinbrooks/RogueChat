@@ -12,13 +12,12 @@ def prompt():
 # Main function
 if __name__ == "__main__":
 
-    try:
+    # Server connection information
+    if len(sys.argv) > 1:
         host = sys.argv[1]
-    except IndexError:
+    else:
         host = "localhost"
 
-    # Server connection information
-    #host = 'localhost'
     port = 5000
 
     # Create socket to connect to server
