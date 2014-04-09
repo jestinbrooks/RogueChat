@@ -40,10 +40,12 @@ def send(originname, destclient, message):
 
 
 def rc_help(client, data):
+    """ Function for executing the help command. Which gives a list of commands. """
     send("Server", client, config.helptext)
 
 
 def enter(client, data):
+    """ Function for executing the enter command. Which moves the player to a new room. """
     # if valid room is entered, enter room and list occupants
     if isroom(data[7:-1]):
         move(client, data[7:-1])
@@ -53,7 +55,8 @@ def enter(client, data):
         send("Server", client, "not a room\n")
 
 
-def rc_stab(client, data):
+def stab(client, data):
+    """ Function for executing the stab player command. Which makes a player start the game over. """
     for victim in clients.itervalues():
         if victim.name == data[6:-1] and victim.room == client.room:
             send(client.name, victim, "Stabs you: Please enter a new name\n")
@@ -71,6 +74,7 @@ def rc_stab(client, data):
 
 
 def rc_quit(client, data):
+    """ Function for executing the quit command. Which disconnects the client """
     sock.close()
     socketlist.remove(sock)
     client.room.removeoccupant(sock)
@@ -79,11 +83,13 @@ def rc_quit(client, data):
 
 
 def clean(client, data):
+    """ Function for executing the clean command. Which removes blood from players room. """
     client.room.poolofblood = False
     broadcast(client, client.name, "cleans up the blood\n")
 
 
 def hide(client, data):
+    """ Function for executing the hide body command. Which removes a body from the players room. """
     if client.room.bodies > 0:
         client.room.bodies -= 1
         broadcast(client, client.name, "hides a body\n")
@@ -92,7 +98,8 @@ def hide(client, data):
 
 
 def look(client, data):
-    """ Give the player a list of information about the room they are in"""
+    """ Function for executing the look command. This command has two versions, one for looking at a room and one for
+    looking at a player"""
     if len(data) > 6:
         lookplayer(client, data)
     else:
@@ -100,6 +107,8 @@ def look(client, data):
 
 
 def lookplayer(client, data):
+    """ Function for executing the player part of the look command. Which gives the player a description of the player
+    they are looking at"""
     for player in clients.itervalues():
         if player.name == data[6:-1] and player.room == client.room:
             send("Server", client, "%s, %s\n" % (player.name, player.description))
@@ -109,6 +118,8 @@ def lookplayer(client, data):
 
 
 def lookroom(client):
+    """ Function for executing the room part of the look command. Which gives the player a list of information about the
+    room they are in. """
     otherrooms = list(rooms.iterkeys())
     otherrooms.remove(client.room.name)
 
@@ -120,16 +131,20 @@ def lookroom(client):
 
 
 def hang(client, data):
+    """ function for executing the hang art command. Which lets the player add some text the rooms description. """
     client.room.art = "%s" % data[6:26].rstrip()
     broadcast(client, "Server", "%s hangs something on the wall\n" % client.name)
 
 
 def steal(client, data):
+    """ function for executing the steal art command. Which lets the player remove the player added portion of the room
+    Description. """
     client.room.art = ""
     broadcast(client, "Server", "%s takes something off the wall\n" % client.name)
 
 
 def describeself(client, data):
+    """ function for executing the describe command. Which lets the player change their description. """
     client.description = data[10:31].rstrip()
 
 # Other functions
@@ -175,7 +190,7 @@ def listoccupants(client):
 # Main function
 if __name__ == "__main__":
     # Dictionary containing all the commands and functions they map too
-    commands = {'help': rc_help, 'enter': enter, 'stab': rc_stab, 'quit': rc_quit, 'look': look, 'clean': clean,
+    commands = {'help': rc_help, 'enter': enter, 'stab': stab, 'quit': rc_quit, 'look': look, 'clean': clean,
                 'hide': hide, 'hang': hang, 'steal': steal, 'describe': describeself}
 
     # Dictionary containing all of the Room objects
