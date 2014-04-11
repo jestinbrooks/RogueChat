@@ -81,6 +81,9 @@ print "\n==== Tests for sending messages ===="
 clientsockone.send("hello\n")
 test(clientsocktwo, "\r<name> hello\n", "Send message-Client one to client two")
 
+clientsocktwo.send("hi\n")
+test(clientsockone, "\r<name2> hi\n", "Send message-Client two to client one")
+
 print "\n==== Tests for changing room ===="
 
 # Move client one to the Drawing Room
@@ -92,16 +95,12 @@ test(clientsocktwo, "\r<Server> name has left the room\n", "Player leaves room-C
 clientsockone.send("#enter Bathroom\n")
 test(clientsockone, "\r<Server> not a room\n", "Enter room-Invalid room name")
 
-print "\n==== Tests for stabbing and creating new players ===="
-
-# Test client two stab client one
-clientsocktwo.send("#stab name\n")
-test(clientsocktwo, "\r<Server> There is no name in this room\n", "Stab-Invalid name")
-
 # Move client two to the drawing room
 clientsocktwo.send("#enter Drawing Room\n")
 test(clientsocktwo, "\r<Server> The room contains: \nname\n", "Enter command-Drawing room one occupant")
 test(clientsockone, "\r<Server> name2 has entered the room\n", "Player enters room-Client one")
+
+print "\n==== Tests for stabbing and creating new players ===="
 
 # Test for stabbing another player
 clientsocktwo.send("#stab name\n")
@@ -115,6 +114,10 @@ test(clientsockone, "\r<Server> The room is empty\n", "List occupants-After deat
 # Test notified of stabbing
 test(clientsocktwo, "\r<Server> name has been stabbed\n", "Notify of stabbing-Client two")
 
+# Test stabbing player that isn't in the same room
+clientsocktwo.send("#stab name3\n")
+test(clientsocktwo, "\r<Server> There is no name3 in this room\n", "Stab-Player not in room")
+
 # Test client two stabbing itself
 clientsocktwo.send("#stab name2\n")
 test(clientsocktwo, "\r<name2> Stabs you: Please enter a new name\n", "Stab-Self client two")
@@ -125,7 +128,7 @@ test(clientsocktwo, "\r<Server> That name is either in use or dead\n", "Start ov
 
 # Test entering another name that is already in use
 clientsocktwo.send("Server\n")
-test(clientsocktwo, "\r<Server> That name is either in use or dead\n", "Start over after death-Imitating the server")
+test(clientsocktwo, "\r<Server> That name is either in use or dead\n", "Start over after death-Invalid name imitating the server")
 
 # Test for entering new name after death with occupants in foyer
 clientsocktwo.send("name4\n")

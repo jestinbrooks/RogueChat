@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3e99179b-5341-467f-80de-bec73e0752e0" name="Default" comment="Added docstrings for all the command functions">
+    <list default="true" id="3e99179b-5341-467f-80de-bec73e0752e0" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/servertest.py" afterPath="$PROJECT_DIR$/servertest.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -29,7 +29,7 @@
       <file leaf-file-name="roguechatserver.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/roguechatserver.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="171" column="9" selection-start="5815" selection-end="5815" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4260">
+            <state line="171" column="9" selection-start="5815" selection-end="5815" vertical-scroll-proportion="0.0" vertical-offset="2565" max-vertical-offset="4320">
               <folding />
             </state>
           </provider>
@@ -47,7 +47,7 @@
       <file leaf-file-name="servertest.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/servertest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="85" column="37" selection-start="2826" selection-end="2826" vertical-scroll-proportion="0.43304536" vertical-offset="844" max-vertical-offset="3945">
+            <state line="117" column="21" selection-start="4339" selection-end="4339" vertical-scroll-proportion="0.4211663" vertical-offset="1335" max-vertical-offset="3990">
               <folding />
             </state>
           </provider>
@@ -141,7 +141,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -152,6 +151,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -535,7 +535,11 @@
       <created>1397062948456</created>
       <updated>1397062948456</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="Reorganized tests">
+      <created>1397161519472</created>
+      <updated>1397161519472</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -554,12 +558,12 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32879582" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32984293" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -574,7 +578,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="Added test for stabbing at an invalid name" />
     <MESSAGE value="fixed bug where you could stab players that were not in the room with you and added tests" />
     <MESSAGE value="added message that notifies all of the room when someone is stabbed" />
     <MESSAGE value="Turned room into an object so that new room features can be added, and changed some methods to remove unneeded parameters" />
@@ -599,7 +602,8 @@
     <MESSAGE value="Added player description command and a look at player command.  Also added tests and updated readme" />
     <MESSAGE value="removed an unneeded try statement for tests and client" />
     <MESSAGE value="Added docstrings for all the command functions" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added docstrings for all the command functions" />
+    <MESSAGE value="Reorganized tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="Reorganized tests" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -943,7 +947,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/servertest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="85" column="37" selection-start="2826" selection-end="2826" vertical-scroll-proportion="0.43304536" vertical-offset="844" max-vertical-offset="3945">
+        <state line="117" column="21" selection-start="4339" selection-end="4339" vertical-scroll-proportion="0.4211663" vertical-offset="1335" max-vertical-offset="3990">
           <folding />
         </state>
       </provider>
