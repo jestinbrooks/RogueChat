@@ -207,6 +207,17 @@ test(clientsockone,
      "There are doors to the Dining Hall and Drawing Room\nThe room contains: \nname4\n",
      "Look command-After stealing art")
 
+# Test for adding and look at art with a description that is over the max length
+clientsockone.send("#hang 123456789012345678901234567890\n")
+test(clientsocktwo, "\r<Server> name3 hangs something on the wall\n", "Player hangs art-Client two in Foyer")
+clientsockone.send("#look\n")
+test(clientsockone,
+     "\r<Server> You are in the Foyer, It looks like a Foyer. On the wall hangs a 12345678901234567890. \n"
+     "There are doors to the Dining Hall and Drawing Room\nThe room contains: \nname4\n",
+     "Look command-Art with description over max length")
+clientsockone.send("#steal art\n")
+read(clientsocktwo)
+
 print "\n==== Tests the look command and player descriptions ===="
 
 clientsockone.send("#look name3\n")
@@ -216,11 +227,17 @@ clientsockone.send("#describe has pretty tentacles")
 clientsockone.send("#look name3\n")
 test(clientsockone, "\r<Server> name3, has pretty tentacles\n", "Look at player-Self New description")
 
+# Test for looking at another player with a default description
 clientsockone.send("#look name4\n")
 test(clientsockone, "\r<Server> name4, They look nondescript\n", "Look at player-Other default")
 
+# Test for description over 20 chars
+clientsockone.send("#describe 123456789012345678901234567890\n")
+clientsockone.send("#look name3\n")
+test(clientsockone, "\r<Server> name3, 12345678901234567890\n", "Look at player-Description over max length")
+
 clientsockone.send("#look invalid\n")
-test(clientsockone, "\r<Server> There is no invalid here", "Look at player-invalid")
+test(clientsockone, "\r<Server> There is no invalid here", "Look at player-Invalid")
 
 print "\n==== Tests for quiting ===="
 
