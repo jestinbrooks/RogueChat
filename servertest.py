@@ -226,6 +226,10 @@ test(clientsockone,
 clientsockone.send("#steal art\n")
 read(clientsocktwo)
 
+# Test for hanging art without a description
+clientsockone.send("#hang\n")
+test(clientsockone, "\r<Server> You must enter a description of the art\n", "Hang command-No description")
+
 print "\n==== Tests the look command and player descriptions ===="
 
 clientsockone.send("#look name3\n")

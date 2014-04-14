@@ -133,8 +133,10 @@ def lookroom(client):
 def hang(client, data):
     """ function for executing the hang art command. Which lets the player add some text the rooms description. """
     client.room.art = "%s" % data[6:26].rstrip()
-    broadcast(client, "Server", "%s hangs something on the wall\n" % client.name)
-
+    if client.room.art:
+        broadcast(client, "Server", "%s hangs something on the wall\n" % client.name)
+    else:
+        send("Server", client, "You must enter a description of the art\n")
 
 def steal(client, data):
     """ function for executing the steal art command. Which lets the player remove the player added portion of the room
