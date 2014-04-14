@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="3e99179b-5341-467f-80de-bec73e0752e0" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/roguechatserver.py" afterPath="$PROJECT_DIR$/roguechatserver.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/servertest.py" afterPath="$PROJECT_DIR$/servertest.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="RogueChat.iws" />
@@ -32,7 +31,7 @@
           <file leaf-file-name="roguechatserver.py" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/roguechatserver.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="57" column="32" selection-start="1856" selection-end="1884" vertical-scroll-proportion="0.5257393" vertical-offset="315" max-vertical-offset="4425">
+                <state line="25" column="6" selection-start="724" selection-end="724" vertical-scroll-proportion="-0.03764321" vertical-offset="338" max-vertical-offset="4545">
                   <folding />
                 </state>
               </provider>
@@ -50,7 +49,7 @@
           <file leaf-file-name="servertest.py" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/servertest.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="104" column="60" selection-start="3753" selection-end="3753" vertical-scroll-proportion="-12.588235" vertical-offset="1102" max-vertical-offset="4470">
+                <state line="69" column="90" selection-start="2163" selection-end="2163" vertical-scroll-proportion="0.0" vertical-offset="483" max-vertical-offset="4530">
                   <folding />
                 </state>
               </provider>
@@ -87,7 +86,7 @@
                 <state />
               </provider>
               <provider selected="true" editor-type-id="text-editor">
-                <state line="42" column="3" selection-start="1537" selection-end="1537" vertical-scroll-proportion="0.7118644" vertical-offset="0" max-vertical-offset="885">
+                <state line="42" column="109" selection-start="1643" selection-end="1643" vertical-scroll-proportion="1.0806175" vertical-offset="0" max-vertical-offset="720">
                   <folding />
                 </state>
               </provider>
@@ -125,8 +124,8 @@
         <option value="$PROJECT_DIR$/objects.py" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/roguechatclient.py" />
-        <option value="$PROJECT_DIR$/roguechatserver.py" />
         <option value="$PROJECT_DIR$/servertest.py" />
+        <option value="$PROJECT_DIR$/roguechatserver.py" />
       </list>
     </option>
   </component>
@@ -584,19 +583,28 @@
       <created>1397494458761</created>
       <updated>1397494458761</updated>
     </task>
-    <option name="localTasksCounter" value="58" />
+    <task id="LOCAL-00058" summary="Added a failure message for enter command with no room name, changed message for nonexistent rooms and updated tests">
+      <created>1397495034860</created>
+      <updated>1397495034860</updated>
+    </task>
+    <task id="LOCAL-00059" summary="Added max length for names and updated tests">
+      <created>1397498117326</created>
+      <updated>1397498117326</updated>
+    </task>
+    <option name="localTasksCounter" value="60" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="1855" height="1056" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32985386" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32984293" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1122504" sideWeight="0.67014617" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1122504" sideWeight="0.67014617" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32985386" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -605,7 +613,6 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32984293" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -623,8 +630,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="Added a body count and pool of blood to the room description that get modified when someone is killed in the room" />
-    <MESSAGE value="Added a clean command that removes the pool of blood from the room descriptions and updated readme and test to include the new command" />
     <MESSAGE value="Added a hide body command that removes one body from the room and updated readme and tests" />
     <MESSAGE value="updated readme" />
     <MESSAGE value="Added tests for quiting players and cleaning up after players who have left" />
@@ -648,7 +653,9 @@
     <MESSAGE value="Added a failure message for hanging art with no description and updated tests" />
     <MESSAGE value="Added a failure message for describe command with no description and updated tests" />
     <MESSAGE value="Added a failure message for stab command with no name and updated tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added a failure message for stab command with no name and updated tests" />
+    <MESSAGE value="Added a failure message for enter command with no room name, changed message for nonexistent rooms and updated tests" />
+    <MESSAGE value="Added max length for names and updated tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added max length for names and updated tests" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -973,6 +980,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/servertest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="69" column="90" selection-start="2163" selection-end="2163" vertical-scroll-proportion="0.0" vertical-offset="483" max-vertical-offset="4530">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider editor-type-id="MarkdownPreviewEditor">
         <state />
@@ -983,16 +997,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/servertest.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="104" column="60" selection-start="3753" selection-end="3753" vertical-scroll-proportion="-12.588235" vertical-offset="1102" max-vertical-offset="4470">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/roguechatserver.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="57" column="32" selection-start="1856" selection-end="1884" vertical-scroll-proportion="0.5257393" vertical-offset="315" max-vertical-offset="4425">
+        <state line="25" column="6" selection-start="724" selection-end="724" vertical-scroll-proportion="-0.03764321" vertical-offset="338" max-vertical-offset="4545">
           <folding />
         </state>
       </provider>

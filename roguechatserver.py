@@ -36,12 +36,18 @@ def send(originname, destclient, message):
         socketlist.remove(destclient.clientsock)
         del clients[destclient.clientsock]
 
+
+def server_message(client_list, message):
+    message = "\r<Server> %s" % message
+    for client in client_list:
+        client.clientsock.send(message)
+
 # Command functions
 
 
 def rc_help(client, data):
     """ Function for executing the help command. Which gives a list of commands. """
-    send("Server", client, config.helptext)
+    server_message([client], config.helptext)
 
 
 def enter(client, data):
@@ -53,9 +59,9 @@ def enter(client, data):
 
         # If invalid room is entered give error and wait for new room
         else:
-            send("Server", client, "The door is locked\n")
+            server_message([client], "The door is locked\n")
     else:
-        send("Server", client, "You must enter a room name\n")
+        server_message([client], "You must enter a room name\n")
 
 
 def stab(client, data):
@@ -74,9 +80,9 @@ def stab(client, data):
 
                 break
         else:
-            send("Server", client, "There is no %s in this room\n" % data[6:-1])
+            server_message([client], "There is no %s in this room\n" % data[6:-1])
     else:
-        send("Server", client, "You must enter a name to stab\n")
+        server_message([client], "You must enter a name to stab\n")
 
 
 def rc_quit(client, data):
@@ -117,10 +123,10 @@ def lookplayer(client, data):
     they are looking at"""
     for player in clients.itervalues():
         if player.name == data[6:-1] and player.room == client.room:
-            send("Server", client, "%s, %s\n" % (player.name, player.description))
+            server_message([client], "%s, %s\n" % (player.name, player.description))
             break
     else:
-        send("Server", client, "There is no %s here" % data[6:-1])
+        server_message([client], "There is no %s here" % data[6:-1])
 
 
 def lookroom(client):
@@ -133,7 +139,7 @@ def lookroom(client):
         "There are doors to the %s\n" % " and ".join(otherrooms) +
         listoccupants(client))
 
-    send("Server", client, description)
+    server_message([client], description)
 
 
 def hang(client, data):
@@ -142,7 +148,7 @@ def hang(client, data):
     if client.room.art:
         broadcast(client, "Server", "%s hangs something on the wall\n" % client.name)
     else:
-        send("Server", client, "You must enter a description of the art\n")
+        server_message([client], "You must enter a description of the art\n")
 
 def steal(client, data):
     """ function for executing the steal art command. Which lets the player remove the player added portion of the room
@@ -156,7 +162,7 @@ def describeself(client, data):
     if data[10:30].rstrip():
         client.description = data[10:30].rstrip()
     else:
-        send("Server", client, "You must enter a description of yourself\n")
+        server_message([client], "You must enter a description of yourself\n")
 
 # Other functions
 
@@ -173,7 +179,7 @@ def move(client, enter):
     client.room = rooms[enter]
     broadcast(client, "Server", "%s has entered the room\n" % client.name)
 
-    send("Server", client, listoccupants(client))
+    server_message([client], listoccupants(client))
 
 
 def isroom(s):
@@ -242,7 +248,7 @@ if __name__ == "__main__":
                 newsock, address = serversocket.accept()
                 clients[newsock] = Client(address, newsock)
                 socketlist.append(newsock)
-                send("Server", clients[newsock], 'Welcome to RogueChat: Please enter your name\n')
+                server_message([clients[newsock]], 'Welcome to RogueChat: Please enter your name\n')
 
             # If the message is from an existing client check the content and user state
             else:
@@ -258,14 +264,14 @@ if __name__ == "__main__":
                             print "name entered"
                             if len(data) <= 25:
                                 if data[:-1] in names:
-                                    send("Server", client, "That name is either in use or dead\n")
+                                    server_message([client], "That name is either in use or dead\n")
                                 else:
                                     client.name = data[:-1]
                                     names.append(client.name)
-                                    send("Server", client, "You are in the Foyer. Enter #help for more information\n")
+                                    server_message([client], "You are in the Foyer. Enter #help for more information\n")
                                     move(client, "Foyer")
                             else:
-                                send("Server", client, "That name is too long\n")
+                                server_message([client], "That name is too long\n")
 
                         # If the message is a command see which command it is
                         elif data[0] == '#':
@@ -275,7 +281,7 @@ if __name__ == "__main__":
                             if command in commands:
                                 commands[command](client, data)
                             else:
-                                send("Server", client, "Invalid command\n")
+                                server_message([client], "Invalid command\n")
 
                         # Else send the message out to the rest of the users room
                         else:
