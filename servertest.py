@@ -100,6 +100,10 @@ clientsocktwo.send("#enter Drawing Room\n")
 test(clientsocktwo, "\r<Server> The room contains: \nname\n", "Enter command-Drawing room one occupant")
 test(clientsockone, "\r<Server> name2 has entered the room\n", "Player enters room-Client one")
 
+# Test for enter without a room name
+clientsockone.send("#enter\n")
+test(clientsockone, "\r<Server> not a room\n", "Enter command-No param")
+
 print "\n==== Tests for stabbing and creating new players ===="
 
 # Test for stabbing another player
@@ -139,6 +143,10 @@ test(clientsockone, "\r<Server> name4 has entered the room\n", "Player enters ro
 # Test for stabbing an invalid name
 clientsockone.send("#stab invalid name\n")
 test(clientsockone, "\r<Server> There is no invalid name in this room\n", "Stab-Invalid name")
+
+# Test for stab with no name
+clientsockone.send("#stab\n")
+test(clientsockone, "\r<Server> There is no  in this room\n", "Stab-No param")
 
 print "\n==== Tests for other ===="
 
