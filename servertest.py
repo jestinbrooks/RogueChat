@@ -146,7 +146,7 @@ test(clientsockone, "\r<Server> There is no invalid name in this room\n", "Stab-
 
 # Test for stab with no name
 clientsockone.send("#stab\n")
-test(clientsockone, "\r<Server> There is no  in this room\n", "Stab-No param")
+test(clientsockone, "\r<Server> You must enter a name to stab\n", "Stab-No param")
 
 print "\n==== Tests for other ===="
 

@@ -32,7 +32,7 @@
           <file leaf-file-name="roguechatserver.py" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/roguechatserver.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="149" column="28" selection-start="5326" selection-end="5326" vertical-scroll-proportion="0.0" vertical-offset="1635" max-vertical-offset="4335">
+                <state line="75" column="61" selection-start="2603" selection-end="2603" vertical-scroll-proportion="0.0" vertical-offset="645" max-vertical-offset="4380">
                   <folding />
                 </state>
               </provider>
@@ -50,7 +50,7 @@
           <file leaf-file-name="servertest.py" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/servertest.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="253" column="33" selection-start="10482" selection-end="10482" vertical-scroll-proportion="0.7721796" vertical-offset="3060" max-vertical-offset="4470">
+                <state line="148" column="61" selection-start="5900" selection-end="5900" vertical-scroll-proportion="0.7721796" vertical-offset="1485" max-vertical-offset="4470">
                   <folding />
                 </state>
               </provider>
@@ -576,7 +576,11 @@
       <created>1397493406573</created>
       <updated>1397493406573</updated>
     </task>
-    <option name="localTasksCounter" value="56" />
+    <task id="LOCAL-00056" summary="Added a failure message for describe command with no description and updated tests">
+      <created>1397493860073</created>
+      <updated>1397493860073</updated>
+    </task>
+    <option name="localTasksCounter" value="57" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -615,7 +619,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="Added a look command and updated the readme and tests" />
     <MESSAGE value="Updated the testing script with more organized and informative output" />
     <MESSAGE value="Added a body count and pool of blood to the room description that get modified when someone is killed in the room" />
     <MESSAGE value="Added a clean command that removes the pool of blood from the room descriptions and updated readme and test to include the new command" />
@@ -640,7 +643,8 @@
     <MESSAGE value="Added tests for when player text is over max length" />
     <MESSAGE value="Added tests for player using the enter or stab command without a parameter" />
     <MESSAGE value="Added a failure message for hanging art with no description and updated tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added a failure message for hanging art with no description and updated tests" />
+    <MESSAGE value="Added a failure message for describe command with no description and updated tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added a failure message for describe command with no description and updated tests" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -965,13 +969,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/roguechatserver.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="149" column="28" selection-start="5326" selection-end="5326" vertical-scroll-proportion="0.0" vertical-offset="1635" max-vertical-offset="4335">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider editor-type-id="MarkdownPreviewEditor">
         <state />
@@ -982,9 +979,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/roguechatserver.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="75" column="61" selection-start="2603" selection-end="2603" vertical-scroll-proportion="0.0" vertical-offset="645" max-vertical-offset="4380">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/servertest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="253" column="33" selection-start="10482" selection-end="10482" vertical-scroll-proportion="0.7721796" vertical-offset="3060" max-vertical-offset="4470">
+        <state line="148" column="61" selection-start="5900" selection-end="5900" vertical-scroll-proportion="0.7721796" vertical-offset="1485" max-vertical-offset="4470">
           <folding />
         </state>
       </provider>

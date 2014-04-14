@@ -57,20 +57,23 @@ def enter(client, data):
 
 def stab(client, data):
     """ Function for executing the stab player command. Which makes a player start the game over. """
-    for victim in clients.itervalues():
-        if victim.name == data[6:-1] and victim.room == client.room:
-            send(client.name, victim, "Stabs you: Please enter a new name\n")
-            broadcast(victim, "Server", "%s has been stabbed\n" % victim.name)
+    if data[6:-1]:
+        for victim in clients.itervalues():
+            if victim.name == data[6:-1] and victim.room == client.room:
+                send(client.name, victim, "Stabs you: Please enter a new name\n")
+                broadcast(victim, "Server", "%s has been stabbed\n" % victim.name)
 
-            victim.room.bodies += 1
-            victim.room.poolofblood = True
-            victim.room.removeoccupant(victim.clientsock)
-            victim.room = None
-            victim.name = ""
+                victim.room.bodies += 1
+                victim.room.poolofblood = True
+                victim.room.removeoccupant(victim.clientsock)
+                victim.room = None
+                victim.name = ""
 
-            break
+                break
+        else:
+            send("Server", client, "There is no %s in this room\n" % data[6:-1])
     else:
-        send("Server", client, "There is no %s in this room\n" % data[6:-1])
+        send("Server", client, "You must enter a name to stab\n")
 
 
 def rc_quit(client, data):
