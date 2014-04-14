@@ -256,13 +256,16 @@ if __name__ == "__main__":
                         # If the client has no name get its name and ask for room
                         if not client.name:
                             print "name entered"
-                            if data[:-1] in names:
-                                send("Server", client, "That name is either in use or dead\n")
+                            if len(data) <= 25:
+                                if data[:-1] in names:
+                                    send("Server", client, "That name is either in use or dead\n")
+                                else:
+                                    client.name = data[:-1]
+                                    names.append(client.name)
+                                    send("Server", client, "You are in the Foyer. Enter #help for more information\n")
+                                    move(client, "Foyer")
                             else:
-                                client.name = data[:-1]
-                                names.append(client.name)
-                                send("Server", client, "You are in the Foyer. Enter #help for more information\n")
-                                move(client, "Foyer")
+                                send("Server", client, "That name is too long\n")
 
                         # If the message is a command see which command it is
                         elif data[0] == '#':
@@ -273,7 +276,6 @@ if __name__ == "__main__":
                                 commands[command](client, data)
                             else:
                                 send("Server", client, "Invalid command\n")
-
 
                         # Else send the message out to the rest of the users room
                         else:

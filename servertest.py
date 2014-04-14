@@ -65,6 +65,10 @@ test(clientsockone, "\r<Server> The room is empty\n", "List occupants-Empty room
 clientsocktwo = connect(host)
 test(clientsocktwo, "\r<Server> Welcome to RogueChat: Please enter your name\n", "Connection-Second client")
 
+# Test for entering a name that is too long
+clientsocktwo.send("123456789012345678901234567890\n")
+test(clientsocktwo, "\r<Server> That name is too long\n", "Enter name-Name over max length")
+
 # Test for correct server response to entering a second name
 clientsocktwo.send("name2\n")
 test(clientsocktwo, "\r<Server> You are in the Foyer. Enter #help for more information\n", "Enter name-When connecting second client")
