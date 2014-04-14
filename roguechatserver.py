@@ -47,12 +47,15 @@ def rc_help(client, data):
 def enter(client, data):
     """ Function for executing the enter command. Which moves the player to a new room. """
     # if valid room is entered, enter room and list occupants
-    if isroom(data[7:-1]):
-        move(client, data[7:-1])
+    if data[7:-1]:
+        if isroom(data[7:-1]):
+            move(client, data[7:-1])
 
-    # If invalid room is entered give error and wait for new room
+        # If invalid room is entered give error and wait for new room
+        else:
+            send("Server", client, "The door is locked\n")
     else:
-        send("Server", client, "not a room\n")
+        send("Server", client, "You must enter a room name\n")
 
 
 def stab(client, data):

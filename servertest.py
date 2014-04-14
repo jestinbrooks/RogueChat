@@ -93,7 +93,7 @@ test(clientsocktwo, "\r<Server> name has left the room\n", "Player leaves room-C
 
 # Try to move client one to room that doesn't exist
 clientsockone.send("#enter Bathroom\n")
-test(clientsockone, "\r<Server> not a room\n", "Enter room-Invalid room name")
+test(clientsockone, "\r<Server> The door is locked\n", "Enter room-Invalid room name")
 
 # Move client two to the drawing room
 clientsocktwo.send("#enter Drawing Room\n")
@@ -102,7 +102,7 @@ test(clientsockone, "\r<Server> name2 has entered the room\n", "Player enters ro
 
 # Test for enter without a room name
 clientsockone.send("#enter\n")
-test(clientsockone, "\r<Server> not a room\n", "Enter command-No param")
+test(clientsockone, "\r<Server> You must enter a room name\n", "Enter command-No param")
 
 print "\n==== Tests for stabbing and creating new players ===="
 
