@@ -228,7 +228,7 @@ read(clientsocktwo)
 
 # Test for hanging art without a description
 clientsockone.send("#hang\n")
-test(clientsockone, "\r<Server> You must enter a description of the art\n", "Hang command-No description")
+test(clientsockone, "\r<Server> You must enter a description of the art\n", "Hang command-No param")
 
 print "\n==== Tests the look command and player descriptions ===="
 
@@ -250,6 +250,9 @@ test(clientsockone, "\r<Server> name3, 12345678901234567890\n", "Look at player-
 
 clientsockone.send("#look invalid\n")
 test(clientsockone, "\r<Server> There is no invalid here", "Look at player-Invalid")
+
+clientsockone.send("#describe\n")
+test(clientsockone, "\r<Server> You must enter a description of yourself\n", "describe command-No param")
 
 print "\n==== Tests for quiting ===="
 

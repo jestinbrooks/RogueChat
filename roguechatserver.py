@@ -147,7 +147,10 @@ def steal(client, data):
 
 def describeself(client, data):
     """ function for executing the describe command. Which lets the player change their description. """
-    client.description = data[10:30].rstrip()
+    if data[10:30].rstrip():
+        client.description = data[10:30].rstrip()
+    else:
+        send("Server", client, "You must enter a description of yourself\n")
 
 # Other functions
 
