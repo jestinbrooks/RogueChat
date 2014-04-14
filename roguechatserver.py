@@ -277,10 +277,9 @@ if __name__ == "__main__":
                         elif data[0] == '#':
                             print "command entered"
                             command = data.split(' ', 1)[0][1:].rstrip()
-                            print repr(command)
-                            if command in commands:
+                            try:
                                 commands[command](client, data)
-                            else:
+                            except KeyError:
                                 server_message([client], "Invalid command\n")
 
                         # Else send the message out to the rest of the users room

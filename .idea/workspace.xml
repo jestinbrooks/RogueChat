@@ -31,7 +31,7 @@
           <file leaf-file-name="roguechatserver.py" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/roguechatserver.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="25" column="6" selection-start="724" selection-end="724" vertical-scroll-proportion="-0.03764321" vertical-offset="338" max-vertical-offset="4545">
+                <state line="278" column="72" selection-start="10048" selection-end="10048" vertical-scroll-proportion="0.5464363" vertical-offset="3604" max-vertical-offset="4530">
                   <folding />
                 </state>
               </provider>
@@ -86,7 +86,7 @@
                 <state />
               </provider>
               <provider selected="true" editor-type-id="text-editor">
-                <state line="42" column="109" selection-start="1643" selection-end="1643" vertical-scroll-proportion="1.0806175" vertical-offset="0" max-vertical-offset="720">
+                <state line="42" column="109" selection-start="1643" selection-end="1643" vertical-scroll-proportion="0.701559" vertical-offset="0" max-vertical-offset="898">
                   <folding />
                 </state>
               </provider>
@@ -591,18 +591,22 @@
       <created>1397498117326</created>
       <updated>1397498117326</updated>
     </task>
-    <option name="localTasksCounter" value="60" />
+    <task id="LOCAL-00060" summary="Added a server message function that replaces most uses for the send function">
+      <created>1397499681118</created>
+      <updated>1397499681118</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="1855" height="1056" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32985386" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32984293" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32984293" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1122504" sideWeight="0.67014617" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -630,7 +634,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="Added a hide body command that removes one body from the room and updated readme and tests" />
     <MESSAGE value="updated readme" />
     <MESSAGE value="Added tests for quiting players and cleaning up after players who have left" />
     <MESSAGE value="Added a notification for when a player quits and added a test" />
@@ -655,7 +658,8 @@
     <MESSAGE value="Added a failure message for stab command with no name and updated tests" />
     <MESSAGE value="Added a failure message for enter command with no room name, changed message for nonexistent rooms and updated tests" />
     <MESSAGE value="Added max length for names and updated tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added max length for names and updated tests" />
+    <MESSAGE value="Added a server message function that replaces most uses for the send function" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added a server message function that replaces most uses for the send function" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -999,7 +1003,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/roguechatserver.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="6" selection-start="724" selection-end="724" vertical-scroll-proportion="-0.03764321" vertical-offset="338" max-vertical-offset="4545">
+        <state line="278" column="72" selection-start="10048" selection-end="10048" vertical-scroll-proportion="0.5464363" vertical-offset="3604" max-vertical-offset="4530">
           <folding />
         </state>
       </provider>
