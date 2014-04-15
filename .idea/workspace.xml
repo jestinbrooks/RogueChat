@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="3e99179b-5341-467f-80de-bec73e0752e0" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/roguechatserver.py" afterPath="$PROJECT_DIR$/roguechatserver.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/servertest.py" afterPath="$PROJECT_DIR$/servertest.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="RogueChat.iws" />
@@ -32,7 +31,7 @@
           <file leaf-file-name="roguechatserver.py" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/roguechatserver.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="192" column="9" selection-start="7139" selection-end="7139" vertical-scroll-proportion="0.44189852" vertical-offset="2550" max-vertical-offset="4365">
+                <state line="232" column="47" selection-start="9126" selection-end="9126" vertical-scroll-proportion="1.0327332" vertical-offset="2789" max-vertical-offset="4095">
                   <folding />
                 </state>
               </provider>
@@ -89,7 +88,7 @@
                 <state />
               </provider>
               <provider selected="true" editor-type-id="text-editor">
-                <state line="21" column="21" selection-start="594" selection-end="594" vertical-scroll-proportion="0.3053173" vertical-offset="137" max-vertical-offset="720">
+                <state line="21" column="21" selection-start="594" selection-end="594" vertical-scroll-proportion="0.5403088" vertical-offset="0" max-vertical-offset="720">
                   <folding />
                 </state>
               </provider>
@@ -610,7 +609,11 @@
       <created>1397587896026</created>
       <updated>1397587896026</updated>
     </task>
-    <option name="localTasksCounter" value="67" />
+    <task id="LOCAL-00067" summary="made listoccupants more readable">
+      <created>1397588855185</created>
+      <updated>1397588855185</updated>
+    </task>
+    <option name="localTasksCounter" value="68" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -649,7 +652,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="Moved room data and banned name list moved to a config file to make it easier to modify" />
     <MESSAGE value="Added a help command, updated the readme and fixed the tests to pass" />
     <MESSAGE value="Fixed several bugs related to improperly disconnecting, moved the Room and Client objects to a new file and update tests" />
     <MESSAGE value="Removed a line continue" />
@@ -674,7 +676,8 @@
     <MESSAGE value="Changed the rooms occupantlist to be a list of client objects instead of a list of sockets" />
     <MESSAGE value="Replaced some instances of broadcast with server_message" />
     <MESSAGE value="Removed some code that had been commented out" />
-    <option name="LAST_COMMIT_MESSAGE" value="Removed some code that had been commented out" />
+    <MESSAGE value="made listoccupants more readable" />
+    <option name="LAST_COMMIT_MESSAGE" value="made listoccupants more readable" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1042,7 +1045,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/roguechatserver.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="192" column="9" selection-start="7139" selection-end="7139" vertical-scroll-proportion="0.44189852" vertical-offset="2550" max-vertical-offset="4365">
+        <state line="232" column="47" selection-start="9126" selection-end="9126" vertical-scroll-proportion="1.0327332" vertical-offset="2789" max-vertical-offset="4095">
           <folding />
         </state>
       </provider>

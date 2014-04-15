@@ -196,35 +196,21 @@ def listoccupants(client):
 
 # Main function
 if __name__ == "__main__":
-    # Dictionary containing all the commands and functions they map too
     commands = {'help': rc_help, 'enter': enter, 'stab': stab, 'quit': rc_quit, 'look': look, 'clean': clean,
                 'hide': hide, 'hang': hang, 'steal': steal, 'describe': describeself}
-
-    # Dictionary containing all of the Room objects
-    rooms = {}
-    for room in config.rooms:
-        rooms[room['name']] = Room(room['name'], room['description'])
-
-    # List of all sockets
-    socket_list = []
-
-    # Dictionary of clients connected to the server
-    clients = {}
-
-    # List of names that are in use or have been killed
-    names = config.names
+    rooms = {room['name']: Room(room['name'], room['description']) for room in config.rooms}
+    socket_list = []  # create an empty list to store all sockets in
+    clients = {}  # create an empty dictionary to store all the clients connected to the server
+    names = config.names  # List of names that are in use or have been killed
 
     # Set up the server socket
     RECEIVE_BUFFER = 4096
     PORT = 5000  # The port which the application listens on
-    serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    serversocket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-    serversocket.bind(("0.0.0.0", PORT))
-    serversocket.listen(10)
-
-    # Add the socket to the main list
-    socket_list.append(serversocket)
-
+    server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+    server_socket.bind(("0.0.0.0", PORT))
+    server_socket.listen(10)
+    socket_list.append(server_socket)
     print "Chat server started on port " + str(PORT)
 
     # Listening loop
@@ -232,23 +218,19 @@ if __name__ == "__main__":
         # Listen for a message and loop through all received messages
         read_sockets, write_sockets, error_sockets = select.select(socket_list, [], [])
         for sock in read_sockets:
-
             # If the message is received on the server socket create a new connection
-            if sock == serversocket:
-                new_sock, address = serversocket.accept()
+            if sock == server_socket:
+                new_sock, address = server_socket.accept()
                 clients[new_sock] = Client(address, new_sock)
                 socket_list.append(new_sock)
                 server_message([clients[new_sock]], 'Welcome to RogueChat: Please enter your name\n')
-
             # If the message is from an existing client check the content and user state
             else:
                 try:
                     client = clients[sock]
                     data = sock.recv(RECEIVE_BUFFER)
                     if data:
-                        print "data entered by " + str(sock)
-                        print "%s" % data
-
+                        print "%s entered by %s" % (data, str(sock))
                         # If the client has no name get its name and ask for room
                         if not client.name:
                             print "name entered"
@@ -287,4 +269,4 @@ if __name__ == "__main__":
                     del clients[sock]
                     continue
 
-    serversocket.close()
+    server_socket.close()
