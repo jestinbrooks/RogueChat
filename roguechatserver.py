@@ -10,18 +10,18 @@ from objects import Room, Client
 #######################################
 def broadcast(originclient, oname, message):
     """ Send a message to all occupants of a room """
-    for sock in originclient.room.occupantslist:
-        if sock != originclient.clientsock:
+    for client in originclient.room.occupantslist:
+        if client.clientsock != originclient.clientsock:
             try:
                 output = "\r<%s> %s" % (oname, message)
-                sock.getpeername()
-                sock.send(output)
+                client.clientsock.getpeername()
+                client.clientsock.send(output)
             except socket.error:
-                print "Client %s is offline\n" % sock
-                sock.close()
-                originclient.room.removeoccupant(sock)
-                socket_list.remove(sock)
-                del clients[sock]
+                print "Client %s is offline\n" % client.clientsock
+                client.clientsock.close()
+                originclient.room.removeoccupant(client)
+                socket_list.remove(client.clientsock)
+                del clients[client.clientsock]
 
 
 def send(originname, destclient, message):
@@ -33,7 +33,7 @@ def send(originname, destclient, message):
     except socket.error:
         print "Client %s is offline\n" % destclient.name
         destclient.clientsock.close()
-        destclient.room.removeoccupant(destclient.clientsock)
+        destclient.room.removeoccupant(destclient)
         socket_list.remove(destclient.clientsock)
         del clients[destclient.clientsock]
 
@@ -77,7 +77,7 @@ def stab(client, data):
 
                 victim.room.bodies += 1
                 victim.room.poolofblood = True
-                victim.room.removeoccupant(victim.clientsock)
+                victim.room.removeoccupant(victim)
                 victim.room = None
                 victim.name = ""
 
@@ -90,9 +90,9 @@ def stab(client, data):
 
 def rc_quit(client, data):
     """ Function for executing the quit command. Which disconnects the client """
-    sock.close()
-    socket_list.remove(sock)
-    client.room.removeoccupant(sock)
+    client.clientsock.close()
+    socket_list.remove(client.clientsock)
+    client.room.removeoccupant(client)
     broadcast(client, "Server", "%s disappears in a puff of smoke\n" % client.name)
     del clients[client.clientsock]
 
@@ -174,10 +174,10 @@ def describeself(client, data):
 def move(client, room_to_enter):
     """ Move a user from one room to another """
     if client.room:
-        client.room.removeoccupant(client.clientsock)
+        client.room.removeoccupant(client)
         broadcast(client, "Server", "%s has left the room\n" % client.name)
 
-    rooms[room_to_enter].addoccupant(client.clientsock)
+    rooms[room_to_enter].addoccupant(client)
     client.room = rooms[room_to_enter]
     broadcast(client, "Server", "%s has entered the room\n" % client.name)
 
@@ -294,10 +294,15 @@ if __name__ == "__main__":
                     print "Client %s is offline\n" % sock
                     sock.close()
                     socket_list.remove(sock)
-                    client.room.removeoccupant(sock)
+                    client.room.removeoccupant(client)
                     broadcast(client, "Server", "%s is offline\n" % client.name)
                     del clients[sock]
-
                     continue
+                """
+                except KeyError:
+                    print "Client %s is offline\n" % sock
+                    sock.close()
+                    socket_list.remove(sock)
+                """
 
     serversocket.close()
