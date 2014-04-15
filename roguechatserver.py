@@ -4,9 +4,10 @@ import select
 import config
 from objects import Room, Client
 
+
+#######################################
 # Functions for sending messages
-
-
+#######################################
 def broadcast(originclient, oname, message):
     """ Send a message to all occupants of a room """
     for sock in originclient.room.occupantslist:
@@ -19,7 +20,7 @@ def broadcast(originclient, oname, message):
                 print "Client %s is offline\n" % sock
                 sock.close()
                 originclient.room.removeoccupant(sock)
-                socketlist.remove(sock)
+                socket_list.remove(sock)
                 del clients[sock]
 
 
@@ -33,18 +34,20 @@ def send(originname, destclient, message):
         print "Client %s is offline\n" % destclient.name
         destclient.clientsock.close()
         destclient.room.removeoccupant(destclient.clientsock)
-        socketlist.remove(destclient.clientsock)
+        socket_list.remove(destclient.clientsock)
         del clients[destclient.clientsock]
 
 
 def server_message(client_list, message):
-    message = "\r<Server> %s" % message
+    """ Send a message from the server to a list of clients """
+    message = "\r%s" % message
     for client in client_list:
         client.clientsock.send(message)
 
+
+############################
 # Command functions
-
-
+############################
 def rc_help(client, data):
     """ Function for executing the help command. Which gives a list of commands. """
     server_message([client], config.helptext)
@@ -88,7 +91,7 @@ def stab(client, data):
 def rc_quit(client, data):
     """ Function for executing the quit command. Which disconnects the client """
     sock.close()
-    socketlist.remove(sock)
+    socket_list.remove(sock)
     client.room.removeoccupant(sock)
     broadcast(client, "Server", "%s disappears in a puff of smoke\n" % client.name)
     del clients[client.clientsock]
@@ -164,19 +167,18 @@ def describeself(client, data):
     else:
         server_message([client], "You must enter a description of yourself\n")
 
+
+###################################
 # Other functions
-
-
-def move(client, enter):
+###################################
+def move(client, room_to_enter):
     """ Move a user from one room to another """
-
     if client.room:
         client.room.removeoccupant(client.clientsock)
         broadcast(client, "Server", "%s has left the room\n" % client.name)
 
-    rooms[enter].addoccupant(client.clientsock)
-
-    client.room = rooms[enter]
+    rooms[room_to_enter].addoccupant(client.clientsock)
+    client.room = rooms[room_to_enter]
     broadcast(client, "Server", "%s has entered the room\n" % client.name)
 
     server_message([client], listoccupants(client))
@@ -216,7 +218,7 @@ if __name__ == "__main__":
         rooms[room['name']] = Room(room['name'], room['description'])
 
     # List of all sockets
-    socketlist = []
+    socket_list = []
 
     # Dictionary of clients connected to the server
     clients = {}
@@ -226,29 +228,29 @@ if __name__ == "__main__":
 
     # Set up the server socket
     RECEIVE_BUFFER = 4096
-    PORT = 5000 # The port which the application listens on
+    PORT = 5000  # The port which the application listens on
     serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     serversocket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     serversocket.bind(("0.0.0.0", PORT))
     serversocket.listen(10)
 
     # Add the socket to the main list
-    socketlist.append(serversocket)
+    socket_list.append(serversocket)
 
     print "Chat server started on port " + str(PORT)
 
     # Listening loop
     while True:
         # Listen for a message and loop through all received messages
-        readsockets, writesockets, errorsockets = select.select(socketlist,[],[])
-        for sock in readsockets:
+        read_sockets, write_sockets, error_sockets = select.select(socket_list, [], [])
+        for sock in read_sockets:
 
             # If the message is received on the server socket create a new connection
             if sock == serversocket:
-                newsock, address = serversocket.accept()
-                clients[newsock] = Client(address, newsock)
-                socketlist.append(newsock)
-                server_message([clients[newsock]], 'Welcome to RogueChat: Please enter your name\n')
+                new_sock, address = serversocket.accept()
+                clients[new_sock] = Client(address, new_sock)
+                socket_list.append(new_sock)
+                server_message([clients[new_sock]], 'Welcome to RogueChat: Please enter your name\n')
 
             # If the message is from an existing client check the content and user state
             else:
@@ -291,7 +293,7 @@ if __name__ == "__main__":
                 except socket.error:
                     print "Client %s is offline\n" % sock
                     sock.close()
-                    socketlist.remove(sock)
+                    socket_list.remove(sock)
                     client.room.removeoccupant(sock)
                     broadcast(client, "Server", "%s is offline\n" % client.name)
                     del clients[sock]

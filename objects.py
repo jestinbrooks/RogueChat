@@ -42,6 +42,6 @@ class Room:
                 descrip += "There are %s bodies in a pool of blood on the floor. " % str(self.bodies)
 
         if self.art:
-            descrip += "On the wall hangs a " + self.art + ". "
+            descrip += "On the wall hangs " + self.art + ". "
 
         return descrip
