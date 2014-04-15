@@ -77,7 +77,7 @@ test(clientsocktwo, "\rYou are in the Foyer. Enter #help for more information\n"
 test(clientsocktwo, "\rThe room contains: \nname\n", "List occupants-One occupant")
 
 # Test for server notifying other occupants that client two has entered the room
-test(clientsockone, "\r<Server> name2 has entered the room\n", "Player enters room-Client one")
+test(clientsockone, "\rname2 has entered the room\n", "Player enters room-Client one")
 
 print "\n==== Tests for sending messages ===="
 
@@ -93,7 +93,7 @@ print "\n==== Tests for changing room ===="
 # Move client one to the Drawing Room
 clientsockone.send("#enter Drawing Room\n")
 test(clientsockone, "\rThe room is empty\n", "Enter command-Drawing room empty")
-test(clientsocktwo, "\r<Server> name has left the room\n", "Player leaves room-Client two")
+test(clientsocktwo, "\rname has left the room\n", "Player leaves room-Client two")
 
 # Try to move client one to room that doesn't exist
 clientsockone.send("#enter Bathroom\n")
@@ -102,7 +102,7 @@ test(clientsockone, "\rThe door is locked\n", "Enter room-Invalid room name")
 # Move client two to the drawing room
 clientsocktwo.send("#enter Drawing Room\n")
 test(clientsocktwo, "\rThe room contains: \nname\n", "Enter command-Drawing room one occupant")
-test(clientsockone, "\r<Server> name2 has entered the room\n", "Player enters room-Client one")
+test(clientsockone, "\rname2 has entered the room\n", "Player enters room-Client one")
 
 # Test for enter without a room name
 clientsockone.send("#enter\n")
@@ -120,7 +120,7 @@ test(clientsockone, "\rYou are in the Foyer. Enter #help for more information\n"
 test(clientsockone, "\rThe room is empty\n", "List occupants-After death empty room")
 
 # Test notified of stabbing
-test(clientsocktwo, "\r<Server> name has been stabbed\n", "Notify of stabbing-Client two")
+test(clientsocktwo, "\rname has been stabbed\n", "Notify of stabbing-Client two")
 
 # Test stabbing player that isn't in the same room
 clientsocktwo.send("#stab name3\n")
@@ -142,7 +142,7 @@ test(clientsocktwo, "\rThat name is either in use or dead\n", "Start over after 
 clientsocktwo.send("name4\n")
 test(clientsocktwo, "\rYou are in the Foyer. Enter #help for more information\n", "Start over after death-Client two")
 test(clientsocktwo, "\rThe room contains: \nname3\n", "List occupants-After death client two")
-test(clientsockone, "\r<Server> name4 has entered the room\n", "Player enters room-After death client two")
+test(clientsockone, "\rname4 has entered the room\n", "Player enters room-After death client two")
 
 # Test for stabbing an invalid name
 clientsockone.send("#stab invalid name\n")
@@ -263,7 +263,7 @@ print "\n==== Tests for quiting ===="
 # Close connections
 clientsockone.send("#quit\n")
 test(clientsockone, "\nDisconnected from chat server", "Quit-Client one")
-test(clientsocktwo, "\r<Server> name3 disappears in a puff of smoke\n", "Player has quit message-Client two")
+test(clientsocktwo, "\rname3 disappears in a puff of smoke\n", "Player has quit message-Client two")
 
 clientsocktwo.send("#enter Dining Hall\n")
 test(clientsocktwo, "\rThe room is empty\n", "Room empty-Dining Hall")

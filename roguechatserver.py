@@ -73,11 +73,11 @@ def stab(client, data):
         for victim in clients.itervalues():
             if victim.name == data[6:-1] and victim.room == client.room:
                 send(client.name, victim, "Stabs you: Please enter a new name\n")
-                broadcast(victim, "Server", "%s has been stabbed\n" % victim.name)
 
                 victim.room.bodies += 1
                 victim.room.poolofblood = True
                 victim.room.removeoccupant(victim)
+                server_message(client.room.occupantslist, "%s has been stabbed\n" % victim.name)
                 victim.room = None
                 victim.name = ""
 
@@ -93,7 +93,7 @@ def rc_quit(client, data):
     client.clientsock.close()
     socket_list.remove(client.clientsock)
     client.room.removeoccupant(client)
-    broadcast(client, "Server", "%s disappears in a puff of smoke\n" % client.name)
+    server_message(client.room.occupantslist, "%s disappears in a puff of smoke\n" % client.name)
     del clients[client.clientsock]
 
 
@@ -175,11 +175,14 @@ def move(client, room_to_enter):
     """ Move a user from one room to another """
     if client.room:
         client.room.removeoccupant(client)
-        broadcast(client, "Server", "%s has left the room\n" % client.name)
+        #broadcast(client, "Server", "%s has left the room\n" % client.name)
+        server_message(client.room.occupantslist, "%s has left the room\n" % client.name)
 
-    rooms[room_to_enter].addoccupant(client)
     client.room = rooms[room_to_enter]
-    broadcast(client, "Server", "%s has entered the room\n" % client.name)
+    server_message(client.room.occupantslist, "%s has entered the room\n" % client.name)
+    rooms[room_to_enter].addoccupant(client)
+
+    #broadcast(client, "Server", "%s has entered the room\n" % client.name)
 
     server_message([client], listoccupants(client))
 
