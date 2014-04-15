@@ -74,7 +74,7 @@ clientsocktwo.send("name2\n")
 test(clientsocktwo, "\rYou are in the Foyer. Enter #help for more information\n", "Enter name-When connecting second client")
 
 # Test for correct server response to entering an occupied room
-test(clientsocktwo, "\rThe room contains: \nname\n", "List occupants-One occupant")
+test(clientsocktwo, "\rThe room contains: name\n", "List occupants-One occupant")
 
 # Test for server notifying other occupants that client two has entered the room
 test(clientsockone, "\rname2 has entered the room\n", "Player enters room-Client one")
@@ -101,7 +101,7 @@ test(clientsockone, "\rThe door is locked\n", "Enter room-Invalid room name")
 
 # Move client two to the drawing room
 clientsocktwo.send("#enter Drawing Room\n")
-test(clientsocktwo, "\rThe room contains: \nname\n", "Enter command-Drawing room one occupant")
+test(clientsocktwo, "\rThe room contains: name\n", "Enter command-Drawing room one occupant")
 test(clientsockone, "\rname2 has entered the room\n", "Player enters room-Client one")
 
 # Test for enter without a room name
@@ -141,7 +141,7 @@ test(clientsocktwo, "\rThat name is either in use or dead\n", "Start over after 
 # Test for entering new name after death with occupants in foyer
 clientsocktwo.send("name4\n")
 test(clientsocktwo, "\rYou are in the Foyer. Enter #help for more information\n", "Start over after death-Client two")
-test(clientsocktwo, "\rThe room contains: \nname3\n", "List occupants-After death client two")
+test(clientsocktwo, "\rThe room contains: name3\n", "List occupants-After death client two")
 test(clientsockone, "\rname4 has entered the room\n", "Player enters room-After death client two")
 
 # Test for stabbing an invalid name
@@ -163,7 +163,7 @@ print "\n==== Tests the look command and room descriptions ===="
 clientsocktwo.send("#look\n")
 test(clientsocktwo, "\rYou are in the Foyer, It looks like a Foyer. \n"
                     "There are doors to the Dining Hall and Drawing Room\n"
-                    "The room contains: \nname3\n",
+                    "The room contains: name3\n",
      "Look command-Clean in foyer with one occupant")
 
 # Move to a room with contents without testing
@@ -207,7 +207,7 @@ test(clientsockone, "\r<Server> name4 hangs something on the wall\n", "Player ha
 clientsockone.send("#look\n")
 test(clientsockone, "\rYou are in the Foyer, It looks like a Foyer. "
                     "On the wall hangs a painting of mice. \n"
-                    "There are doors to the Dining Hall and Drawing Room\nThe room contains: \nname4\n",
+                    "There are doors to the Dining Hall and Drawing Room\nThe room contains: name4\n",
      "Look command-With art")
 
 clientsockone.send("#steal art\n")
@@ -216,7 +216,7 @@ test(clientsocktwo, "\r<Server> name3 takes something off the wall\n", "Player s
 clientsockone.send("#look\n")
 test(clientsockone,
      "\rYou are in the Foyer, It looks like a Foyer. \n"
-     "There are doors to the Dining Hall and Drawing Room\nThe room contains: \nname4\n",
+     "There are doors to the Dining Hall and Drawing Room\nThe room contains: name4\n",
      "Look command-After stealing art")
 
 # Test for adding and look at art with a description that is over the max length
@@ -225,7 +225,7 @@ test(clientsocktwo, "\r<Server> name3 hangs something on the wall\n", "Player ha
 clientsockone.send("#look\n")
 test(clientsockone,
      "\rYou are in the Foyer, It looks like a Foyer. On the wall hangs 12345678901234567890. \n"
-     "There are doors to the Dining Hall and Drawing Room\nThe room contains: \nname4\n",
+     "There are doors to the Dining Hall and Drawing Room\nThe room contains: name4\n",
      "Look command-Art with description over max length")
 clientsockone.send("#steal art\n")
 read(clientsocktwo)
@@ -285,7 +285,7 @@ clientsockthree.send("name5\n")
 
 
 test(clientsockthree, "\rYou are in the Foyer. Enter #help for more information\n", "Enter Name-When connecting third client")
-test(clientsockthree, "\rThe room contains: \nname4\n", "List occupants-One occupant disconnected incorrectly")
+test(clientsockthree, "\rThe room contains: name4\n", "List occupants-One occupant disconnected incorrectly")
 
 clientsockthree.send("Hello")
 clientsockthree.send("#look")

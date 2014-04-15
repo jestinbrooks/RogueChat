@@ -59,7 +59,6 @@ def enter(client, data):
     if data[7:-1]:
         if isroom(data[7:-1]):
             move(client, data[7:-1])
-
         # If invalid room is entered give error and wait for new room
         else:
             server_message([client], "The door is locked\n")
@@ -73,14 +72,12 @@ def stab(client, data):
         for victim in clients.itervalues():
             if victim.name == data[6:-1] and victim.room == client.room:
                 send(client.name, victim, "Stabs you: Please enter a new name\n")
-
                 victim.room.bodies += 1
                 victim.room.poolofblood = True
                 victim.room.removeoccupant(victim)
                 server_message(client.room.occupantslist, "%s has been stabbed\n" % victim.name)
                 victim.room = None
                 victim.name = ""
-
                 break
         else:
             server_message([client], "There is no %s in this room\n" % data[6:-1])
@@ -137,11 +134,9 @@ def lookroom(client):
     room they are in. """
     otherrooms = list(rooms.iterkeys())
     otherrooms.remove(client.room.name)
-
     description = ("You are in the %s, %s\n" % (client.room.name, client.room.getdescription()) +
         "There are doors to the %s\n" % " and ".join(otherrooms) +
         listoccupants(client))
-
     server_message([client], description)
 
 
@@ -176,7 +171,6 @@ def move(client, room_to_enter):
     if client.room:
         client.room.removeoccupant(client)
         server_message(client.room.occupantslist, "%s has left the room\n" % client.name)
-
     client.room = rooms[room_to_enter]
     server_message(client.room.occupantslist, "%s has entered the room\n" % client.name)
     rooms[room_to_enter].addoccupant(client)
@@ -193,16 +187,11 @@ def isroom(s):
 
 def listoccupants(client):
     """ Send a list of room occupants """
-    occupants = ""
-
-    for c in clients.itervalues():
-        if c.room == client.room and not c.name == client.name:
-            occupants += "\n" + c.name
-
+    occupants = [c.name for c in clients.itervalues() if c.room == client.room and not c is client]
     if not occupants:
         return "The room is empty\n"
     else:
-        return "The room contains: %s\n" % occupants
+        return "The room contains: %s\n" % ", ".join(occupants)
 
 
 # Main function
