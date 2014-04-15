@@ -175,15 +175,11 @@ def move(client, room_to_enter):
     """ Move a user from one room to another """
     if client.room:
         client.room.removeoccupant(client)
-        #broadcast(client, "Server", "%s has left the room\n" % client.name)
         server_message(client.room.occupantslist, "%s has left the room\n" % client.name)
 
     client.room = rooms[room_to_enter]
     server_message(client.room.occupantslist, "%s has entered the room\n" % client.name)
     rooms[room_to_enter].addoccupant(client)
-
-    #broadcast(client, "Server", "%s has entered the room\n" % client.name)
-
     server_message([client], listoccupants(client))
 
 
@@ -301,11 +297,5 @@ if __name__ == "__main__":
                     broadcast(client, "Server", "%s is offline\n" % client.name)
                     del clients[sock]
                     continue
-                """
-                except KeyError:
-                    print "Client %s is offline\n" % sock
-                    sock.close()
-                    socket_list.remove(sock)
-                """
 
     serversocket.close()
