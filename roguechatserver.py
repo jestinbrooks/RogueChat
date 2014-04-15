@@ -11,7 +11,7 @@ from objects import Room, Client
 def broadcast(originclient, oname, message):
     """ Send a message to all occupants of a room """
     for sock in originclient.room.occupantslist:
-        if sock != serversocket and sock != originclient.clientsock:
+        if sock != originclient.clientsock:
             try:
                 output = "\r<%s> %s" % (oname, message)
                 sock.getpeername()
