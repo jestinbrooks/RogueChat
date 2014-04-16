@@ -24,10 +24,10 @@ def broadcast(origin_client, origin_name, message):
                 del clients[client.clientsock]
 
 
-def send(originname, destination_client, message):
+def send(origin_client, destination_client, message):
     """ Send a message to one user """
     try:
-        output = "\r<%s> %s" % (originname, message)
+        output = "\r<%s> %s" % (origin_client.name, message)
         destination_client.clientsock.getpeername()
         destination_client.clientsock.send(output)
     except socket.error:
@@ -71,7 +71,7 @@ def stab(client, data):
     if data[6:-1]:
         for victim in clients.itervalues():
             if victim.name == data[6:-1] and victim.room == client.room:
-                send(client.name, victim, "Stabs you: Please enter a new name\n")
+                send(client, victim, "Stabs you: Please enter a new name\n")
                 victim.room.bodies += 1
                 victim.room.poolofblood = True
                 victim.room.removeoccupant(victim)
@@ -148,6 +148,7 @@ def hang(client, data):
     else:
         server_message([client], "You must enter a description of the art\n")
 
+
 def steal(client, data):
     """ function for executing the steal art command. Which lets the player remove the player added portion of the room
     Description. """
@@ -155,7 +156,7 @@ def steal(client, data):
     broadcast(client, "Server", "%s takes something off the wall\n" % client.name)
 
 
-def describeself(client, data):
+def describe_self(client, data):
     """ function for executing the describe command. Which lets the player change their description. """
     if data[10:30].rstrip():
         client.description = data[10:30].rstrip()
@@ -194,10 +195,12 @@ def list_occupants(client):
         return "The room contains: %s\n" % ", ".join(occupants)
 
 
+##########################
 # Main function
+##########################
 if __name__ == "__main__":
     commands = {'help': rc_help, 'enter': enter, 'stab': stab, 'quit': rc_quit, 'look': look, 'clean': clean,
-                'hide': hide, 'hang': hang, 'steal': steal, 'describe': describeself}
+                'hide': hide, 'hang': hang, 'steal': steal, 'describe': describe_self}
     rooms = {room['name']: Room(room['name'], room['description']) for room in config.rooms}
     socket_list = []  # create an empty list to store all sockets in
     clients = {}  # create an empty dictionary to store all the clients connected to the server
