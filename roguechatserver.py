@@ -201,7 +201,7 @@ if __name__ == "__main__":
     rooms = {room['name']: Room(room['name'], room['description']) for room in config.rooms}
     socket_list = []  # create an empty list to store all sockets in
     clients = {}  # create an empty dictionary to store all the clients connected to the server
-    names = config.names  # List of names that are in use or have been killed
+    names = set(config.names)  # List of names that are in use or have been killed
 
     # Set up the server socket
     RECEIVE_BUFFER = 4096
@@ -239,7 +239,7 @@ if __name__ == "__main__":
                                     server_message([client], "That name is either in use or dead\n")
                                 else:
                                     client.name = data[:-1]
-                                    names.append(client.name)
+                                    names.add(client.name)
                                     server_message([client], "You are in the Foyer. Enter #help for more information\n")
                                     move(client, "Foyer")
                             else:
