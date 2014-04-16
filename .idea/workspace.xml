@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="3e99179b-5341-467f-80de-bec73e0752e0" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/roguechatserver.py" afterPath="$PROJECT_DIR$/roguechatserver.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/servertest.py" afterPath="$PROJECT_DIR$/servertest.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="RogueChat.iws" />
@@ -41,7 +42,7 @@
       <file leaf-file-name="roguechatserver.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/roguechatserver.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="194" column="63" selection-start="7288" selection-end="7288" vertical-scroll-proportion="0.32409012" vertical-offset="2663" max-vertical-offset="4140">
+            <state line="279" column="46" selection-start="11385" selection-end="11393" vertical-scroll-proportion="0.74003464" vertical-offset="3698" max-vertical-offset="4275">
               <folding />
             </state>
           </provider>
@@ -59,7 +60,7 @@
       <file leaf-file-name="servertest.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/servertest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="287" column="44" selection-start="11502" selection-end="11502" vertical-scroll-proportion="0.0" vertical-offset="3617" max-vertical-offset="4530">
+            <state line="213" column="23" selection-start="8269" selection-end="8269" vertical-scroll-proportion="0.0" vertical-offset="2852" max-vertical-offset="4530">
               <folding />
             </state>
           </provider>
@@ -616,7 +617,11 @@
       <created>1397665556077</created>
       <updated>1397665556078</updated>
     </task>
-    <option name="localTasksCounter" value="72" />
+    <task id="LOCAL-00072" summary="made list occupant build its list more efficiently">
+      <created>1397665809352</created>
+      <updated>1397665809352</updated>
+    </task>
+    <option name="localTasksCounter" value="73" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -655,7 +660,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="Changed servertest and client to use a command line arg for host address or use localhost if none is given" />
     <MESSAGE value="Added player description command and a look at player command.  Also added tests and updated readme" />
     <MESSAGE value="removed an unneeded try statement for tests and client" />
     <MESSAGE value="Added docstrings for all the command functions" />
@@ -680,7 +684,8 @@
     <MESSAGE value="changed the list of names to a set to improve lookup time" />
     <MESSAGE value="renamed some variables" />
     <MESSAGE value="renamed some variables and modified the send function" />
-    <option name="LAST_COMMIT_MESSAGE" value="renamed some variables and modified the send function" />
+    <MESSAGE value="made list occupant build its list more efficiently" />
+    <option name="LAST_COMMIT_MESSAGE" value="made list occupant build its list more efficiently" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -993,20 +998,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/objects.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="0" selection-start="764" selection-end="764" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="795">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/servertest.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="287" column="44" selection-start="11502" selection-end="11502" vertical-scroll-proportion="0.0" vertical-offset="3962" max-vertical-offset="4560">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/roguechatclient.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="26" column="34" selection-start="502" selection-end="502" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="900">
@@ -1024,9 +1015,23 @@
         <state />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/objects.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="0" selection-start="764" selection-end="764" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="795">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/servertest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="213" column="23" selection-start="8269" selection-end="8269" vertical-scroll-proportion="0.0" vertical-offset="2852" max-vertical-offset="4530">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/roguechatserver.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="194" column="63" selection-start="7288" selection-end="7288" vertical-scroll-proportion="0.32409012" vertical-offset="2663" max-vertical-offset="4140">
+        <state line="279" column="46" selection-start="11385" selection-end="11393" vertical-scroll-proportion="0.74003464" vertical-offset="3698" max-vertical-offset="4275">
           <folding />
         </state>
       </provider>

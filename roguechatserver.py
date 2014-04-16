@@ -144,7 +144,7 @@ def hang(client, data):
     """ function for executing the hang art command. Which lets the player add some text the rooms description. """
     client.room.art = "%s" % data[6:26].rstrip()
     if client.room.art:
-        broadcast(client, "Server", "%s hangs something on the wall\n" % client.name)
+        server_message(other_occupants(client), "%s hangs something on the wall\n" % client.name)
     else:
         server_message([client], "You must enter a description of the art\n")
 
@@ -153,7 +153,7 @@ def steal(client, data):
     """ function for executing the steal art command. Which lets the player remove the player added portion of the room
     Description. """
     client.room.art = ""
-    broadcast(client, "Server", "%s takes something off the wall\n" % client.name)
+    server_message(other_occupants(client), "%s takes something off the wall\n" % client.name)
 
 
 def describe_self(client, data):
@@ -193,6 +193,15 @@ def list_occupants(client):
         return "The room is empty\n"
     else:
         return "The room contains: %s\n" % ", ".join(occupants)
+
+
+def other_occupants(client):
+    occupants = list(client.room.occupantslist)
+    occupants.remove(client)
+    if occupants:
+        return occupants
+    else:
+        return []
 
 
 ##########################

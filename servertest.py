@@ -202,7 +202,7 @@ clientsocktwo.send("#clean\n")
 test(clientsockone, "\r<name4> cleans up the blood\n", "Player is cleaning-Already clean room with one occupant")
 
 clientsocktwo.send("#hang a painting of mice\n")
-test(clientsockone, "\r<Server> name4 hangs something on the wall\n", "Player hangs art-Client one in Foyer")
+test(clientsockone, "\rname4 hangs something on the wall\n", "Player hangs art-Client one in Foyer")
 
 clientsockone.send("#look\n")
 test(clientsockone, "\rYou are in the Foyer, It looks like a Foyer. "
@@ -211,7 +211,7 @@ test(clientsockone, "\rYou are in the Foyer, It looks like a Foyer. "
      "Look command-With art")
 
 clientsockone.send("#steal art\n")
-test(clientsocktwo, "\r<Server> name3 takes something off the wall\n", "Player steals art-Client two in Foyer")
+test(clientsocktwo, "\rname3 takes something off the wall\n", "Player steals art-Client two in Foyer")
 
 clientsockone.send("#look\n")
 test(clientsockone,
@@ -221,7 +221,7 @@ test(clientsockone,
 
 # Test for adding and look at art with a description that is over the max length
 clientsockone.send("#hang 123456789012345678901234567890\n")
-test(clientsocktwo, "\r<Server> name3 hangs something on the wall\n", "Player hangs art-Client two in Foyer")
+test(clientsocktwo, "\rname3 hangs something on the wall\n", "Player hangs art-Client two in Foyer")
 clientsockone.send("#look\n")
 test(clientsockone,
      "\rYou are in the Foyer, It looks like a Foyer. On the wall hangs 12345678901234567890. \n"
