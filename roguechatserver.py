@@ -8,34 +8,34 @@ from objects import Room, Client
 #######################################
 # Functions for sending messages
 #######################################
-def broadcast(originclient, oname, message):
+def broadcast(origin_client, origin_name, message):
     """ Send a message to all occupants of a room """
-    for client in originclient.room.occupantslist:
-        if client.clientsock != originclient.clientsock:
+    for client in origin_client.room.occupantslist:
+        if client.clientsock != origin_client.clientsock:
             try:
-                output = "\r<%s> %s" % (oname, message)
+                output = "\r<%s> %s" % (origin_name, message)
                 client.clientsock.getpeername()
                 client.clientsock.send(output)
             except socket.error:
                 print "Client %s is offline\n" % client.clientsock
                 client.clientsock.close()
-                originclient.room.removeoccupant(client)
+                origin_client.room.removeoccupant(client)
                 socket_list.remove(client.clientsock)
                 del clients[client.clientsock]
 
 
-def send(originname, destclient, message):
+def send(originname, destination_client, message):
     """ Send a message to one user """
     try:
         output = "\r<%s> %s" % (originname, message)
-        destclient.clientsock.getpeername()
-        destclient.clientsock.send(output)
+        destination_client.clientsock.getpeername()
+        destination_client.clientsock.send(output)
     except socket.error:
-        print "Client %s is offline\n" % destclient.name
-        destclient.clientsock.close()
-        destclient.room.removeoccupant(destclient)
-        socket_list.remove(destclient.clientsock)
-        del clients[destclient.clientsock]
+        print "Client %s is offline\n" % destination_client.name
+        destination_client.clientsock.close()
+        destination_client.room.removeoccupant(destination_client)
+        socket_list.remove(destination_client.clientsock)
+        del clients[destination_client.clientsock]
 
 
 def server_message(client_list, message):
@@ -57,7 +57,7 @@ def enter(client, data):
     """ Function for executing the enter command. Which moves the player to a new room. """
     # if valid room is entered, enter room and list occupants
     if data[7:-1]:
-        if isroom(data[7:-1]):
+        if is_room(data[7:-1]):
             move(client, data[7:-1])
         # If invalid room is entered give error and wait for new room
         else:
@@ -115,7 +115,7 @@ def look(client, data):
     if len(data) > 6:
         lookplayer(client, data)
     else:
-        lookroom(client)
+        look_room(client)
 
 
 def lookplayer(client, data):
@@ -129,14 +129,14 @@ def lookplayer(client, data):
         server_message([client], "There is no %s here" % data[6:-1])
 
 
-def lookroom(client):
+def look_room(client):
     """ Function for executing the room part of the look command. Which gives the player a list of information about the
     room they are in. """
-    otherrooms = list(rooms.iterkeys())
-    otherrooms.remove(client.room.name)
+    other_rooms = list(rooms.iterkeys())
+    other_rooms.remove(client.room.name)
     description = ("You are in the %s, %s\n" % (client.room.name, client.room.getdescription()) +
-        "There are doors to the %s\n" % " and ".join(otherrooms) +
-        listoccupants(client))
+        "There are doors to the %s\n" % " and ".join(other_rooms) +
+        list_occupants(client))
     server_message([client], description)
 
 
@@ -174,10 +174,10 @@ def move(client, room_to_enter):
     client.room = rooms[room_to_enter]
     server_message(client.room.occupantslist, "%s has entered the room\n" % client.name)
     rooms[room_to_enter].addoccupant(client)
-    server_message([client], listoccupants(client))
+    server_message([client], list_occupants(client))
 
 
-def isroom(s):
+def is_room(s):
     """ Tests to see if a string is equivalent to a room name """
     if s in rooms:
         return True
@@ -185,7 +185,7 @@ def isroom(s):
         return False
 
 
-def listoccupants(client):
+def list_occupants(client):
     """ Send a list of room occupants """
     occupants = [c.name for c in clients.itervalues() if c.room == client.room and not c is client]
     if not occupants:
