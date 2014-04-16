@@ -188,7 +188,7 @@ def is_room(s):
 
 def list_occupants(client):
     """ Send a list of room occupants """
-    occupants = [c.name for c in clients.itervalues() if c.room == client.room and not c is client]
+    occupants = [c.name for c in client.room.occupantslist if not c is client]
     if not occupants:
         return "The room is empty\n"
     else:

@@ -41,7 +41,7 @@
       <file leaf-file-name="roguechatserver.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/roguechatserver.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="185" column="20" selection-start="7004" selection-end="7004" vertical-scroll-proportion="0.064124785" vertical-offset="2678" max-vertical-offset="4140">
+            <state line="194" column="63" selection-start="7288" selection-end="7288" vertical-scroll-proportion="0.32409012" vertical-offset="2663" max-vertical-offset="4140">
               <folding />
             </state>
           </provider>
@@ -612,7 +612,11 @@
       <created>1397665329975</created>
       <updated>1397665329976</updated>
     </task>
-    <option name="localTasksCounter" value="71" />
+    <task id="LOCAL-00071" summary="renamed some variables and modified the send function">
+      <created>1397665556077</created>
+      <updated>1397665556078</updated>
+    </task>
+    <option name="localTasksCounter" value="72" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -651,7 +655,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="rewrote command processing section to be more readable" />
     <MESSAGE value="Changed servertest and client to use a command line arg for host address or use localhost if none is given" />
     <MESSAGE value="Added player description command and a look at player command.  Also added tests and updated readme" />
     <MESSAGE value="removed an unneeded try statement for tests and client" />
@@ -676,7 +679,8 @@
     <MESSAGE value="improved code readability" />
     <MESSAGE value="changed the list of names to a set to improve lookup time" />
     <MESSAGE value="renamed some variables" />
-    <option name="LAST_COMMIT_MESSAGE" value="renamed some variables" />
+    <MESSAGE value="renamed some variables and modified the send function" />
+    <option name="LAST_COMMIT_MESSAGE" value="renamed some variables and modified the send function" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1022,7 +1026,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/roguechatserver.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="185" column="20" selection-start="7004" selection-end="7004" vertical-scroll-proportion="0.064124785" vertical-offset="2678" max-vertical-offset="4140">
+        <state line="194" column="63" selection-start="7288" selection-end="7288" vertical-scroll-proportion="0.32409012" vertical-offset="2663" max-vertical-offset="4140">
           <folding />
         </state>
       </provider>
