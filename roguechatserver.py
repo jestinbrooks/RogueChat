@@ -10,16 +10,16 @@ from objects import Room, Client
 #######################################
 def broadcast(origin_client, origin_name, message):
     """ Send a message to all occupants of a room """
+    full_message = "\r<%s> %s" % (origin_name, message)
     for client in origin_client.room.occupantslist:
         if client.clientsock != origin_client.clientsock:
             try:
-                output = "\r<%s> %s" % (origin_name, message)
                 client.clientsock.getpeername()
-                client.clientsock.send(output)
+                client.clientsock.send(full_message)
             except socket.error:
-                print "Client %s is offline\n" % client.clientsock
+                print "Client %s is offline\n" % client.name
                 client.clientsock.close()
-                origin_client.room.removeoccupant(client)
+                client.room.removeoccupant(client)
                 server_message(client.room.occupantslist, "%s disappears in a puff of smoke\n" % client.name)
                 socket_list.remove(client.clientsock)
                 del clients[client.clientsock]
@@ -28,9 +28,9 @@ def broadcast(origin_client, origin_name, message):
 def send(origin_client, destination_client, message):
     """ Send a message to one user """
     try:
-        output = "\r<%s> %s" % (origin_client.name, message)
+        full_message = "\r<%s> %s" % (origin_client.name, message)
         destination_client.clientsock.getpeername()
-        destination_client.clientsock.send(output)
+        destination_client.clientsock.send(full_message)
     except socket.error:
         print "Client %s is offline\n" % destination_client.name
         destination_client.clientsock.close()
@@ -42,9 +42,18 @@ def send(origin_client, destination_client, message):
 
 def server_message(client_list, message):
     """ Send a message from the server to a list of clients """
-    message = "\r%s" % message
+    full_message = "\r%s" % message
     for client in client_list:
-        client.clientsock.send(message)
+        try:
+            client.clientsock.getpeername()
+            client.clientsock.send(full_message)
+        except socket.error:
+            print "Client %s is offline\n" % client.name
+            client.clientsock.close()
+            client.room.removeoccupant(client)
+            server_message(client.room.occupantslist, "%s disappears in a puff of smoke\n" % client.name)
+            socket_list.remove(client.clientsock)
+            del clients[client.clientsock]
 
 
 ############################
