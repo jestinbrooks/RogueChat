@@ -288,6 +288,7 @@ test(clientsockthree, "\rYou are in the Foyer. Enter #help for more information\
 test(clientsockthree, "\rThe room contains: name4\n", "List occupants-One occupant disconnected incorrectly")
 
 clientsockthree.send("Hello")
+test(clientsockthree, "\rname4 disappears in a puff of smoke\n", "Player Disconnected-Exception in broadcast")
 clientsockthree.send("#look")
 test(clientsockthree,
      "\rYou are in the Foyer, It looks like a Foyer. \n"

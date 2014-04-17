@@ -20,6 +20,7 @@ def broadcast(origin_client, origin_name, message):
                 print "Client %s is offline\n" % client.clientsock
                 client.clientsock.close()
                 origin_client.room.removeoccupant(client)
+                server_message(client.room.occupantslist, "%s disappears in a puff of smoke\n" % client.name)
                 socket_list.remove(client.clientsock)
                 del clients[client.clientsock]
 
@@ -34,6 +35,7 @@ def send(origin_client, destination_client, message):
         print "Client %s is offline\n" % destination_client.name
         destination_client.clientsock.close()
         destination_client.room.removeoccupant(destination_client)
+        server_message(client.room.occupantslist, "%s disappears in a puff of smoke\n" % client.name)
         socket_list.remove(destination_client.clientsock)
         del clients[destination_client.clientsock]
 
@@ -213,7 +215,7 @@ if __name__ == "__main__":
     rooms = {room['name']: Room(room['name'], room['description']) for room in config.rooms}
     socket_list = []  # create an empty list to store all sockets in
     clients = {}  # create an empty dictionary to store all the clients connected to the server
-    names = set(config.names)  # List of names that are in use or have been killed
+    names = set(config.names)  # Set of names that are in use or have been killed
 
     # Set up the server socket
     RECEIVE_BUFFER = 4096
@@ -277,7 +279,7 @@ if __name__ == "__main__":
                     sock.close()
                     socket_list.remove(sock)
                     client.room.removeoccupant(client)
-                    broadcast(client, "Server", "%s is offline\n" % client.name)
+                    server_message(client.room.occupantslist, "%s disappears in a puff of smoke\n" % client.name)
                     del clients[sock]
                     continue
 
