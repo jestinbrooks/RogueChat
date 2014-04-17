@@ -124,12 +124,12 @@ def look(client, data):
     """ Function for executing the look command. This command has two versions, one for looking at a room and one for
     looking at a player"""
     if len(data) > 6:
-        lookplayer(client, data)
+        look_player(client, data)
     else:
         look_room(client)
 
 
-def lookplayer(client, data):
+def look_player(client, data):
     """ Function for executing the player part of the look command. Which gives the player a description of the player
     they are looking at"""
     for player in clients.itervalues():
