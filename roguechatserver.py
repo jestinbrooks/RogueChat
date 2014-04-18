@@ -80,12 +80,10 @@ def enter(client, data):
 def stab(client, data):
     """ Function for executing the stab player command. Which makes a player start the game over. """
     if data[6:-1]:
-        for victim in clients.itervalues():
-            if victim.name == data[6:-1] and victim.room == client.room:
+        for victim in client.room.occupantslist:
+            if victim.name == data[6:-1]:
                 send(client, victim, "Stabs you: Please enter a new name\n")
-                victim.room.bodies += 1
-                victim.room.poolofblood = True
-                victim.room.removeoccupant(victim)
+                victim.room.stabbed(victim)
                 server_message(client.room.occupantslist, "%s has been stabbed\n" % victim.name)
                 victim.room = None
                 victim.name = ""

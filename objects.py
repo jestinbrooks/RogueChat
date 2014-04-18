@@ -45,3 +45,8 @@ class Room:
             descrip += "On the wall hangs " + self.art + ". "
 
         return descrip
+
+    def stabbed(self, occupant):
+        self.bodies += 1
+        self.poolofblood = True
+        self.occupantslist.remove(occupant)
