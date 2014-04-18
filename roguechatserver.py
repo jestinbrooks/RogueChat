@@ -61,7 +61,7 @@ def server_message(client_list, message):
 ############################
 def rc_help(client, data):
     """ Function for executing the help command. Which gives a list of commands. """
-    server_message([client], config.helptext)
+    server_message([client], config.help_text)
 
 
 def enter(client, data):

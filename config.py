@@ -6,7 +6,7 @@ rooms = [
 
 names = ["Server", "server"]
 
-helptext = """Rogue Chat is a roguelike chat room
+help_text = """Rogue Chat is a roguelike chat room
 Commands:
 #enter <roomname> : Moves you to the room you enter
 
