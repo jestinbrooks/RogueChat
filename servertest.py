@@ -205,7 +205,7 @@ read(client_socket_two)
 read(client_socket_one)
 
 client_socket_two.send("#clean\n")
-test(client_socket_one, "\r<name4> cleans up the blood\n", "Player is cleaning-Already clean room with one occupant")
+test(client_socket_one, "\r<name4> cleans up the room\n", "Player is cleaning-Already clean room with one occupant")
 
 client_socket_two.send("#hang a painting of mice\n")
 test(client_socket_one, "\rname4 hangs something on the wall\n", "Player hangs art-Client one in Foyer")

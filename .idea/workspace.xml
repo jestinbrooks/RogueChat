@@ -36,10 +36,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="roguechatserver.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="roguechatserver.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/roguechatserver.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="299" column="25" selection-start="12339" selection-end="12339" vertical-scroll-proportion="0.90575916" vertical-offset="3560" max-vertical-offset="4515">
+            <state line="122" column="0" selection-start="4837" selection-end="4837" vertical-scroll-proportion="0.0" vertical-offset="1370" max-vertical-offset="4530">
               <folding />
             </state>
           </provider>
@@ -54,10 +54,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="servertest.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="servertest.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/servertest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="311" column="0" selection-start="12902" selection-end="12902" vertical-scroll-proportion="0.0" vertical-offset="3770" max-vertical-offset="4725">
+            <state line="207" column="116" selection-start="8190" selection-end="8190" vertical-scroll-proportion="0.6102063" vertical-offset="2513" max-vertical-offset="4725">
               <folding />
             </state>
           </provider>
@@ -654,12 +654,16 @@
       <created>1398031953625</created>
       <updated>1398031953625</updated>
     </task>
-    <option name="localTasksCounter" value="82" />
+    <task id="LOCAL-00082" summary="added message for trying to steal something other than art and updated tests">
+      <created>1398033179168</created>
+      <updated>1398033179169</updated>
+    </task>
+    <option name="localTasksCounter" value="83" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="1855" height="1056" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32985386" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -693,7 +697,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="Added a failure message for stab command with no name and updated tests" />
     <MESSAGE value="Added a failure message for enter command with no room name, changed message for nonexistent rooms and updated tests" />
     <MESSAGE value="Added max length for names and updated tests" />
     <MESSAGE value="Added a server message function that replaces most uses for the send function" />
@@ -718,7 +721,8 @@
     <MESSAGE value="changed readme" />
     <MESSAGE value="formatting tests" />
     <MESSAGE value="added message for trying to hide something other than a body" />
-    <option name="LAST_COMMIT_MESSAGE" value="added message for trying to hide something other than a body" />
+    <MESSAGE value="added message for trying to steal something other than art and updated tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="added message for trying to steal something other than art and updated tests" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1055,16 +1059,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/servertest.py">
+    <entry file="file://$PROJECT_DIR$/roguechatserver.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="311" column="0" selection-start="12902" selection-end="12902" vertical-scroll-proportion="0.0" vertical-offset="3770" max-vertical-offset="4725">
+        <state line="122" column="0" selection-start="4837" selection-end="4837" vertical-scroll-proportion="0.0" vertical-offset="1370" max-vertical-offset="4530">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/roguechatserver.py">
+    <entry file="file://$PROJECT_DIR$/servertest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="299" column="25" selection-start="12339" selection-end="12339" vertical-scroll-proportion="0.90575916" vertical-offset="3560" max-vertical-offset="4515">
+        <state line="207" column="116" selection-start="8190" selection-end="8190" vertical-scroll-proportion="0.6102063" vertical-offset="2513" max-vertical-offset="4725">
           <folding />
         </state>
       </provider>

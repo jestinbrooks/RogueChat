@@ -105,20 +105,21 @@ def rc_quit(client, data):
 
 def clean(client, data):
     """ Function for executing the clean command. Which removes blood from players room. """
-    client.room.poolofblood = False
-    broadcast(client, client.name, "cleans up the blood\n")
+    if client.room.poolofblood:
+        client.room.poolofblood = False
+        broadcast(client, client.name, "cleans up the blood\n")
+    else:
+        broadcast(client, client.name, "cleans up the room\n")
 
 
 def hide(client, data):
     """ Function for executing the hide body command. Which removes a body from the players room. """
-    if data[6:-1] == "body":
-        if client.room.bodies > 0:
+    if data[6:-1] == "body" and client.room.bodies > 0:
             client.room.bodies -= 1
             broadcast(client, client.name, "hides a body\n")
-        else:
-            client.room.bodies = 0
     else:
         server_message([client], "You can't hide that\n")
+        client.room.bodies = 0
 
 
 def look(client, data):
