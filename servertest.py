@@ -5,18 +5,18 @@ import sys
 # A script for testing server response to messages and commands from clients
 
 
-def test(sock, testmessage, name):
-    if read(sock) == testmessage:
+def test(sock, test_message, name):
+    if read(sock) == test_message:
         print "\033[32m Pass\033[0m : " + name
     else:
         print "\033[31m Fail\033[0m : " + name
 
 
-def read(csock):
-    """ Check for messages from the server sent to the socket csock """
+def read(client_sock):
+    """ Check for messages from the server sent to the socket client_sock """
 
     # Listen for input or a message and loop through all received messages
-    read_sockets, write_sockets, error_sockets = select.select([csock], [], [])
+    read_sockets, write_sockets, error_sockets = select.select([client_sock], [], [])
     data = read_sockets[0].recv(4096)
     if not data:
         return '\nDisconnected from chat server'
@@ -30,28 +30,26 @@ def connect(host):
     port = 5000
 
     # Create socket to connect to server
-    clientsock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    clientsock.settimeout(2)
+    client_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    client_sock.settimeout(2)
 
     # Attempt to connect to server
     try:
-        clientsock.connect((host, port))
+        client_sock.connect((host, port))
     except socket.error:
         print 'Unable to connect'
         sys.exit()
 
-    return clientsock
+    return client_sock
 
 if len(sys.argv) > 1:
     host = sys.argv[1]
 else:
     host = "localhost"
 
-client_socket_one = connect(host)
-
 print "==== Tests for connecting to server ===="
-
 # Test for correct server response to new connection
+client_socket_one = connect(host)
 test(client_socket_one, "\rWelcome to RogueChat: Please enter your name\n", "Connection-First client")
 
 # Test for correct server response to entering a name
@@ -84,7 +82,6 @@ test(client_socket_two, "\rThe room contains: name\n", "List occupants-One occup
 test(client_socket_one, "\rname2 has entered the room\n", "Player enters room-Client one")
 
 print "\n==== Tests for sending messages ===="
-
 # Send a message from client one to client two
 client_socket_one.send("hello\n")
 test(client_socket_two, "\r<name> hello\n", "Send message-Client one to client two")
@@ -93,7 +90,6 @@ client_socket_two.send("hi\n")
 test(client_socket_one, "\r<name2> hi\n", "Send message-Client two to client one")
 
 print "\n==== Tests for changing room ===="
-
 # Move client one to the Drawing Room
 client_socket_one.send("#enter Drawing Room\n")
 test(client_socket_one, "\rThe room is empty\n", "Enter command-Drawing room empty")
@@ -113,7 +109,6 @@ client_socket_one.send("#enter\n")
 test(client_socket_one, "\rYou must enter a room name\n", "Enter command-No param")
 
 print "\n==== Tests for stabbing and creating new players ===="
-
 # Test for stabbing another player
 client_socket_two.send("#stab name\n")
 test(client_socket_one, "\r<name2> Stabs you: Please enter a new name\n", "Stab-Client two to client one")
@@ -163,13 +158,11 @@ client_socket_one.send("#stab\n")
 test(client_socket_one, "\rYou must enter a name to stab\n", "Stab-No param")
 
 print "\n==== Tests for other ===="
-
 # Test entering an invalid command
 client_socket_one.send("#run\n")
 test(client_socket_one, "\rInvalid command\n", "Invalid command")
 
 print "\n==== Tests the look command and room descriptions ===="
-
 client_socket_two.send("#look\n")
 test(client_socket_two,
      "\rYou are in the Foyer, It looks like a Foyer. \nThere are doors to the Dining Hall and Drawing Room\n"
@@ -245,7 +238,6 @@ client_socket_one.send("#hang\n")
 test(client_socket_one, "\rYou must enter a description of the art\n", "Hang command-No param")
 
 print "\n==== Tests the look command and player descriptions ===="
-
 client_socket_one.send("#look name3\n")
 test(client_socket_one, "\rname3, They look nondescript\n", "Look at player-Self Default description")
 
@@ -269,7 +261,6 @@ client_socket_one.send("#describe\n")
 test(client_socket_one, "\rYou must enter a description of yourself\n", "describe command-No param")
 
 print "\n==== Tests for quiting ===="
-
 # Close connections
 client_socket_one.send("#quit\n")
 test(client_socket_one, "\nDisconnected from chat server", "Quit-Client one")
