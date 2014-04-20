@@ -111,11 +111,14 @@ def clean(client, data):
 
 def hide(client, data):
     """ Function for executing the hide body command. Which removes a body from the players room. """
-    if client.room.bodies > 0:
-        client.room.bodies -= 1
-        broadcast(client, client.name, "hides a body\n")
+    if data[6:-1] == "body":
+        if client.room.bodies > 0:
+            client.room.bodies -= 1
+            broadcast(client, client.name, "hides a body\n")
+        else:
+            client.room.bodies = 0
     else:
-        client.room.bodies = 0
+        server_message([client], "You can't hide that\n")
 
 
 def look(client, data):

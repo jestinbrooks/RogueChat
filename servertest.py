@@ -196,6 +196,9 @@ test(client_socket_two,
      "There are doors to the Foyer and Dining Hall\nThe room is empty\n",
      "Look command-After hiding body")
 
+client_socket_one.send("#hide item\n")
+test(client_socket_one, "\rYou can't hide that\n", "Hide command-Invalid item")
+
 # Move to a room with contents without testing
 client_socket_two.send("#enter Foyer\n")
 read(client_socket_two)
