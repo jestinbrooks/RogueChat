@@ -8,7 +8,7 @@ names = ["Server", "server"]
 
 help_text = """Rogue Chat is a roguelike chat room
 Commands:
-#enter <roomname> : Moves you to the room you enter
+#enter <room name> : Moves you to the room you enter
 
 #stab <name> : Kills the player you enter returning them to the lobby and
                making them choose a new name

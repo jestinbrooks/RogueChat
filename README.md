@@ -19,7 +19,7 @@ Commands
 
 \#help : Gives a description of the game and a list of commands
 
-\#enter \<roomname\> : Moves you to the room you enter
+\#enter \<room name\> : Moves you to the room you enter
 
 \#stab \<name\> : Kills the player you enter returning them to the lobby and making them choose a new name
 
