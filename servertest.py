@@ -216,8 +216,14 @@ test(client_socket_one,
      "There are doors to the Dining Hall and Drawing Room\nThe room contains: name4\n",
      "Look command-With art")
 
+client_socket_one.send("#steal not art\n")
+test(client_socket_one, "\rYou can't steal that\n", "Steal command-Invalid item")
+
 client_socket_one.send("#steal art\n")
 test(client_socket_two, "\rname3 takes something off the wall\n", "Player steals art-Client two in Foyer")
+
+client_socket_one.send("#steal art\n")
+test(client_socket_one, "\rYou can't steal that\n", "Steal command-No art")
 
 client_socket_one.send("#look\n")
 test(client_socket_one,

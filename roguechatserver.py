@@ -164,8 +164,12 @@ def hang(client, data):
 def steal(client, data):
     """ function for executing the steal art command. Which lets the player remove the player added portion of the room
     Description. """
-    client.room.art = ""
-    server_message(other_occupants(client), "%s takes something off the wall\n" % client.name)
+    if data[7:-1] == "art" and client.room.art:
+            client.room.art = ""
+            server_message(other_occupants(client), "%s takes something off the wall\n" % client.name)
+    else:
+        server_message([client], "You can't steal that\n")
+
 
 
 def describe_self(client, data):
