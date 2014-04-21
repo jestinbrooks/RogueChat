@@ -2,9 +2,8 @@ import socket
 import select
 import sys
 
+
 # A script for testing server response to messages and commands from clients
-
-
 def test(sock, test_message, name):
     if read(sock) == test_message:
         print "\033[32m Pass\033[0m : " + name
@@ -14,32 +13,25 @@ def test(sock, test_message, name):
 
 def read(client_sock):
     """ Check for messages from the server sent to the socket client_sock """
-
     # Listen for input or a message and loop through all received messages
     read_sockets, write_sockets, error_sockets = select.select([client_sock], [], [])
     data = read_sockets[0].recv(4096)
     if not data:
         return '\nDisconnected from chat server'
-        #sys.exit()
-    # Print messages from the server
     else:
         return data
 
 
 def connect(host):
     port = 5000
-
     # Create socket to connect to server
     client_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     client_sock.settimeout(2)
-
-    # Attempt to connect to server
     try:
         client_sock.connect((host, port))
     except socket.error:
         print 'Unable to connect'
         sys.exit()
-
     return client_sock
 
 if len(sys.argv) > 1:
@@ -86,6 +78,7 @@ print "\n==== Tests for sending messages ===="
 client_socket_one.send("hello\n")
 test(client_socket_two, "\r<name> hello\n", "Send message-Client one to client two")
 
+# Send a message from client two to client one
 client_socket_two.send("hi\n")
 test(client_socket_one, "\r<name2> hi\n", "Send message-Client two to client one")
 
@@ -292,15 +285,16 @@ test(client_socket_three, "\rWelcome to RogueChat: Please enter your name\n", "C
 
 # Test for correct server response to entering a name
 client_socket_three.send("name5\n")
-
-
 test(client_socket_three,
      "\rYou are in the Foyer. Enter #help for more information\n",
      "Enter Name-When connecting third client")
 test(client_socket_three, "\rThe room contains: name4\n", "List occupants-One occupant disconnected incorrectly")
 
+# Test for sending a message when a play has disconnected improperly
 client_socket_three.send("Hello")
 test(client_socket_three, "\rname4 disappears in a puff of smoke\n", "Player Disconnected-Exception in broadcast")
+
+# Test for making sure a improperly disconnected player is removed from the room
 client_socket_three.send("#look")
 test(client_socket_three,
      "\rYou are in the Foyer, It looks like a Foyer. \n"
