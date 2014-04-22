@@ -262,44 +262,5 @@ test(client_socket_one, "\rThere is no invalid here", "Look at player-Invalid")
 client_socket_one.send("#describe\n")
 test(client_socket_one, "\rYou must enter a description of yourself\n", "describe command-No param")
 
-print "\n==== Tests for quiting ===="
-# Close connections
 client_socket_one.send("#quit\n")
-test(client_socket_one, "\nDisconnected from chat server", "Quit-Client one")
-test(client_socket_two, "\rname3 disappears in a puff of smoke\n", "Player has quit message-Client two")
-
-client_socket_two.send("#enter Dining Hall\n")
-test(client_socket_two, "\rThe room is empty\n", "Room empty-Dining Hall")
-
-client_socket_two.send("#enter Drawing Room\n")
-test(client_socket_two, "\rThe room is empty\n", "Room empty-Drawing Room")
-
-client_socket_two.send("#enter Foyer\n")
-test(client_socket_two, "\rThe room is empty\n", "Room empty-Foyer")
-
-del client_socket_two
-client_socket_three = connect(host)
-
-# Test for correct server response to new connection
-test(client_socket_three, "\rWelcome to RogueChat: Please enter your name\n", "Connection-Third client")
-
-# Test for correct server response to entering a name
-client_socket_three.send("name5\n")
-test(client_socket_three,
-     "\rYou are in the Foyer. Enter #help for more information\n",
-     "Enter Name-When connecting third client")
-test(client_socket_three, "\rThe room contains: name4\n", "List occupants-One occupant disconnected incorrectly")
-
-# Test for sending a message when a play has disconnected improperly
-client_socket_three.send("Hello")
-test(client_socket_three, "\rname4 disappears in a puff of smoke\n", "Player Disconnected-Exception in broadcast")
-
-# Test for making sure a improperly disconnected player is removed from the room
-client_socket_three.send("#look")
-test(client_socket_three,
-     "\rYou are in the Foyer, It looks like a Foyer. \n"
-     "There are doors to the Dining Hall and Drawing Room\nThe room is empty\n",
-     "Look command-After improper disconnect and sending a message")
-
-client_socket_three.send("#quit")
-test(client_socket_three, "\nDisconnected from chat server", "Quit-Client three")
+client_socket_two.send("#quit")
