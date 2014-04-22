@@ -17,7 +17,7 @@ def broadcast(origin_client, origin_name, message):
                 client.clientsock.getpeername()
                 client.clientsock.send(full_message)
             except socket.error:
-                print "Client %s is offline\n" % client.name
+                print "Client %s is offline-Broadcast\n" % client.name
                 client.clientsock.close()
                 client.room.removeoccupant(client)
                 server_message(client.room.occupantslist, "%s disappears in a puff of smoke\n" % client.name)
@@ -32,7 +32,7 @@ def send(origin_client, destination_client, message):
         destination_client.clientsock.getpeername()
         destination_client.clientsock.send(full_message)
     except socket.error:
-        print "Client %s is offline\n" % destination_client.name
+        print "Client %s is offline-Send\n" % destination_client.name
         destination_client.clientsock.close()
         destination_client.room.removeoccupant(destination_client)
         server_message(client.room.occupantslist, "%s disappears in a puff of smoke\n" % client.name)
@@ -48,7 +48,7 @@ def server_message(client_list, message):
             client.clientsock.getpeername()
             client.clientsock.send(full_message)
         except socket.error:
-            print "Client %s is offline\n" % client.name
+            print "Client %s is offline-Server message\n" % client.name
             client.clientsock.close()
             client.room.removeoccupant(client)
             server_message(client.room.occupantslist, "%s disappears in a puff of smoke\n" % client.name)
@@ -290,12 +290,14 @@ if __name__ == "__main__":
 
                 # If a socket can't be communicated with remove it from the list and room
                 except socket.error:
-                    print "Client %s is offline\n" % sock
+                    print "Client %s is offline-Main loop\n" % sock
                     sock.close()
                     socket_list.remove(sock)
                     client.room.removeoccupant(client)
                     server_message(client.room.occupantslist, "%s disappears in a puff of smoke\n" % client.name)
                     del clients[sock]
+                    continue
+                except KeyError:
                     continue
 
     server_socket.close()
