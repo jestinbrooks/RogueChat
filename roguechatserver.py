@@ -27,8 +27,8 @@ def broadcast(origin_client, origin_name, message):
 
 def send(origin_client, destination_client, message):
     """ Send a message to one user """
+    full_message = "\r<%s> %s" % (origin_client.name, message)
     try:
-        full_message = "\r<%s> %s" % (origin_client.name, message)
         destination_client.clientsock.getpeername()
         destination_client.clientsock.send(full_message)
     except socket.error:
@@ -258,36 +258,6 @@ if __name__ == "__main__":
                 try:
                     client = clients[connection]
                     data = connection.recv(RECEIVE_BUFFER)
-                    if data:
-                        print "%s entered by %s" % (data, str(connection))
-                        # If the client has no name get its name and ask for room
-                        if not client.name:
-                            print "name entered"
-                            if len(data) <= 25:
-                                if data[:-1] in names:
-                                    server_message([client], "That name is either in use or dead\n")
-                                else:
-                                    client.name = data[:-1]
-                                    names.add(client.name)
-                                    server_message([client], "You are in the Foyer. Enter #help for more information\n")
-                                    move(client, "Foyer")
-                            else:
-                                server_message([client], "That name is too long\n")
-
-                        # If the message is a command see which command it is
-                        elif data[0] == '#':
-                            print "command entered"
-                            command = data.split(' ', 1)[0][1:].rstrip()
-                            try:
-                                commands[command](client, data)
-                            except KeyError:
-                                server_message([client], "Invalid command\n")
-
-                        # Else send the message out to the rest of the users room
-                        else:
-                            print "message entered"
-                            broadcast(client, client.name, data)
-
                 # If a socket can't be communicated with remove it from the list and room
                 except socket.error:
                     print "Client %s is offline-Main loop\n" % connection
@@ -297,7 +267,36 @@ if __name__ == "__main__":
                     server_message(client.room.occupants_list, "%s disappears in a puff of smoke\n" % client.name)
                     del clients[connection]
                     continue
+                # If data is received from a
                 except KeyError:
                     continue
+                if data:
+                    print "%s entered by %s" % (data, str(connection))
+                    # If the client has no name get its name and ask for room
+                    if not client.name:
+                        print "name entered"
+                        if len(data) <= 25:
+                            if data[:-1] in names:
+                                server_message([client], "That name is either in use or dead\n")
+                            else:
+                                client.name = data[:-1]
+                                names.add(client.name)
+                                server_message([client], "You are in the Foyer. Enter #help for more information\n")
+                                move(client, "Foyer")
+                        else:
+                            server_message([client], "That name is too long\n")
 
+                    # If the message is a command see which command it is
+                    elif data[0] == '#':
+                        print "command entered"
+                        command = data.split(' ', 1)[0][1:].rstrip()
+                        try:
+                            commands[command](client, data)
+                        except KeyError:
+                            server_message([client], "Invalid command\n")
+
+                    # Else send the message out to the rest of the users room
+                    else:
+                        print "message entered"
+                        broadcast(client, client.name, data)
     server_socket.close()
