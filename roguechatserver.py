@@ -11,7 +11,7 @@ from objects import Room, Client
 def broadcast(origin_client, origin_name, message):
     """ Send a message to all occupants of a room """
     full_message = "\r<%s> %s" % (origin_name, message)
-    for client in origin_client.room.occupantslist:
+    for client in origin_client.room.occupants_list:
         if client.clientsock != origin_client.clientsock:
             try:
                 client.clientsock.getpeername()
@@ -19,8 +19,8 @@ def broadcast(origin_client, origin_name, message):
             except socket.error:
                 print "Client %s is offline-Broadcast\n" % client.name
                 client.clientsock.close()
-                client.room.removeoccupant(client)
-                server_message(client.room.occupantslist, "%s disappears in a puff of smoke\n" % client.name)
+                client.room.occupants_list.remove(client)
+                server_message(client.room.occupants_list, "%s disappears in a puff of smoke\n" % client.name)
                 socket_list.remove(client.clientsock)
                 del clients[client.clientsock]
 
@@ -34,8 +34,8 @@ def send(origin_client, destination_client, message):
     except socket.error:
         print "Client %s is offline-Send\n" % destination_client.name
         destination_client.clientsock.close()
-        destination_client.room.removeoccupant(destination_client)
-        server_message(client.room.occupantslist, "%s disappears in a puff of smoke\n" % client.name)
+        destination_client.room.occupants_list.remove(destination_client)
+        server_message(client.room.occupants_list, "%s disappears in a puff of smoke\n" % client.name)
         socket_list.remove(destination_client.clientsock)
         del clients[destination_client.clientsock]
 
@@ -50,8 +50,8 @@ def server_message(client_list, message):
         except socket.error:
             print "Client %s is offline-Server message\n" % client.name
             client.clientsock.close()
-            client.room.removeoccupant(client)
-            server_message(client.room.occupantslist, "%s disappears in a puff of smoke\n" % client.name)
+            client.room.occupants_list.remove(client)
+            server_message(client.room.occupants_list, "%s disappears in a puff of smoke\n" % client.name)
             socket_list.remove(client.clientsock)
             del clients[client.clientsock]
 
@@ -80,11 +80,11 @@ def enter(client, data):
 def stab(client, data):
     """ Function for executing the stab player command. Which makes a player start the game over. """
     if data[6:-1]:
-        for victim in client.room.occupantslist:
+        for victim in client.room.occupants_list:
             if victim.name == data[6:-1]:
                 send(client, victim, "Stabs you: Please enter a new name\n")
                 victim.room.stabbed(victim)
-                server_message(client.room.occupantslist, "%s has been stabbed\n" % victim.name)
+                server_message(client.room.occupants_list, "%s has been stabbed\n" % victim.name)
                 victim.room = None
                 victim.name = ""
                 break
@@ -98,8 +98,8 @@ def rc_quit(client, data):
     """ Function for executing the quit command. Which disconnects the client """
     client.clientsock.close()
     socket_list.remove(client.clientsock)
-    client.room.removeoccupant(client)
-    server_message(client.room.occupantslist, "%s disappears in a puff of smoke\n" % client.name)
+    client.room.occupants_list.remove(client)
+    server_message(client.room.occupants_list, "%s disappears in a puff of smoke\n" % client.name)
     del clients[client.clientsock]
 
 
@@ -147,7 +147,7 @@ def look_room(client):
     room they are in. """
     other_rooms = list(rooms.iterkeys())
     other_rooms.remove(client.room.name)
-    description = ("You are in the %s, %s\n" % (client.room.name, client.room.getdescription()) +
+    description = ("You are in the %s, %s\n" % (client.room.name, client.room.get_description()) +
         "There are doors to the %s\n" % " and ".join(other_rooms) +
         list_occupants(client))
     server_message([client], description)
@@ -187,11 +187,11 @@ def describe_self(client, data):
 def move(client, room_to_enter):
     """ Move a user from one room to another """
     if client.room:
-        client.room.removeoccupant(client)
-        server_message(client.room.occupantslist, "%s has left the room\n" % client.name)
+        client.room.occupants_list.remove(client)
+        server_message(client.room.occupants_list, "%s has left the room\n" % client.name)
     client.room = rooms[room_to_enter]
-    server_message(client.room.occupantslist, "%s has entered the room\n" % client.name)
-    rooms[room_to_enter].addoccupant(client)
+    server_message(client.room.occupants_list, "%s has entered the room\n" % client.name)
+    rooms[room_to_enter].occupants_list.append(client)
     server_message([client], list_occupants(client))
 
 
@@ -205,7 +205,7 @@ def is_room(s):
 
 def list_occupants(client):
     """ Send a list of room occupants """
-    occupants = [c.name for c in client.room.occupantslist if not c is client]
+    occupants = [c.name for c in client.room.occupants_list if not c is client]
     if not occupants:
         return "The room is empty\n"
     else:
@@ -213,7 +213,7 @@ def list_occupants(client):
 
 
 def other_occupants(client):
-    occupants = list(client.room.occupantslist)
+    occupants = list(client.room.occupants_list)
     occupants.remove(client)
     if occupants:
         return occupants
@@ -246,9 +246,9 @@ if __name__ == "__main__":
     while True:
         # Listen for a message and loop through all received messages
         read_sockets, write_sockets, error_sockets = select.select(socket_list, [], [])
-        for sock in read_sockets:
+        for connection in read_sockets:
             # If the message is received on the server socket create a new connection
-            if sock == server_socket:
+            if connection == server_socket:
                 new_sock, address = server_socket.accept()
                 clients[new_sock] = Client(address, new_sock)
                 socket_list.append(new_sock)
@@ -256,10 +256,10 @@ if __name__ == "__main__":
             # If the message is from an existing client check the content and user state
             else:
                 try:
-                    client = clients[sock]
-                    data = sock.recv(RECEIVE_BUFFER)
+                    client = clients[connection]
+                    data = connection.recv(RECEIVE_BUFFER)
                     if data:
-                        print "%s entered by %s" % (data, str(sock))
+                        print "%s entered by %s" % (data, str(connection))
                         # If the client has no name get its name and ask for room
                         if not client.name:
                             print "name entered"
@@ -290,12 +290,12 @@ if __name__ == "__main__":
 
                 # If a socket can't be communicated with remove it from the list and room
                 except socket.error:
-                    print "Client %s is offline-Main loop\n" % sock
-                    sock.close()
-                    socket_list.remove(sock)
-                    client.room.removeoccupant(client)
-                    server_message(client.room.occupantslist, "%s disappears in a puff of smoke\n" % client.name)
-                    del clients[sock]
+                    print "Client %s is offline-Main loop\n" % connection
+                    connection.close()
+                    socket_list.remove(connection)
+                    client.room.occupants_list.remove(client)
+                    server_message(client.room.occupants_list, "%s disappears in a puff of smoke\n" % client.name)
+                    del clients[connection]
                     continue
                 except KeyError:
                     continue

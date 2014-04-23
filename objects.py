@@ -12,41 +12,35 @@ class Client:
 class Room:
     """ An object containing a list of room properties and methods for editing them"""
     def __init__(self, name, description):
-        self.occupantslist = []
+        self.occupants_list = []
         self.name = name
         self.description = description
         self.bodies = 0
         self.poolofblood = False
         self.art = ""
 
-    def addoccupant(self, occupant):
-        self.occupantslist.append(occupant)
-
-    def removeoccupant(self, occupant):
-        self.occupantslist.remove(occupant)
-
-    def getdescription(self):
-        descrip = self.description
+    def get_description(self):
+        full_description = self.description
 
         if self.bodies and not self.poolofblood:
             if self.bodies == 1:
-                descrip += "There is 1 body on the floor. "
+                full_description += "There is 1 body on the floor. "
             else:
-                descrip += "There are %s bodies on the floor. " % str(self.bodies)
+                full_description += "There are %s bodies on the floor. " % str(self.bodies)
         elif self.poolofblood and not self.bodies:
-            descrip += "There is a pool of blood on the floor. "
+            full_description += "There is a pool of blood on the floor. "
         elif self.poolofblood and self.bodies:
             if self.bodies == 1:
-                descrip += "There is 1 body in a pool of blood on the floor. "
+                full_description += "There is 1 body in a pool of blood on the floor. "
             else:
-                descrip += "There are %s bodies in a pool of blood on the floor. " % str(self.bodies)
+                full_description += "There are %s bodies in a pool of blood on the floor. " % str(self.bodies)
 
         if self.art:
-            descrip += "On the wall hangs " + self.art + ". "
+            full_description += "On the wall hangs " + self.art + ". "
 
-        return descrip
+        return full_description
 
     def stabbed(self, occupant):
         self.bodies += 1
         self.poolofblood = True
-        self.occupantslist.remove(occupant)
+        self.occupants_list.remove(occupant)
