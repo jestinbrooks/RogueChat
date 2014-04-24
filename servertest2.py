@@ -82,6 +82,30 @@ client_socket_three.send("hi\n")
 test(client_socket_one, "\r<name3> hi\n", "Message-3 clients part one")
 test(client_socket_two, "\r<name3> hi\n", "Message-3 clients part two")
 
+print "\n==== Tests the look command and player descriptions ===="
+
+client_socket_one.send("#look name\n")
+test(client_socket_one, "\rname, They look nondescript\n", "Look at player-Self Default description")
+
+client_socket_one.send("#describe has pretty tentacles")
+client_socket_one.send("#look name\n")
+test(client_socket_one, "\rname, has pretty tentacles\n", "Look at player-Self New description")
+
+# Test for looking at another player with a default description
+client_socket_one.send("#look name2\n")
+test(client_socket_one, "\rname2, They look nondescript\n", "Look at player-Other default")
+
+# Test for description over 20 chars
+client_socket_one.send("#describe 123456789012345678901234567890\n")
+client_socket_one.send("#look name\n")
+test(client_socket_one, "\rname, 12345678901234567890\n", "Look at player-Description over max length")
+
+client_socket_one.send("#look invalid\n")
+test(client_socket_one, "\rThere is no invalid here", "Look at player-Invalid")
+
+client_socket_one.send("#describe\n")
+test(client_socket_one, "\rYou must enter a description of yourself\n", "describe command-No param")
+
 print "\n==== Tests for quit and disconnecting ===="
 
 del client_socket_two

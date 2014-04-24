@@ -249,10 +249,10 @@ if __name__ == "__main__":
         for connection in read_sockets:
             # If the message is received on the server socket create a new connection
             if connection == server_socket:
-                new_sock, address = server_socket.accept()
-                clients[new_sock] = Client(address, new_sock)
-                socket_list.append(new_sock)
-                server_message([clients[new_sock]], 'Welcome to RogueChat: Please enter your name\n')
+                new_connection, address = server_socket.accept()
+                clients[new_connection] = Client(address, new_connection)
+                socket_list.append(new_connection)
+                server_message([clients[new_connection]], 'Welcome to RogueChat: Please enter your name\n')
             # If the message is from an existing client check the content and user state
             else:
                 try:

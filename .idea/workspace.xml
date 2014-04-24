@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="3e99179b-5341-467f-80de-bec73e0752e0" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/roguechatserver.py" afterPath="$PROJECT_DIR$/roguechatserver.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/servertest.py" afterPath="$PROJECT_DIR$/servertest.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/servertest2.py" afterPath="$PROJECT_DIR$/servertest2.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="RogueChat.iws" />
@@ -35,10 +37,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="roguechatserver.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="roguechatserver.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/roguechatserver.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="30" column="8" selection-start="1164" selection-end="1164" vertical-scroll-proportion="0.4712042" vertical-offset="0" max-vertical-offset="4605">
+            <state line="251" column="36" selection-start="9909" selection-end="9909" vertical-scroll-proportion="0.0" vertical-offset="3480" max-vertical-offset="4605">
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -49,16 +51,16 @@
       <file leaf-file-name="objects.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/objects.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="26" column="68" selection-start="825" selection-end="825" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="780">
+            <state line="26" column="68" selection-start="825" selection-end="825" vertical-scroll-proportion="0.0" vertical-offset="390" max-vertical-offset="780">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="servertest.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="servertest.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/servertest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="263" column="0" selection-start="11116" selection-end="11116" vertical-scroll-proportion="0.0" vertical-offset="3080" max-vertical-offset="4035">
+            <state line="239" column="83" selection-start="9544" selection-end="9544" vertical-scroll-proportion="0.82722515" vertical-offset="2765" max-vertical-offset="4395">
               <folding />
             </state>
           </provider>
@@ -67,7 +69,7 @@
       <file leaf-file-name="servertest2.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/servertest2.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="112" column="103" selection-start="3841" selection-end="3841" vertical-scroll-proportion="0.0" vertical-offset="1304" max-vertical-offset="1935">
+            <state line="109" column="0" selection-start="3660" selection-end="3660" vertical-scroll-proportion="0.0" vertical-offset="1310" max-vertical-offset="2265">
               <folding />
             </state>
           </provider>
@@ -85,7 +87,7 @@
       <file leaf-file-name="config.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="30" column="75" selection-start="1177" selection-end="1177" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="555">
+            <state line="30" column="75" selection-start="1177" selection-end="1177" vertical-scroll-proportion="0.0" vertical-offset="450" max-vertical-offset="555">
               <folding />
             </state>
           </provider>
@@ -119,20 +121,20 @@
         <option value="$PROJECT_DIR$/roguechatclient.py" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/tests.py" />
-        <option value="$PROJECT_DIR$/servertest2.py" />
         <option value="$PROJECT_DIR$/testfile.py" />
-        <option value="$PROJECT_DIR$/servertest.py" />
         <option value="$PROJECT_DIR$/config.py" />
         <option value="$PROJECT_DIR$/objects.py" />
         <option value="$PROJECT_DIR$/roguechatserver.py" />
+        <option value="$PROJECT_DIR$/servertest2.py" />
+        <option value="$PROJECT_DIR$/servertest.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="65" />
-    <option name="y" value="24" />
+    <option name="y" value="-4" />
     <option name="width" value="1855" />
-    <option name="height" value="1056" />
+    <option name="height" value="1084" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -712,18 +714,20 @@
       <created>1398277614115</created>
       <updated>1398277614115</updated>
     </task>
-    <option name="localTasksCounter" value="88" />
+    <task id="LOCAL-00088" summary="moved unneeded code out of try blocks">
+      <created>1398278007420</created>
+      <updated>1398278007420</updated>
+    </task>
+    <option name="localTasksCounter" value="89" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="65" y="24" width="1855" height="1056" extended-state="6" />
+    <frame x="65" y="-4" width="1855" height="1084" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3292683" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3292683" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.11212938" sideWeight="0.67014617" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -733,7 +737,9 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32879582" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3292683" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -751,7 +757,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="Removed an unneeded test" />
     <MESSAGE value="Changed the rooms occupantlist to be a list of client objects instead of a list of sockets" />
     <MESSAGE value="Replaced some instances of broadcast with server_message" />
     <MESSAGE value="Removed some code that had been commented out" />
@@ -776,7 +781,8 @@
     <MESSAGE value="fixed server crashing when reading from a disconnected client" />
     <MESSAGE value="split test script into two parts and added new tests for 3 players" />
     <MESSAGE value="renamed some functions and variables and removed the setters for occupants list" />
-    <option name="LAST_COMMIT_MESSAGE" value="renamed some functions and variables and removed the setters for occupants list" />
+    <MESSAGE value="moved unneeded code out of try blocks" />
+    <option name="LAST_COMMIT_MESSAGE" value="moved unneeded code out of try blocks" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1119,20 +1125,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/servertest2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="112" column="103" selection-start="3841" selection-end="3841" vertical-scroll-proportion="0.0" vertical-offset="1304" max-vertical-offset="1935">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/servertest.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="263" column="0" selection-start="11116" selection-end="11116" vertical-scroll-proportion="0.0" vertical-offset="3080" max-vertical-offset="4035">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="30" column="75" selection-start="1177" selection-end="1177" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="555">
@@ -1149,10 +1141,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/roguechatserver.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="8" selection-start="1164" selection-end="1164" vertical-scroll-proportion="0.4712042" vertical-offset="0" max-vertical-offset="4605">
+        <state line="251" column="36" selection-start="9909" selection-end="9909" vertical-scroll-proportion="0.0" vertical-offset="3210" max-vertical-offset="4605">
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/servertest2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="109" column="0" selection-start="3660" selection-end="3660" vertical-scroll-proportion="0.0" vertical-offset="1310" max-vertical-offset="2265">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/servertest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="239" column="83" selection-start="9544" selection-end="9544" vertical-scroll-proportion="0.82722515" vertical-offset="2765" max-vertical-offset="4395">
+          <folding />
         </state>
       </provider>
     </entry>

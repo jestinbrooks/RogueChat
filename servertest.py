@@ -200,13 +200,60 @@ read(client_socket_one)
 client_socket_two.send("#clean\n")
 test(client_socket_one, "\r<name4> cleans up the room\n", "Player is cleaning-Already clean room with one occupant")
 
+client_socket_one.send("#enter Dining Hall\n")
+read(client_socket_two)
+read(client_socket_one)
+
+client_socket_two.send("#enter Dining Hall\n")
+read(client_socket_two)
+read(client_socket_one)
+
+client_socket_one.send("#stab name4\n")
+read(client_socket_one)
+
+read(client_socket_two)
+client_socket_two.send("name5\n")
+read(client_socket_two)
+read(client_socket_two)
+client_socket_two.send("#enter Dining Hall\n")
+read(client_socket_two)
+read(client_socket_one)
+
+client_socket_one.send("#look\n")
+test(client_socket_one,
+     "\rYou are in the Dining Hall, It looks like a Dining Hall. There is 1 body in a pool of blood on the floor. \n"
+     "There are doors to the Foyer and Drawing Room\nThe room contains: name5\n",
+     "Room-1 body and pool of blood")
+
+client_socket_one.send("#clean\n")
+test(client_socket_two, "\r<name3> cleans up the blood\n", "Notification of cleaning")
+
+client_socket_one.send("#look\n")
+test(client_socket_one,
+     "\rYou are in the Dining Hall, It looks like a Dining Hall. There is 1 body on the floor. \n"
+     "There are doors to the Foyer and Drawing Room\nThe room contains: name5\n",
+     "Blood removed after cleaning")
+
+client_socket_one.send("#hide body\n")
+test(client_socket_two, "\r<name3> hides a body\n", "Notification of hiding a body")
+client_socket_one.send("#hide body\n")
+test(client_socket_one, "\rYou can't hide that\n", "Hide body when there are none")
+
+client_socket_one.send("#enter Foyer\n")
+read(client_socket_two)
+read(client_socket_one)
+
+client_socket_two.send("#enter Foyer\n")
+read(client_socket_two)
+read(client_socket_one)
+
 client_socket_two.send("#hang a painting of mice\n")
-test(client_socket_one, "\rname4 hangs something on the wall\n", "Player hangs art-Client one in Foyer")
+test(client_socket_one, "\rname5 hangs something on the wall\n", "Player hangs art-Client one in Foyer")
 
 client_socket_one.send("#look\n")
 test(client_socket_one,
      "\rYou are in the Foyer, It looks like a Foyer. On the wall hangs a painting of mice. \n"
-     "There are doors to the Dining Hall and Drawing Room\nThe room contains: name4\n",
+     "There are doors to the Dining Hall and Drawing Room\nThe room contains: name5\n",
      "Look command-With art")
 
 client_socket_one.send("#steal not art\n")
@@ -221,7 +268,7 @@ test(client_socket_one, "\rYou can't steal that\n", "Steal command-No art")
 client_socket_one.send("#look\n")
 test(client_socket_one,
      "\rYou are in the Foyer, It looks like a Foyer. \n"
-     "There are doors to the Dining Hall and Drawing Room\nThe room contains: name4\n",
+     "There are doors to the Dining Hall and Drawing Room\nThe room contains: name5\n",
      "Look command-After stealing art")
 
 # Test for adding and look at art with a description that is over the max length
@@ -230,7 +277,7 @@ test(client_socket_two, "\rname3 hangs something on the wall\n", "Player hangs a
 client_socket_one.send("#look\n")
 test(client_socket_one,
      "\rYou are in the Foyer, It looks like a Foyer. On the wall hangs 12345678901234567890. \n"
-     "There are doors to the Dining Hall and Drawing Room\nThe room contains: name4\n",
+     "There are doors to the Dining Hall and Drawing Room\nThe room contains: name5\n",
      "Look command-Art with description over max length")
 client_socket_one.send("#steal art\n")
 read(client_socket_two)
@@ -238,29 +285,6 @@ read(client_socket_two)
 # Test for hanging art without a description
 client_socket_one.send("#hang\n")
 test(client_socket_one, "\rYou must enter a description of the art\n", "Hang command-No param")
-
-print "\n==== Tests the look command and player descriptions ===="
-client_socket_one.send("#look name3\n")
-test(client_socket_one, "\rname3, They look nondescript\n", "Look at player-Self Default description")
-
-client_socket_one.send("#describe has pretty tentacles")
-client_socket_one.send("#look name3\n")
-test(client_socket_one, "\rname3, has pretty tentacles\n", "Look at player-Self New description")
-
-# Test for looking at another player with a default description
-client_socket_one.send("#look name4\n")
-test(client_socket_one, "\rname4, They look nondescript\n", "Look at player-Other default")
-
-# Test for description over 20 chars
-client_socket_one.send("#describe 123456789012345678901234567890\n")
-client_socket_one.send("#look name3\n")
-test(client_socket_one, "\rname3, 12345678901234567890\n", "Look at player-Description over max length")
-
-client_socket_one.send("#look invalid\n")
-test(client_socket_one, "\rThere is no invalid here", "Look at player-Invalid")
-
-client_socket_one.send("#describe\n")
-test(client_socket_one, "\rYou must enter a description of yourself\n", "describe command-No param")
 
 client_socket_one.send("#quit\n")
 client_socket_two.send("#quit")
