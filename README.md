@@ -5,7 +5,7 @@ A client and server for a roguelike chat room
 
 If you are killed you must start over with a new name
 
-Setup for running locally on a unix or linux computer
+Setup for running locally on a unix or linux computer.  Rougechat has not been tested with windows.
 
 1. Check your version of python, I tested with 2.7.3 and 2.7.5 but it should work with any version of 2.6 or 2.7
 
